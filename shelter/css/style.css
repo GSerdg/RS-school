@@ -200,9 +200,9 @@ h1 {
     /* align-items: center; */
 }
 
-.about-content img {
-    /* width: 300px; */
-    /* height: 408px; */
+.about-content-img {
+    width: 300px;
+    height: 408px;
     padding: 0 120px 0 175px;
 }
 
@@ -217,4 +217,36 @@ h1 {
 
 .about-text h3 {
     width: 370px;
+}
+
+/*Pets*/
+
+.pets-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pets-content {
+    display: flex;
+    width: 1200px;
+    height: 697px;
+    flex-direction: column;
+    padding: 80px 40px 100px 40px;
+}
+
+.pets-slider {
+    display: flex;
+
+}
+
+.pets-card {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    height: 435px;
+}
+
+.pets-content h3 {
+    /* align-self: center; */
+    text-align: center;
 }
