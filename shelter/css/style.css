@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #545454;
+
+}
+
+.text-arial {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    color: #4C4C4C;
+}
+
+/*Main block*/
+
+.start-screen-container {
+    display: flex;
+    justify-content: center;
+    background: url(../img/start-screen-gradient-background.png),
+        radial-gradient(100% 215.42% at 0% 0%,
+            #5B483A 0%, #262425 100%), #211F20;
+}
+
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    width: 1280px;
+    height: 908px;
+    align-items: center;
+    /* background-color: rgb(90, 84, 63); */
+    /* margin: 0 40px 0 40px; */
+    /* justify-content: center; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    height: 60px;
+    padding-top: 30px;
+
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    height: 60px;
+}
+
+.logo h2 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 110%;
+    /* or 35px */
+
+    /* display: flex; */
+    /* align-items: center; */
+    letter-spacing: 0.06em;
+    color: #F1CDB3;
+}
+
+.logo p {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    /* identical to box height */
+
+    /* display: flex; */
+    /* align-items: center; */
+    letter-spacing: 0.1em;
+
+    /* color-light-xl */
+
+    color: #FFFFFF;
+    padding-left: 4px;
+}
+
+.nav-menu {
+    display: flex;
+    width: 443px;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 4px;
+
+}
+
+.nav-menu p {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    /* identical to box height, or 24px */
+
+
+    /* color-light-s */
+
+    color: #FAFAFA;
+    /* margin-left: 35px; */
+}
+
+.link-menu-border {
+    height: 3px;
+    width: auto;
+    background: #F1CDB3;
+}
+
+.start-screen-content {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin-top: 90px;
+}
+
+.start-screen-puppy {
+    width: 698px;
+}
+
+.start-screen-text {
+    width: 460px;
+    height: max-content;
+    position: relative;
+    top: 163px;
+}
+
+.start-screen-text p {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    color: #CDCDCD;
+    margin: 42px 0 42px 0;
+}
+
+.start-screen-btn {
+    display: inline-flex;
+    width: 207px;
+    height: 52px;
+    background: #F1CDB3;
+    border-radius: 100px;
+    text-decoration: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #292929;
+}
+
+
+
+h1 {
+    width: 310px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 130%;
+    color: #FFFFFF;
+}
+
+/*About*/
+
+.about-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-content {
+    display: flex;
+    width: 1200px;
+    height: 408px;
+    padding: 80px 40px 100px 40px;
+    /* align-items: center; */
+}
+
+.about-content img {
+    /* width: 300px; */
+    /* height: 408px; */
+    padding: 0 120px 0 175px;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 380px;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.about-text h3 {
+    width: 370px;
+}
