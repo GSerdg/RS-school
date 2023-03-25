@@ -1,0 +1,335 @@
+/* Fonts start */
+@font-face {
+    font-family: 'Arial';
+    src: url('../../assets/fonts/Arial-ItalicMT.woff2') format('woff2'),
+        url('../../assets/fonts/Arial-ItalicMT.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arial';
+    src: url('../../assets/fonts/ArialMT.woff2') format('woff2'),
+        url('../../assets/fonts/ArialMT.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('../../assets/fonts/Georgia-Italic.woff2') format('woff2'),
+        url('../../assets/fonts/Georgia-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('../../assets/fonts/Georgia-Bold.woff2') format('woff2'),
+        url('../../assets/fonts/Georgia-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('../../assets/fonts/Georgia.woff2') format('woff2'),
+        url('../../assets/fonts/Georgia.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fonts end */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    color: #4C4C4C;
+}
+
+a {
+    text-decoration: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.text_h3 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+
+.text_h4 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 115%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+
+/*Header start*/
+
+.wraper {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.header__wraper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px 0;
+    margin: 0 40px 0 40px;
+}
+
+.header__nav {
+    margin: auto 0;
+}
+
+.header__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 36px;
+}
+
+.header__item:last-child {
+    margin-right: 0;
+}
+
+.header__link {
+    color: #545454;
+}
+
+.header__active_link {
+    color: #292929;
+}
+
+.header__link_border {
+    height: 3px;
+    width: auto;
+    background: #F1CDB3;
+}
+
+.header__logo-link h2 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+
+.header__logo-link h1 {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    color: #292929;
+    padding-left: 4px;
+    margin-top: 10px;
+}
+
+/*Header end*/
+/* Footer start */
+
+.footer {
+    background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+.footer__wraper {
+    padding: 40px 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    /*  align-items: center; */
+}
+
+.footer__img {
+    width: 300px;
+    height: 310px;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* max-width: 302px; */
+    height: 234px;
+    margin-top: 16px;
+}
+
+.footer__question {
+    max-width: 279px;
+}
+
+.footer__visit {
+    max-width: 302px;
+}
+
+.footer__header {
+    color: #ffffff;
+}
+
+.footer__subblock {
+    display: flex;
+}
+
+.footer__questions_icon {
+    margin-right: 20px;
+}
+
+.footer__title {
+    /* display: flex; */
+    /* align-items: center; */
+    color: #F1CDB3;
+}
+
+/* Footer end */
+/* Pets start */
+
+.pets {
+    background: #f6f6f6;
+}
+
+.pets__wraper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    align-items: center;
+    padding: 80px 40px 100px;
+}
+
+.pets__header {
+    text-align: center;
+}
+
+.pets__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 30px 40px;
+}
+
+.card {
+    width: 270px;
+    height: 435px;
+    background: #FAFAFA;
+    border-radius: 9px;
+    /* margin-right: 90px; */
+}
+
+.card__title {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+    letter-spacing: 0.06em;
+    color: #545454;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card__btn {
+    width: 187px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #f1cdb3;
+    border-radius: 100px;
+    margin: 0 auto;
+
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #292929;
+}
+
+.sophia {
+    width: 150%;
+    margin: 0 0 0 -24%;
+}
+
+.card__picture {
+    width: 270px;
+    height: 270px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 9px 9px 0 0;
+}
+
+.pets__nav {
+    display: flex;
+    column-gap: 20px;
+}
+
+.pets__nav__btn_inactiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    border: 2px solid #CDCDCD;
+    border-radius: 100px;
+}
+
+.pets__nav__btn_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    background: #F1CDB3;
+    border-radius: 100px;
+}
+
+.pets__nav__btn_normal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+}
+    /* Pets end */

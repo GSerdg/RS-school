@@ -78,7 +78,7 @@ ul {
     list-style-type: none;
 }
 
-h3 {
+.text_h3 {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
@@ -88,15 +88,15 @@ h3 {
     color: #545454;
 }
 
-h4 {
+.text_h4 {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 115%;
     /* identical to box height, or 23px */
-    display: flex;
-    align-items: center;
+    /* display: flex; */
+    /* align-items: center; */
     /* text-align: center; */
     letter-spacing: 0.06em;
     color: #545454;
@@ -140,10 +140,7 @@ h4 {
 .header__list {
     display: flex;
     flex-wrap: wrap;
-}
-
-.header__item {
-    margin-right: 35px;
+    column-gap: 36px;
 }
 
 .header__item:last-child {
@@ -151,6 +148,10 @@ h4 {
 }
 
 .header__link {
+    color: #cdcdcd;
+}
+
+.header__active_link {
     color: #fafafa;
 }
 
@@ -380,6 +381,18 @@ h4 {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #292929;
+}
+
+.sophia {
+    margin: -15% 0 0 -27%;
+}
+
+.card__picture {
+    width: 270px;
+    height: 270px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 9px 9px 0 0;
 }
 
 .card__img {
