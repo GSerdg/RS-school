@@ -97,7 +97,7 @@ h4 {
     /* identical to box height, or 23px */
     display: flex;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
     letter-spacing: 0.06em;
     color: #545454;
 }
@@ -502,11 +502,46 @@ h4 {
     padding: 40px 40px 0 40px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /*  align-items: center; */
 }
 
 .footer__img {
     width: 300px;
     height: 310px;
 }
+
+.footer__content  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* max-width: 302px; */
+    height: 234px;
+    margin-top: 16px;
+}
+
+.footer__question {
+    max-width: 279px;
+}
+
+.footer__visit {
+    max-width: 302px;
+}
+.footer__header {
+    color: #ffffff;
+}
+
+.footer__subblock {
+    display: flex;
+}
+
+.footer__questions_icon {
+    margin-right: 20px;
+}
+
+.footer__title {
+    color: #F1CDB3;
+}
+
+
+
 /* Footer end */
