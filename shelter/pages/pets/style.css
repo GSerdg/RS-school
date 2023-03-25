@@ -166,60 +166,6 @@ ul {
 }
 
 /*Header end*/
-/* Footer start */
-
-.footer {
-    background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
-}
-
-.footer__wraper {
-    padding: 40px 40px 0 40px;
-    display: flex;
-    justify-content: space-between;
-    /*  align-items: center; */
-}
-
-.footer__img {
-    width: 300px;
-    height: 310px;
-}
-
-.footer__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* max-width: 302px; */
-    height: 234px;
-    margin-top: 16px;
-}
-
-.footer__question {
-    max-width: 279px;
-}
-
-.footer__visit {
-    max-width: 302px;
-}
-
-.footer__header {
-    color: #ffffff;
-}
-
-.footer__subblock {
-    display: flex;
-}
-
-.footer__questions_icon {
-    margin-right: 20px;
-}
-
-.footer__title {
-    /* display: flex; */
-    /* align-items: center; */
-    color: #F1CDB3;
-}
-
-/* Footer end */
 /* Pets start */
 
 .pets {
@@ -259,7 +205,6 @@ ul {
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
-    /* identical to box height */
     letter-spacing: 0.06em;
     color: #545454;
     text-align: center;
@@ -333,3 +278,53 @@ ul {
     border-radius: 100px;
 }
     /* Pets end */
+    /* Footer start */
+
+.footer {
+    background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+.footer__wraper {
+    padding: 40px 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__img {
+    width: 300px;
+    height: 310px;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 234px;
+    margin-top: 16px;
+}
+
+.footer__question {
+    max-width: 279px;
+}
+
+.footer__visit {
+    max-width: 302px;
+}
+
+.footer__header {
+    color: #ffffff;
+}
+
+.footer__subblock {
+    display: flex;
+}
+
+.footer__questions_icon {
+    margin-right: 20px;
+}
+
+.footer__title {
+    color: #F1CDB3;
+}
+
+/* Footer end */

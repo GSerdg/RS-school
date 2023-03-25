@@ -94,23 +94,11 @@ ul {
     font-weight: 400;
     font-size: 20px;
     line-height: 115%;
-    /* identical to box height, or 23px */
-    /* display: flex; */
-    /* align-items: center; */
-    /* text-align: center; */
+    display: flex;
+    align-items: center;
     letter-spacing: 0.06em;
     color: #545454;
 }
-
-/* .text-arial {
-    font-family: 'Arial';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 160%;
-    color: #4C4C4C;
-}
- */
 
 /*Header start*/
 .header {
@@ -226,15 +214,11 @@ ul {
     font-weight: 400;
     font-size: 15px;
     line-height: 160%;
-    /* display: flex; */
-    /* align-items: center; */
     color: #cdcdcd;
 }
 
 .btn {
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
     background: #f1cdb3;
     border-radius: 100px;
     text-decoration: none;
@@ -251,11 +235,6 @@ ul {
     white-space: nowrap;
 }
 
-/* .start__btn {
-    width: 207px;
-    height: 52px;
-} */
-
 .start__puppy {
     width: 698px;
 }
@@ -265,7 +244,6 @@ ul {
 
 .about__wraper {
     display: flex;
-    /* height: 588px; */
     padding: 80px 40px 100px 40px;
 }
 
@@ -314,7 +292,6 @@ ul {
 
 .pets__slider {
     display: flex;
-    /* justify-content: space-between; */
     margin-bottom: 60px;
 }
 
@@ -357,7 +334,6 @@ ul {
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
-    /* identical to box height */
     letter-spacing: 0.06em;
     color: #545454;
     text-align: center;
@@ -495,8 +471,6 @@ ul {
     font-size: 12px;
     line-height: 18px;
     /* or 150% */
-    /* display: flex; */
-    /* align-items: center; */
     color: #B2B2B2;
 }
 
@@ -554,7 +528,5 @@ ul {
 .footer__title {
     color: #F1CDB3;
 }
-
-
 
 /* Footer end */
