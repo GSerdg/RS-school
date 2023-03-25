@@ -258,6 +258,10 @@ ul {
     border-radius: 100px;
 }
 
+.rotate {
+    transform: rotate(180deg);
+}
+
 .pets__nav__btn_page {
     display: flex;
     justify-content: center;
