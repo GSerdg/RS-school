@@ -53,6 +53,7 @@
 
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *,
@@ -137,9 +138,15 @@ ul {
 
 .header__link {
     color: #cdcdcd;
+    transition: color 0.5s;
+}
+
+.header__link:hover {
+    color: #fafafa;
 }
 
 .header__active_link {
+    pointer-events: none;
     color: #fafafa;
 }
 
@@ -324,6 +331,10 @@ ul {
     margin-right: 90px;
 }
 
+.card:hover>.card__picture>.card__img {
+    width: 105%;
+}
+
 .card:last-child {
     margin-right: 0;
 }
@@ -372,8 +383,11 @@ ul {
 }
 
 .card__img {
-    margin-bottom: 22px;
-    border-radius: 9px;
+    width: 270px;
+    /* margin-bottom: 22px; */
+    /* border-radius: 9px; */
+    transition: all 0.5s;
+
 }
 
 /* Pets end */
@@ -497,7 +511,7 @@ ul {
     height: 310px;
 }
 
-.footer__content  {
+.footer__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -513,6 +527,7 @@ ul {
 .footer__visit {
     max-width: 302px;
 }
+
 .footer__header {
     color: #ffffff;
 }

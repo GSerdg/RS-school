@@ -53,6 +53,8 @@
 
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
+
 }
 
 *,
@@ -131,9 +133,15 @@ ul {
 
 .header__link {
     color: #545454;
+    transition: color 0.5s;
+}
+
+.header__link:hover {
+    color: #292929;
 }
 
 .header__active_link {
+    pointer-events: none;
     color: #292929;
 }
 
@@ -199,6 +207,18 @@ ul {
     /* margin-right: 90px; */
 }
 
+.card:hover>.card__picture>.card__img {
+    width: 105%;
+}
+.card:hover>.card__picture>.sophia {
+    width: 155%;
+}
+.card__img {
+    width: 270px;
+    transition: all 0.5s;
+
+}
+
 .card__title {
     font-family: 'Georgia';
     font-style: normal;
@@ -233,6 +253,7 @@ ul {
 .sophia {
     width: 150%;
     margin: 0 0 0 -24%;
+    transition: all 0.5s;
 }
 
 .card__picture {
@@ -281,8 +302,9 @@ ul {
     border: 2px solid #F1CDB3;
     border-radius: 100px;
 }
-    /* Pets end */
-    /* Footer start */
+
+/* Pets end */
+/* Footer start */
 
 .footer {
     background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
