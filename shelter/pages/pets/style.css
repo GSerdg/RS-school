@@ -161,7 +161,7 @@ ul {
     color: #545454;
 }
 
-.header__logo-link h1 {
+.header__logo-link h3 {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
@@ -205,14 +205,22 @@ ul {
     background: #FAFAFA;
     border-radius: 9px;
     /* margin-right: 90px; */
+    cursor: pointer;
 }
 
-.card:hover>.card__picture>.card__img {
+/* .card:hover>.card__picture>.card__img {
     width: 105%;
+} */
+
+.card:hover>.card__btn {
+    background: #fddcc4;
+    border: 2px solid #fddcc4;
 }
-.card:hover>.card__picture>.sophia {
+
+/* .card:hover>.card__picture>.sophia {
     width: 155%;
-}
+} */
+
 .card__img {
     width: 270px;
     transition: all 0.5s;
@@ -248,6 +256,8 @@ ul {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #292929;
+
+    transition: all 0.5s;
 }
 
 .sophia {
@@ -279,8 +289,18 @@ ul {
     border-radius: 100px;
 }
 
+.pets__nav__btn_inactiv .text_h4 {
+    color: #cdcdcd;
+}
+
+.inactive {
+    cursor: default;
+    pointer-events: none;
+}
+
 .rotate {
     transform: rotate(180deg);
+
 }
 
 .pets__nav__btn_page {
@@ -301,6 +321,13 @@ ul {
     height: 52px;
     border: 2px solid #F1CDB3;
     border-radius: 100px;
+
+    transition: all 0.5s;
+}
+
+.pets__nav__btn_normal:hover {
+    background: #fddcc4;
+    border: 2px solid #fddcc4;
 }
 
 /* Pets end */
@@ -343,6 +370,19 @@ ul {
 
 .footer__subblock {
     display: flex;
+    align-items: center;
+}
+
+.footer__questions_icon path {
+    transition: all 0.3s;
+}
+
+.footer__subblock:hover>.footer__questions_icon path {
+    fill: #fddcc4;
+}
+
+.footer__subblock:hover>.footer__title {
+    color: #fddcc4;
 }
 
 .footer__questions_icon {
@@ -351,6 +391,8 @@ ul {
 
 .footer__title {
     color: #F1CDB3;
+
+    transition: all 0.3s;
 }
 
 /* Footer end */

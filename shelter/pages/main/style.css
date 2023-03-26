@@ -240,6 +240,12 @@ ul {
     letter-spacing: 0.06em;
     color: #292929;
     white-space: nowrap;
+
+    transition: background 0.5s;
+}
+
+.btn:hover {
+    background: #fddcc4;
 }
 
 .start__puppy {
@@ -312,6 +318,14 @@ ul {
     border: 2px solid #F1CDB3;
     border-radius: 100px;
     cursor: pointer;
+
+    transition: background 0.5s;
+}
+
+.pets__slider__button:hover {
+    background: #fddcc4;
+    border: 2px solid #fddcc4;
+
 }
 
 .pets__slider__container {
@@ -321,6 +335,7 @@ ul {
 
 .card__container {
     display: flex;
+    column-gap: 90px;
 }
 
 .card {
@@ -328,11 +343,17 @@ ul {
     height: 435px;
     background: #FAFAFA;
     border-radius: 9px;
-    margin-right: 90px;
+    /* margin-right: 90px; */
+    cursor: pointer;
 }
 
-.card:hover>.card__picture>.card__img {
+/* .card:hover>.card__picture>.card__img {
     width: 105%;
+} */
+
+.card:hover>.card__btn {
+    background: #fddcc4;
+    border: 2px solid #fddcc4;
 }
 
 .card:last-child {
@@ -368,6 +389,8 @@ ul {
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #292929;
+
+    transition: all 0.5s;
 }
 
 .sophia {
@@ -471,6 +494,12 @@ ul {
     border-radius: 9px;
     padding: 0 15px;
     margin-bottom: 20px;
+
+    transition: background 0.5s;
+}
+
+.donation__text__card:hover {
+    background: #fddcc4;
 }
 
 .donation__text__card_sticker {
@@ -534,6 +563,19 @@ ul {
 
 .footer__subblock {
     display: flex;
+    align-items: center;
+}
+
+.footer__questions_icon path {
+    transition: all 0.3s;
+}
+
+.footer__subblock:hover>.footer__questions_icon path {
+    fill: #fddcc4;
+}
+
+.footer__subblock:hover>.footer__title {
+    color: #fddcc4;
 }
 
 .footer__questions_icon {
@@ -542,6 +584,8 @@ ul {
 
 .footer__title {
     color: #F1CDB3;
+
+    transition: all 0.3s;
 }
 
 /* Footer end */
