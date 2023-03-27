@@ -145,15 +145,27 @@ ul {
     color: #fafafa;
 }
 
+.header__link:active~.header__link_border {
+    opacity: 1;
+}
+
 .header__active_link {
     pointer-events: none;
     color: #fafafa;
+    opacity: 1;
 }
 
 .header__link_border {
     height: 3px;
     width: auto;
     background: #F1CDB3;
+    opacity: 0;
+
+    transition: opacity 0.2s;
+}
+
+.header__link_border_active {
+    opacity: 1;
 }
 
 .header__logo-link h2 {

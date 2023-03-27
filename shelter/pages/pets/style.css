@@ -140,15 +140,27 @@ ul {
     color: #292929;
 }
 
+.header__link:active~.header__link_border {
+    opacity: 1;
+}
+
 .header__active_link {
     pointer-events: none;
     color: #292929;
+    opacity: 1;
 }
 
 .header__link_border {
     height: 3px;
     width: auto;
     background: #F1CDB3;
+    opacity: 0;
+
+    transition: opacity 0.2s;
+}
+
+.header__link_border_active {
+    opacity: 1;
 }
 
 .header__logo-link h2 {
@@ -327,6 +339,12 @@ ul {
 .pets__nav__btn_normal:hover {
     background: #fddcc4;
     border: 2px solid #fddcc4;
+}
+
+.pets__nav__btn_normal:active {
+    background: #f1cdb3;
+    border: 2px solid #f1cdb3;
+
 }
 
 /* Pets end */
