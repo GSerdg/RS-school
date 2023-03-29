@@ -1,7 +1,7 @@
 /*main_start-screen start*/
 
 .start {
-    height: 908px;
+    /* height: 908px; */
     background: url(../../assets/images/start-screen-gradient-background.png),
         radial-gradient(100% 215.42% at 0% 0%,
             #5B483A 0%, #262425 100%), #211F20;
@@ -9,27 +9,32 @@
 
 .start__wraper {
     display: flex;
-    margin: 0 40px 0px 40px;
-    padding-top: 180px;
+    padding: 180px 40px 0px 40px;
+    // padding-top: 180px;
 
 }
 
 .start__text {
-    max-width: 460px;
+    align-self: center;
+    max-width: 38.4%;
     height: max-content;
-    position: relative;
-    top: 163px;
+    /* position: relative; */
+    /* top: 163px; */
+    padding-bottom: 6.5%;
     margin-right: 42px;
 }
 
 .start__text__h {
+    margin-bottom: 42px;
+    max-width: 310px;
+
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
     font-size: 44px;
     line-height: 130%;
     color: #ffff;
-    margin-bottom: 42px;
+
 }
 
 .start__text__p {
@@ -45,7 +50,10 @@
 
 
 .start__puppy {
-    width: 698px;
+    display: flex;
+    img {
+        width: 100%;
+    }
 }
 
 /*main_start-screen end*/

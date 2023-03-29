@@ -9,10 +9,10 @@
 
 .header__wraper {
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     justify-content: space-between;
-    padding-top: 30px;
-    margin: 0 40px 0 40px;
+    // padding-top: 30px;
+    padding: 30px 40px 0;
     &_pets {
         padding-bottom: 30px;
     }

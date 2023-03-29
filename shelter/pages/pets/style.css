@@ -216,10 +216,8 @@ ul {
 
 .header__wraper {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  padding-top: 30px;
-  margin: 0 40px 0 40px;
+  padding: 30px 40px 0;
 }
 .header__wraper_pets {
   padding-bottom: 30px;
