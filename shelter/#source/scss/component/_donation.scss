@@ -1,0 +1,71 @@
+/* Donation start */
+
+.donation {
+    background: #f6f6f6;
+}
+
+.donation__wraper {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 182px 100px 182px;
+    align-items: center;
+}
+
+.donation__img {
+    width: 505px;
+    height: 261px;
+}
+
+.donation__text {
+    max-width: 380px;
+}
+
+.donation__text_subtitle {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: #545454;
+    margin-bottom: 20px;
+}
+
+.donation__text__card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 349px;
+    height: 43px;
+    background: #F1CDB3;
+    border-radius: 9px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+
+    transition: background 0.5s;
+
+    &:hover {
+        background: #fddcc4;
+    }
+}
+
+.donation__text__card_sticker {
+    width: 30px;
+    height: 23px;
+}
+
+.donation__text_title {
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* or 150% */
+    color: #B2B2B2;
+}
+
+.donation__text__header {
+    margin-bottom: 20px;
+}
+
+/* Donation end */

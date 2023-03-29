@@ -1,0 +1,34 @@
+/* About start */
+
+.about__wraper {
+    display: flex;
+    padding: 80px 40px 100px 40px;
+}
+
+.about__img {
+    width: 300px;
+    height: 408px;
+    margin: 0 120px 0 175px;
+}
+
+.about__text {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 380px;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.about {
+    height: 588px;
+}
+
+.about__text {
+    h3 {
+        max-width: 370px;
+        min-width: 300px;
+    }
+}
+
+/* About end */

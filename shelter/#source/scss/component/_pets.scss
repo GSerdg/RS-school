@@ -1,0 +1,43 @@
+/* Pets start */
+
+.pets {
+    background: #f6f6f6;
+}
+
+.pets__wraper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    align-items: center;
+    padding: 80px 40px 100px;
+}
+
+.pets__header {
+    text-align: center;
+}
+
+.pets__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 30px 40px;
+}
+
+
+.pets__nav {
+    display: flex;
+    column-gap: 20px;
+}
+
+.inactive {
+    cursor: default;
+    pointer-events: none;
+}
+
+.rotate {
+    transform: rotate(180deg);
+
+}
+
+
+/* Pets end */

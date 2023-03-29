@@ -1,0 +1,34 @@
+/* Pets-main start */
+
+.pets-main {
+    background: #f6f6f6;
+}
+
+.pets-main__wraper {
+    display: grid;
+    justify-items: center;
+    padding: 80px 40px 100px 40px;
+}
+
+.pets-main__title {
+    width: 400px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.pets-main__slider {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.pets-main__slider__container {
+    width: 990px;
+    margin: 0 53px 0 53px;
+}
+
+.card__container {
+    display: flex;
+    column-gap: 90px;
+}
+
+/* Pets-main end */

@@ -1,0 +1,51 @@
+/*main_start-screen start*/
+
+.start {
+    height: 908px;
+    background: url(../../assets/images/start-screen-gradient-background.png),
+        radial-gradient(100% 215.42% at 0% 0%,
+            #5B483A 0%, #262425 100%), #211F20;
+}
+
+.start__wraper {
+    display: flex;
+    margin: 0 40px 0px 40px;
+    padding-top: 180px;
+
+}
+
+.start__text {
+    max-width: 460px;
+    height: max-content;
+    position: relative;
+    top: 163px;
+    margin-right: 42px;
+}
+
+.start__text__h {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 130%;
+    color: #ffff;
+    margin-bottom: 42px;
+}
+
+.start__text__p {
+    margin-bottom: 42px;
+
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    color: #cdcdcd;
+}
+
+
+.start__puppy {
+    width: 698px;
+}
+
+/*main_start-screen end*/

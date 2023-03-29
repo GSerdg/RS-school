@@ -1,0 +1,14 @@
+{
+  "name": "shelter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "main": "sass --watch #source/scss/main.scss pages/main/style.css",
+    "pets": "sass --watch #source/scss/pets.scss pages/pets/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "author": "",
+  "license": "ISC"
+}

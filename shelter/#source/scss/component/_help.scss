@@ -1,0 +1,37 @@
+/* Help start */
+
+.help__wraper {
+    display: grid;
+    justify-items: center;
+    padding: 80px 40px 100px 40px;
+}
+
+.help__title {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.help__icons_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px 120px;
+    justify-content: center;
+    max-width: 1029px;
+}
+
+.help__icons__card {
+    display: grid;
+    justify-items: center;
+}
+
+.help__icons {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 30px;
+}
+
+.help__icons__title {
+    white-space: nowrap;
+}
+
+/* Help end */
