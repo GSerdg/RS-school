@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 60px;
-    align-items: center;
+    //align-items: center;
     padding: 80px 40px 100px;
 }
 
@@ -18,7 +18,7 @@
 
 .pets__container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, 270px);
     grid-template-rows: 1fr 1fr;
     gap: 30px 40px;
 }
@@ -27,6 +27,11 @@
 .pets__nav {
     display: flex;
     column-gap: 20px;
+    width: 340px;
+    align-self: center;
+    >a {
+        display: contents;
+    }
 }
 
 .inactive {

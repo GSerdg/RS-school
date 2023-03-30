@@ -5,13 +5,20 @@
     justify-content: center;
     align-items: center;
     padding: 80px 40px 100px 40px;
+
+    @include media-tablet {
+        padding: 80px 30px 100px 30px;
+        flex-direction: column-reverse;
+    }
 }
 
 .about__img {
     display: flex;
-    /* width: 300px; */
-    /* height: 408px; */
     padding-right: 120px;
+
+    @include media-tablet {
+        padding-right: 0;
+    }
 }
 
 .about__text {
@@ -31,6 +38,9 @@
         margin-bottom: 25px;
     }
 
+    @include media-tablet {
+        padding-bottom: 80px;
+    }
 }
 
 .about {

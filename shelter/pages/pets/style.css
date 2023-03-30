@@ -140,6 +140,12 @@ ul {
   border-radius: 9px 9px 0 0;
 }
 
+@media (max-width: 1120px) {
+  .slider-3 {
+    display: none;
+  }
+}
+
 .btn {
   display: flex;
   border-radius: 100px;
@@ -162,18 +168,26 @@ ul {
   background: #f1cdb3;
   padding: 15px 45px;
 }
+@media (max-width: 860px) {
+  .btn_colored {
+    margin: 0 auto;
+  }
+}
 .btn_uncolored {
   padding: 13px 43px;
   border: 2px solid #f1cdb3;
   margin: 0 auto;
 }
+.btn_position {
+  align-self: center;
+}
 
 .pagination-btn {
   display: flex;
+  flex: 0 0 52px;
   justify-content: center;
   align-items: center;
   align-self: center;
-  width: 52px;
   height: 52px;
   border-radius: 100px;
   border: 2px solid;
@@ -221,6 +235,11 @@ ul {
 }
 .header__wraper_pets {
   padding-bottom: 30px;
+}
+@media (max-width: 768px) {
+  .header__wraper {
+    padding: 30px 30px 0;
+  }
 }
 
 .header__nav {
@@ -326,10 +345,26 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+@media (max-width: 860px) {
+  .footer__wraper {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 30px 30px 0 30px;
+  }
+}
 
 .footer__img {
-  width: 300px;
-  height: 310px;
+  display: flex;
+  align-items: flex-end;
+  max-width: 300px;
+}
+.footer__img_picture {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .footer__img {
+    padding-top: 65px;
+  }
 }
 
 .footer__content {
@@ -337,7 +372,12 @@ ul {
   flex-direction: column;
   justify-content: space-between;
   height: 234px;
-  margin-top: 16px;
+  margin: 16px 20px 20px 0;
+}
+@media (max-width: 768px) {
+  .footer__content {
+    margin: 0;
+  }
 }
 
 .footer__question {
@@ -386,7 +426,6 @@ ul {
   display: flex;
   flex-direction: column;
   row-gap: 60px;
-  align-items: center;
   padding: 80px 40px 100px;
 }
 
@@ -396,7 +435,7 @@ ul {
 
 .pets__container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, 270px);
   grid-template-rows: 1fr 1fr;
   gap: 30px 40px;
 }
@@ -404,6 +443,11 @@ ul {
 .pets__nav {
   display: flex;
   column-gap: 20px;
+  width: 340px;
+  align-self: center;
+}
+.pets__nav > a {
+  display: contents;
 }
 
 .inactive {

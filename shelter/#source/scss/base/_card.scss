@@ -6,6 +6,7 @@
     cursor: pointer;
     box-shadow: 0px 0px 0px 0px rgba(13, 13, 13, 0.04);
     transition: all 0.5s;
+    //margin-right: -20px;
 
     &:hover {
         background: #ffffff;
@@ -16,6 +17,7 @@
             border: 2px solid #fddcc4;
         }
     }
+
     &:last-child {
         margin-right: 0;
     }
@@ -27,6 +29,7 @@
         margin-bottom: 30px;
         border-radius: 9px 9px 0 0;
     }
+
     &_title {
         font-family: 'Georgia';
         font-style: normal;
@@ -38,7 +41,7 @@
         text-align: center;
         margin-bottom: 30px;
     }
-    
+
     &_sophia {
         width: 150%;
         margin: 0 0 0 -24%;
@@ -52,4 +55,12 @@
     overflow: hidden;
     margin-bottom: 30px;
     border-radius: 9px 9px 0 0;
+}
+
+.slider-3 {
+
+    @include media-laptop-slider {
+        display: none;
+    }
+
 }

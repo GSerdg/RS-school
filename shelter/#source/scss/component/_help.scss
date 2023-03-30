@@ -4,6 +4,10 @@
     display: grid;
     justify-items: center;
     padding: 80px 40px 100px 40px;
+
+    @include media-tablet {
+        padding: 80px 30px 100px 30px;
+    }
 }
 
 .help__title {
@@ -14,14 +18,22 @@
 .help__icons_container {
     display: flex;
     flex-wrap: wrap;
-    gap: 55px 120px;
+    gap: 55px 11.6%;
     justify-content: center;
     max-width: 1029px;
+
+    @include media-tablet {
+        column-gap: 60px;
+    }
 }
 
 .help__icons__card {
     display: grid;
     justify-items: center;
+
+    @include media-laptop {
+        width: 170px;
+    }
 }
 
 .help__icons {
