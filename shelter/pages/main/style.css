@@ -419,6 +419,7 @@ ul {
 .footer__wraper {
   padding: 40px 40px 0 40px;
   display: flex;
+  row-gap: 40px;
   justify-content: space-between;
 }
 @media (max-width: 860px) {
@@ -426,6 +427,11 @@ ul {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 30px 30px 0 30px;
+  }
+}
+@media (max-width: 320px) {
+  .footer__wraper {
+    padding: 30px 10px 0;
   }
 }
 
@@ -442,6 +448,16 @@ ul {
     padding-top: 65px;
   }
 }
+@media (max-width: 767px) {
+  .footer__img {
+    padding-top: 0;
+  }
+}
+@media (max-width: 320px) {
+  .footer__img {
+    max-width: 260px;
+  }
+}
 
 .footer__content {
   display: flex;
@@ -455,6 +471,11 @@ ul {
     margin: 0;
   }
 }
+@media (max-width: 385px) {
+  .footer__content {
+    height: 208px;
+  }
+}
 
 .footer__question {
   max-width: 279px;
@@ -462,6 +483,13 @@ ul {
 @media (max-width: 768px) {
   .footer__question {
     margin-left: 2px;
+  }
+}
+@media (max-width: 385px) {
+  .footer__question {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -473,9 +501,21 @@ ul {
     margin-right: 2px;
   }
 }
+@media (max-width: 385px) {
+  .footer__visit {
+    height: 222px;
+  }
+}
 
 .footer__header {
   color: #ffffff;
+}
+@media (max-width: 385px) {
+  .footer__header {
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 .footer__subblock {
@@ -505,7 +545,6 @@ ul {
 /* Footer end */
 /*main_start-screen start*/
 .start {
-  /* height: 908px; */
   background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
@@ -675,17 +714,13 @@ ul {
 }
 @media (max-width: 320px) {
   .about__text {
-    padding-bottom: 42px;
+    padding-bottom: 41px;
   }
 }
 @media (max-width: 385px) {
   .about__text > p {
     text-align: justify;
   }
-}
-
-.about {
-  /*  height: 588px; */
 }
 
 /* About end */
@@ -792,10 +827,20 @@ ul {
     padding: 80px 30px 100px 30px;
   }
 }
+@media (max-width: 480px) {
+  .help__wraper {
+    padding: 42px 15px;
+  }
+}
 
 .help__title {
   margin-bottom: 60px;
   text-align: center;
+}
+@media (max-width: 385px) {
+  .help__title {
+    margin-bottom: 43px;
+  }
 }
 
 .help__icons_container {
@@ -810,6 +855,11 @@ ul {
     column-gap: 60px;
   }
 }
+@media (max-width: 480px) {
+  .help__icons_container {
+    gap: 30px 30px;
+  }
+}
 
 .help__icons__card {
   display: grid;
@@ -820,15 +870,38 @@ ul {
     width: 170px;
   }
 }
+@media (max-width: 480px) {
+  .help__icons__card {
+    width: 130px;
+  }
+}
+@media (max-width: 320px) {
+  .help__icons__card:last-child {
+    margin-right: auto;
+  }
+}
 
 .help__icons {
   width: 60px;
   height: 60px;
   margin-bottom: 30px;
 }
+@media (max-width: 480px) {
+  .help__icons {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+}
 
 .help__icons__title {
   white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .help__icons__title {
+    font-size: 1.5rem;
+    line-height: 110%;
+  }
 }
 
 /* Help end */
@@ -849,6 +922,11 @@ ul {
     flex-direction: column-reverse;
   }
 }
+@media (max-width: 320px) {
+  .donation__wraper {
+    padding: 42px 10px;
+  }
+}
 
 .donation__img {
   display: flex;
@@ -863,6 +941,11 @@ ul {
     margin-right: 0;
   }
 }
+@media (max-width: 320px) {
+  .donation__img {
+    width: 260px;
+  }
+}
 
 .donation__text {
   max-width: 380px;
@@ -870,6 +953,11 @@ ul {
 @media (max-width: 768px) {
   .donation__text {
     padding-bottom: 60px;
+  }
+}
+@media (max-width: 320px) {
+  .donation__text {
+    padding-bottom: 42px;
   }
 }
 
@@ -881,7 +969,14 @@ ul {
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #545454;
-  margin-bottom: 19px;
+  margin-bottom: 20px;
+}
+@media (max-width: 385px) {
+  .donation__text_subtitle {
+    line-height: 160%;
+    text-align: center;
+    letter-spacing: 0;
+  }
 }
 
 .donation__text__card {
@@ -903,6 +998,18 @@ ul {
   width: 30px;
   height: 23px;
 }
+@media (max-width: 385px) {
+  .donation__text__card_number {
+    font-size: 1.5rem;
+    line-height: 110%;
+  }
+}
+@media (max-width: 385px) {
+  .donation__text__card {
+    width: 281px;
+    margin: 0 auto 20px;
+  }
+}
 
 .donation__text_title {
   font-family: "Arial";
@@ -910,12 +1017,22 @@ ul {
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 18px;
-  /* or 150% */
   color: #B2B2B2;
+}
+@media (max-width: 385px) {
+  .donation__text_title {
+    text-align: justify;
+    max-width: 280px;
+  }
 }
 
 .donation__text__header {
   margin-bottom: 19px;
+}
+@media (max-width: 385px) {
+  .donation__text__header {
+    text-align: center;
+  }
 }
 
 /* Donation end */

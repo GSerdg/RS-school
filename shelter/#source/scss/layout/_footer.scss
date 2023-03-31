@@ -7,15 +7,19 @@
 .footer__wraper {
     padding: 40px 40px 0 40px;
     display: flex;
-    //flex-wrap: wrap;
+    row-gap: 40px;
     justify-content: space-between;
 
     @include media-laptop-start {
         flex-wrap: wrap;
         justify-content: space-around;
         padding: 30px 30px 0 30px;
-        
     }
+
+    @include media-mobile {
+        padding: 30px 10px 0;
+    }
+
 }
 
 .footer__img {
@@ -32,7 +36,13 @@
         padding-top: 65px;
 
     }
+    @include media-mobile-burger {
+        padding-top: 0;
+    }
 
+    @include media-mobile {
+        max-width: 260px;
+    }
 }
 
 .footer__content {
@@ -45,6 +55,11 @@
     @include media-tablet {
         margin: 0;
     }
+
+    @include media-mobile-fonts {
+        height: 208px;
+        //margin-bottom: 40px;
+    }
 }
 
 .footer__question {
@@ -54,7 +69,13 @@
         margin-left: 2px;
     }
 
-    
+    @include media-mobile-fonts {
+        margin-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+
 }
 
 .footer__visit {
@@ -63,10 +84,22 @@
     @include media-tablet {
         margin-right: 2px;
     }
+
+    @include media-mobile-fonts {
+        height: 222px;
+    }
+
 }
 
 .footer__header {
     color: #ffffff;
+
+    @include media-mobile-fonts {
+        width: 270px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
 }
 
 .footer__subblock {

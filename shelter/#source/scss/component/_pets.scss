@@ -15,6 +15,11 @@
         padding: 80px 30px 76px;
         row-gap: 30px;
     }
+
+    @include media-mobile-fonts {
+        padding: 42px 10px;
+        row-gap: 41px;
+    }
 }
 
 .pets__header {
@@ -30,16 +35,19 @@
     @include media-tablet {
         margin-bottom: 10px;
     }
+    @include media-mobile-fonts {
+        margin-bottom: 0;
+    }
 }
 
 .disabled-768 {
-    @include media-tablet {
+    @include media-laptop-dual-pets {
         display: none;
     }
 }
 
 .disabled-320 {
-    @include media-mobile {
+    @include media-mobile-single-pets {
         display: none;
     }
 }
@@ -56,6 +64,12 @@
         @include media-tablet {
             margin-top: 10px;
         }
+    }
+
+    @include media-mobile-slider {
+        width: 300px;
+        column-gap: 10px;
+
     }
 }
 

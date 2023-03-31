@@ -69,7 +69,7 @@
         padding-bottom: 80px;
     }
     @include media-mobile {
-        padding-bottom: 42px;
+        padding-bottom: 41px;
     }
 
     >p {
@@ -77,10 +77,6 @@
             text-align: justify;
         }
     }
-}
-
-.about {
-   /*  height: 588px; */
 }
 
 /* About end */
