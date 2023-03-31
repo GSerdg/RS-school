@@ -4,6 +4,7 @@
 }
 
 html {
+    font-size: 10px;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
@@ -18,7 +19,7 @@ body {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 160%;
     color: #4C4C4C;
 }
@@ -35,17 +36,21 @@ ul {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 3.5rem;
     line-height: 130%;
     letter-spacing: 0.06em;
     color: #545454;
+
+    @include media-mobile-fonts {
+        font-size: 2.5rem;
+    }
 }
 
 .text_h4 {
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 115%;
     display: flex;
     align-items: center;

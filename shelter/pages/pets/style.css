@@ -39,6 +39,7 @@
 }
 
 html {
+  font-size: 10px;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -53,7 +54,7 @@ body {
   font-family: "Arial";
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 160%;
   color: #4C4C4C;
 }
@@ -70,17 +71,22 @@ ul {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
-  font-size: 35px;
+  font-size: 3.5rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #545454;
+}
+@media (max-width: 385px) {
+  .text_h3 {
+    font-size: 2.5rem;
+  }
 }
 
 .text_h4 {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 115%;
   display: flex;
   align-items: center;
@@ -119,7 +125,7 @@ ul {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 23px;
   letter-spacing: 0.06em;
   color: #545454;
@@ -146,6 +152,12 @@ ul {
   }
 }
 
+@media (max-width: 767px) {
+  .slider-2 {
+    display: none;
+  }
+}
+
 .btn {
   display: flex;
   border-radius: 100px;
@@ -154,7 +166,7 @@ ul {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 1.7rem;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #292929;
@@ -214,6 +226,57 @@ ul {
   background: #f1cdb3;
   border-color: #f1cdb3;
 }
+@media (max-width: 480px) {
+  .pagination-btn_order {
+    order: 1;
+    margin: 0 auto;
+  }
+}
+
+.burger__line, .burger:after, .burger::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+}
+
+.burger {
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 22px;
+  margin: auto 0;
+}
+@media (max-width: 767px) {
+  .burger {
+    display: inline-block;
+  }
+}
+.burger::before {
+  background-color: #F1CDB3;
+  top: 0;
+  left: 0;
+}
+.burger:after {
+  background-color: #F1CDB3;
+  bottom: 0;
+  left: 0;
+}
+.burger_color::before {
+  background-color: #000000;
+}
+.burger_color:after {
+  background-color: #000000;
+}
+
+.burger__line {
+  background-color: #F1CDB3;
+  top: calc(50% - 1px);
+}
+.burger__line_color {
+  background-color: #000000;
+}
 
 .wraper {
   max-width: 1280px;
@@ -238,12 +301,25 @@ ul {
 }
 @media (max-width: 768px) {
   .header__wraper {
-    padding: 30px 30px 0;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+@media (max-width: 320px) {
+  .header__wraper {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }
 
 .header__nav {
   margin: auto 0;
+}
+@media (max-width: 767px) {
+  .header__nav {
+    display: none;
+  }
 }
 
 .header__list {
@@ -303,7 +379,7 @@ ul {
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 3.2rem;
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #f1cdb3;
@@ -315,7 +391,7 @@ ul {
   font-family: "Arial";
   font-style: normal;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   line-height: 15px;
   letter-spacing: 0.1em;
   color: #ffffff;
@@ -326,7 +402,7 @@ ul {
   font-family: "Arial";
   font-style: normal;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3rem;
   line-height: 15px;
   letter-spacing: 0.1em;
   color: #292929;
@@ -383,9 +459,19 @@ ul {
 .footer__question {
   max-width: 279px;
 }
+@media (max-width: 768px) {
+  .footer__question {
+    margin-left: 2px;
+  }
+}
 
 .footer__visit {
   max-width: 302px;
+}
+@media (max-width: 768px) {
+  .footer__visit {
+    margin-right: 2px;
+  }
 }
 
 .footer__header {
@@ -428,6 +514,12 @@ ul {
   row-gap: 60px;
   padding: 80px 40px 100px;
 }
+@media (max-width: 768px) {
+  .pets__wraper {
+    padding: 80px 30px 76px;
+    row-gap: 30px;
+  }
+}
 
 .pets__header {
   text-align: center;
@@ -435,9 +527,26 @@ ul {
 
 .pets__container {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, 270px);
-  grid-template-rows: 1fr 1fr;
   gap: 30px 40px;
+}
+@media (max-width: 768px) {
+  .pets__container {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .disabled-768 {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .disabled-320 {
+    display: none;
+  }
 }
 
 .pets__nav {
@@ -448,6 +557,11 @@ ul {
 }
 .pets__nav > a {
   display: contents;
+}
+@media (max-width: 768px) {
+  .pets__nav > a {
+    margin-top: 10px;
+  }
 }
 
 .inactive {

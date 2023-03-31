@@ -44,18 +44,25 @@
 
     @include media-tablet {
         margin: 0;
-
     }
 }
 
 .footer__question {
     max-width: 279px;
+
+    @include media-tablet {
+        margin-left: 2px;
+    }
+
     
 }
 
 .footer__visit {
     max-width: 302px;
 
+    @include media-tablet {
+        margin-right: 2px;
+    }
 }
 
 .footer__header {

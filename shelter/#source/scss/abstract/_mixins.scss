@@ -10,8 +10,24 @@
     @media (max-width: $content-slider-width) { @content; }
 }
 
+@mixin media-help-icon {
+    @media (max-width: 781px) { @content; }
+}
+
 @mixin media-tablet {
     @media (max-width: $tablet-width) { @content; }
+}
+
+@mixin media-mobile-burger {
+    @media (max-width: $mobile-burger-width) { @content; }
+}
+
+@mixin media-mobile-fonts {
+    @media (max-width: $mobile-fonts-width) { @content; }
+}
+
+@mixin media-mobile-slider {
+    @media (max-width: $mobile-slider-width) { @content; }
 }
 
 @mixin media-mobile {

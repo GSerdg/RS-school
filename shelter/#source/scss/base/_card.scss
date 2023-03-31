@@ -34,7 +34,7 @@
         font-family: 'Georgia';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 2rem;
         line-height: 23px;
         letter-spacing: 0.06em;
         color: #545454;
@@ -62,5 +62,11 @@
     @include media-laptop-slider {
         display: none;
     }
+}
 
+.slider-2 {
+
+    @include media-mobile-burger {
+        display: none;
+    }
 }

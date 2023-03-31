@@ -16,12 +16,23 @@
     }
 
     @include media-tablet {
-        padding: 30px 30px 0;   
+        padding-top: 30px;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    @include media-mobile {
+        padding-right: 20px;
+        padding-left: 20px;
     }
 }
 
 .header__nav {
     margin: auto 0;
+
+    @include media-mobile-burger {
+        display: none;
+    }
 }
 
 .header__list {
@@ -96,7 +107,7 @@
         font-family: 'Georgia';
         font-style: normal;
         font-weight: 400;
-        font-size: 32px;
+        font-size: 3.2rem;
         line-height: 110%;
         letter-spacing: 0.06em;
         color: #f1cdb3;
@@ -110,7 +121,7 @@
         font-family: 'Arial';
         font-style: normal;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 1.3rem;
         line-height: 15px;
         letter-spacing: 0.1em;
         color: #ffffff;
@@ -121,7 +132,7 @@
         font-family: 'Arial';
         font-style: normal;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 1.3rem;
         line-height: 15px;
         letter-spacing: 0.1em;
         color: #292929;

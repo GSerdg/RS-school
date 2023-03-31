@@ -31,7 +31,7 @@
     display: grid;
     justify-items: center;
 
-    @include media-laptop {
+    @include media-help-icon {
         width: 170px;
     }
 }

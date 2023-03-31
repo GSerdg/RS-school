@@ -10,6 +10,11 @@
     row-gap: 60px;
     //align-items: center;
     padding: 80px 40px 100px;
+
+    @include media-tablet {
+        padding: 80px 30px 76px;
+        row-gap: 30px;
+    }
 }
 
 .pets__header {
@@ -18,19 +23,39 @@
 
 .pets__container {
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(auto-fill, 270px);
-    grid-template-rows: 1fr 1fr;
     gap: 30px 40px;
+
+    @include media-tablet {
+        margin-bottom: 10px;
+    }
 }
 
+.disabled-768 {
+    @include media-tablet {
+        display: none;
+    }
+}
+
+.disabled-320 {
+    @include media-mobile {
+        display: none;
+    }
+}
 
 .pets__nav {
     display: flex;
     column-gap: 20px;
     width: 340px;
     align-self: center;
+
     >a {
         display: contents;
+
+        @include media-tablet {
+            margin-top: 10px;
+        }
     }
 }
 
