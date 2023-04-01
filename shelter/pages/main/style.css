@@ -290,9 +290,6 @@ ul {
   width: 0;
   height: 0;
 }
-#menu-burger:checked ~ .header__nav {
-  left: 0;
-}
 
 .wraper {
   max-width: 1280px;
@@ -329,19 +326,14 @@ ul {
   }
 }
 
-@media (max-width: 767px) {
-  .nav_wraper {
-    display: none;
-  }
-}
-
 .header__nav {
   margin: auto 0;
 }
 @media (max-width: 767px) {
   .header__nav {
+    display: none;
     position: absolute;
-    left: 10%;
+    left: 100%;
     top: 0;
     width: 320px;
     height: 823px;
@@ -497,7 +489,7 @@ ul {
 }
 @media (max-width: 768px) {
   .footer__img {
-    padding-top: 65px;
+    padding-top: 25px;
   }
 }
 @media (max-width: 767px) {

@@ -27,20 +27,13 @@
     }
 }
 
-.nav_wraper {
-    @include media-mobile-burger {
-        display: none;
-    }
-}
-
 .header__nav {
     margin: auto 0;
 
     @include media-mobile-burger {
-        //display: none;
-        //visibility: hidden;
+        display: none;
         position: absolute;
-        left: 10%;
+        left: 100%;
         top: 0;
         width: 320px;
         height: 823px;
