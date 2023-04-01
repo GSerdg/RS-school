@@ -1,0 +1,59 @@
+%burger-line {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+}
+
+.burger {
+    display: none;
+    position: relative;
+    width: 30px;
+    height: 22px;
+    margin: auto 0;
+
+    @include media-mobile-burger {
+        display: inline-block;
+    }
+
+    &::before {
+        @extend %burger-line;
+        background-color: #F1CDB3;
+        top: 0;
+        left: 0;
+    }
+
+    &:after {
+        @extend %burger-line;
+        background-color: #F1CDB3;
+        bottom: 0;
+        left: 0;
+    }
+
+    &_color {
+        &::before {
+            background-color: #000000;
+        }
+    
+        &:after {
+            background-color: #000000;
+        }
+    }
+}
+
+.burger__line {
+    @extend %burger-line;
+    background-color: #F1CDB3;
+    top: calc(50% - 1px);
+
+    &_color {
+        background-color: #000000;
+    }
+}
+
+#menu-burger {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}

@@ -1,0 +1,87 @@
+/* Pets start */
+
+.pets {
+    background: #f6f6f6;
+}
+
+.pets__wraper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    //align-items: center;
+    padding: 80px 40px 100px;
+
+    @include media-tablet {
+        padding: 80px 30px 76px;
+        row-gap: 30px;
+    }
+
+    @include media-mobile-fonts {
+        padding: 42px 10px;
+        row-gap: 41px;
+    }
+}
+
+.pets__header {
+    text-align: center;
+}
+
+.pets__container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 270px);
+    gap: 30px 40px;
+
+    @include media-tablet {
+        margin-bottom: 10px;
+    }
+    @include media-mobile-fonts {
+        margin-bottom: 0;
+    }
+}
+
+.disabled-768 {
+    @include media-laptop-dual-pets {
+        display: none;
+    }
+}
+
+.disabled-320 {
+    @include media-mobile-single-pets {
+        display: none;
+    }
+}
+
+.pets__nav {
+    display: flex;
+    column-gap: 20px;
+    width: 340px;
+    align-self: center;
+
+    >a {
+        display: contents;
+
+        @include media-tablet {
+            margin-top: 10px;
+        }
+    }
+
+    @include media-mobile-slider {
+        width: 300px;
+        column-gap: 10px;
+
+    }
+}
+
+.inactive {
+    cursor: default;
+    pointer-events: none;
+}
+
+.rotate {
+    transform: rotate(180deg);
+
+}
+
+
+/* Pets end */

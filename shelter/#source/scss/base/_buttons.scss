@@ -1,0 +1,88 @@
+ .btn {
+     display: flex;
+     border-radius: 100px;
+     text-decoration: none;
+     width: fit-content;
+
+     font-family: 'Georgia';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 1.7rem;
+     line-height: 130%;
+     letter-spacing: 0.06em;
+     color: #292929;
+     white-space: nowrap;
+
+     transition: all 0.5s;
+
+     @include hover {
+         background: #fddcc4;
+     }
+
+     &_colored {
+         background: #f1cdb3;
+         padding: 15px 45px;
+
+         @include media-laptop-start {
+             margin: 0 auto;
+         }
+     }
+
+     &_uncolored {
+         padding: 13px 43px;
+         border: 2px solid #f1cdb3;
+         margin: 0 auto;
+     }
+
+     &_position {
+         align-self: center;
+     }
+ }
+
+ .pagination-btn {
+     display: flex;
+     flex: 0 0 52px;
+     justify-content: center;
+     align-items: center;
+     align-self: center;
+     cursor: pointer;
+     height: 52px;
+     border-radius: 100px;
+     border: 2px solid;
+
+     &_inactiv {
+         border-color: #CDCDCD;
+
+         .text_h4 {
+             color: #cdcdcd;
+         }
+     }
+
+     &_page {
+         background: #F1CDB3;
+         border: none;
+     }
+
+     &_normal {
+         border-color: #F1CDB3;
+         transition: all 0.5s;
+
+         @include hover {
+             background: #fddcc4;
+             border-color: #fddcc4;
+         }
+
+         &:active {
+             background: #f1cdb3;
+             border-color: #f1cdb3;
+
+         }
+     }
+
+     &_order {
+        @include media-mobile-slider {
+            order: 1;
+            margin: 0 auto;
+        }
+     }
+ }

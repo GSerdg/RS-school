@@ -1,0 +1,85 @@
+/* Pets-main start */
+
+.pets-main {
+    background: #f6f6f6;
+}
+
+.pets-main__wraper {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 40px 100px 40px;
+
+    @include media-laptop-start {
+        padding: 80px 30px 100px 30px;
+    }
+
+    @include media-mobile {
+        padding: 42px 10px 42px;
+    }
+}
+
+.pets-main__title {
+    width: 400px;
+    margin: 0 auto 59px;
+    text-align: center;
+
+    @include media-mobile-slider {
+        width: 100%;
+    }
+
+    @include media-mobile {
+        margin: 0 auto 41px;
+
+    }
+}
+
+.pets-main__slider {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+
+    @include media-laptop-slider {
+        justify-content: center;
+    }
+
+    @include media-mobile-slider {
+        flex-wrap: wrap;
+        width: 270px;
+        margin: 0 auto 42px;
+    }
+}
+
+.pets-main__slider__container {
+    display: flex;
+    justify-content: space-between;
+    width: 990px;
+    margin: 0 12px;
+    column-gap: 40px;
+
+    @include media-laptop-slider {
+        max-width: 580px;
+    }
+
+    @include media-mobile-burger {
+        max-width: 270px;
+    }
+
+    @include media-mobile-slider {
+        margin-bottom: 20px;
+    }
+}
+
+/* .card__container {
+    display: flex;
+    max-width: 990px;
+    flex-grow: 1;
+    //column-gap: 90px;
+    >a {
+        margin-right: 40px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+ */
+/* Pets-main end */

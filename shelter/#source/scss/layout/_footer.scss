@@ -1,0 +1,135 @@
+/* Footer start */
+
+.footer {
+    background: url(../../assets/images/start-screen-gradient-background.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+.footer__wraper {
+    padding: 40px 40px 0 40px;
+    display: flex;
+    row-gap: 40px;
+    justify-content: space-between;
+
+    @include media-laptop-start {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 30px 30px 0 30px;
+    }
+
+    @include media-mobile {
+        padding: 30px 10px 0;
+    }
+
+}
+
+.footer__img {
+    display: flex;
+    align-items: flex-end;
+    max-width: 300px;
+
+    &_picture {
+        width: 100%;
+    }
+
+    @include media-tablet {
+        padding-top: 25px;
+
+    }
+    @include media-mobile-burger {
+        padding-top: 0;
+    }
+
+    @include media-mobile {
+        max-width: 260px;
+    }
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 234px;
+    margin: 16px 20px 20px 0;
+
+    @include media-tablet {
+        margin: 0;
+    }
+
+    @include media-mobile-fonts {
+        height: 208px;
+        //margin-bottom: 40px;
+    }
+}
+
+.footer__question {
+    max-width: 279px;
+
+    @include media-tablet {
+        margin-left: 2px;
+    }
+
+    @include media-mobile-fonts {
+        margin-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+
+}
+
+.footer__visit {
+    max-width: 302px;
+
+    @include media-tablet {
+        margin-right: 2px;
+    }
+
+    @include media-mobile-fonts {
+        height: 222px;
+    }
+
+}
+
+.footer__header {
+    color: #ffffff;
+
+    @include media-mobile-fonts {
+        width: 270px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+}
+
+.footer__subblock {
+    display: flex;
+    align-items: center;
+
+    @include hover {
+        >.footer__title {
+            color: #fddcc4;
+        }
+
+        >.footer__questions_icon {
+            path {
+                fill: #fddcc4;
+            }
+        }
+    }
+}
+
+.footer__questions_icon path {
+    transition: all 0.3s;
+}
+
+.footer__questions_icon {
+    margin-right: 20px;
+}
+
+.footer__title {
+    color: #F1CDB3;
+
+    transition: all 0.3s;
+}
+
+/* Footer end */
