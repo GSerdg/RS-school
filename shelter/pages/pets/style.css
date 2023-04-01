@@ -103,13 +103,15 @@ ul {
   box-shadow: 0px 0px 0px 0px rgba(13, 13, 13, 0.04);
   transition: all 0.5s;
 }
-.card:hover {
-  background: #ffffff;
-  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-}
-.card:hover > .btn_uncolored {
-  background: #fddcc4;
-  border: 2px solid #fddcc4;
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    background: #ffffff;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  }
+  .card:hover > .btn_uncolored {
+    background: #fddcc4;
+    border: 2px solid #fddcc4;
+  }
 }
 .card:last-child {
   margin-right: 0;
@@ -173,8 +175,10 @@ ul {
   white-space: nowrap;
   transition: all 0.5s;
 }
-.btn:hover {
-  background: #fddcc4;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: #fddcc4;
+  }
 }
 .btn_colored {
   background: #f1cdb3;
@@ -200,6 +204,7 @@ ul {
   justify-content: center;
   align-items: center;
   align-self: center;
+  cursor: pointer;
   height: 52px;
   border-radius: 100px;
   border: 2px solid;
@@ -218,9 +223,11 @@ ul {
   border-color: #F1CDB3;
   transition: all 0.5s;
 }
-.pagination-btn_normal:hover {
-  background: #fddcc4;
-  border-color: #fddcc4;
+@media (hover: hover) and (pointer: fine) {
+  .pagination-btn_normal:hover {
+    background: #fddcc4;
+    border-color: #fddcc4;
+  }
 }
 .pagination-btn_normal:active {
   background: #f1cdb3;
@@ -336,8 +343,10 @@ ul {
   color: #cdcdcd;
   transition: color 0.5s;
 }
-.header__link-main:hover {
-  color: #fafafa;
+@media (hover: hover) and (pointer: fine) {
+  .header__link-main:hover {
+    color: #fafafa;
+  }
 }
 .header__link-main:active ~ .header__link_border {
   opacity: 1;
@@ -352,8 +361,10 @@ ul {
   color: #545454;
   transition: color 0.5s;
 }
-.header__link-pets:hover {
-  color: #292929;
+@media (hover: hover) and (pointer: fine) {
+  .header__link-pets:hover {
+    color: #292929;
+  }
 }
 .header__link-pets:active ~ .header__link_border {
   opacity: 1;
@@ -522,11 +533,13 @@ ul {
   display: flex;
   align-items: center;
 }
-.footer__subblock:hover > .footer__title {
-  color: #fddcc4;
-}
-.footer__subblock:hover > .footer__questions_icon path {
-  fill: #fddcc4;
+@media (hover: hover) and (pointer: fine) {
+  .footer__subblock:hover > .footer__title {
+    color: #fddcc4;
+  }
+  .footer__subblock:hover > .footer__questions_icon path {
+    fill: #fddcc4;
+  }
 }
 
 .footer__questions_icon path {

@@ -80,7 +80,7 @@
 
     transition: background 0.5s;
 
-    &:hover {
+    @include hover {
         background: #fddcc4;
     }
 

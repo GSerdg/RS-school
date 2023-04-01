@@ -106,7 +106,7 @@
     display: flex;
     align-items: center;
 
-    &:hover {
+    @include hover {
         >.footer__title {
             color: #fddcc4;
         }
