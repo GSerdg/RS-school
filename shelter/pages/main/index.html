@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="modal modal_burger" onclick="opend()"></div>
+  <div class="modal modal_burger" onclick="openClosed()"></div>
   <div class="body__wraper">
     <header class="header">
       <div class="wraper">
@@ -26,25 +26,26 @@
             <ul class="header__list">
               <li class="header__item">
                 <div class="link__wraper">
-                  <a href="../main/index.html" class="header__link-main header__link-main_active">About the shelter</a>
+                  <span class="header__link-main header__link-main_active" onclick="openClosed()">About the
+                    shelter</span>
                   <div class="header__link_border header__link_border_active"></div>
                 </div>
               </li>
               <li class="header__item">
-                <a href="../pets/index.html" class="header__link-main">Our pets</a>
+                <a href="../pets/index.html" class="header__link-main" onclick="openClosed()">Our pets</a>
                 <div class="header__link_border"></div>
               </li>
               <li class="header__item">
-                <a href="#help_bar" class="header__link-main">Help the shelter</a>
+                <a href="#help_bar" class="header__link-main" onclick="openClosed()">Help the shelter</a>
                 <div class="header__link_border"></div>
               </li>
               <li class="header__item">
-                <a href="#footer" class="header__link-main">Contacts</a>
+                <a href="#footer" class="header__link-main" onclick="openClosed()">Contacts</a>
                 <div class="header__link_border"></div>
               </li>
             </ul>
           </nav>
-          <span class="burger" onclick="opend()">
+          <span class="burger" onclick="openClosed()">
             <span class="burger__line"></span>
           </span>
         </div>
@@ -102,41 +103,105 @@
           <div class="pets-main__wraper">
             <h3 class="pets-main__title text_h3">Our friends who<br>are looking for a house</h3>
             <div class="pets-main__slider">
-              <div class="pagination-btn pagination-btn_normal pagination-btn_order">
+              <div class="pagination-btn pagination-btn_normal pagination-btn_order" id="btn-left">
                 <img class="pagination-btn_arrow" src="../../assets/icons/Arrow-left.svg" alt="">
               </div>
               <div class="pets-main__slider__container">
-                <!-- <div class="card__container"> -->
-                <a class="slider-1" href="#!">
-                  <article class="card">
-                    <div class="card_picture">
-                      <img src="../../assets/images/pets/katrine.png" alt="katrine" class="card__img">
-                    </div>
-                    <h5 class="card_title">Katrine</h5>
-                    <div class="btn btn_uncolored">Learn more</div>
-                  </article>
-                </a>
-                <a class="slider-2" href="#!">
-                  <article class="card">
-                    <div class="card_picture">
-                      <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="card__img">
-                    </div>
-                    <h5 class="card_title">Jennifer</h5>
-                    <div class="btn btn_uncolored">Learn more</div>
-                  </article>
-                </a>
-                <a class="slider-3" href="#!">
-                  <article class="card">
-                    <div class="card_picture">
-                      <img src="../../assets/images/pets/woody.png" alt="Woody" class="card__img">
-                    </div>
-                    <h5 class="card_title">Woody</h5>
-                    <div class="btn btn_uncolored">Learn more</div>
-                  </article>
-                </a>
-                <!-- </div> -->
+
+                <div class="slider__wraper">
+                  <div class="card__container card__container_left">
+                    <a class="slider-1" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/katrine.png" alt="katrine" class="card__img">
+                        </div>
+                        <h5 class="card_title">Katrine</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-2" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="card__img">
+                        </div>
+                        <h5 class="card_title">Jennifer</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-3" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/woody.png" alt="Woody" class="card__img">
+                        </div>
+                        <h5 class="card_title">Woody</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                  </div>
+
+                  <div class="card__container card__container_center">
+                    <a class="slider-1" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/sophia.png" alt="Sophia" class="card__img">
+                        </div>
+                        <h5 class="card_title">Sophia</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-2" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/timmy.png" alt="Timmy" class="card__img">
+                        </div>
+                        <h5 class="card_title">Timmy</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-3" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/charly.png" alt="Charly" class="card__img">
+                        </div>
+                        <h5 class="card_title">Charly</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                  </div>
+
+                  <div class="card__container card__container_right">
+                    <a class="slider-1" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/katrine.png" alt="katrine" class="card__img">
+                        </div>
+                        <h5 class="card_title">Katrine</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-2" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="card__img">
+                        </div>
+                        <h5 class="card_title">Jennifer</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                    <a class="slider-3" href="#!">
+                      <article class="card">
+                        <div class="card_picture">
+                          <img src="../../assets/images/pets/woody.png" alt="Woody" class="card__img">
+                        </div>
+                        <h5 class="card_title">Woody</h5>
+                        <div class="btn btn_uncolored">Learn more</div>
+                      </article>
+                    </a>
+                  </div>
+                </div>
+
               </div>
-              <div class="pagination-btn pagination-btn_normal pagination-btn_order">
+              <div class="pagination-btn pagination-btn_normal pagination-btn_order" id="btn-right">
                 <img class="pagination-btn_arrow" src="../../assets/icons/Arrow-right.svg" alt="">
               </div>
             </div>

@@ -13,6 +13,7 @@
     height: 22px;
     margin: auto 0;
     transition: all 0.5s;
+    cursor: pointer;
 
     @include media-mobile-burger {
         display: inline-block;
