@@ -102,7 +102,7 @@
             animation: go-right-2-column 1s ease-in-out;
         }
 
-        @include media-mobile-slider {
+        @include media-mobile-burger {
             animation: go-right-1-column 1s ease-in-out;
         }
     }
@@ -122,17 +122,6 @@
     @include media-mobile-burger {
         left: -310px;
     }
-
-    /*     &_center {
-        margin: 0 90px;
-
-        @include media-laptop-slider {
-            margin: 0 40px;
-        }
-
-    }
- */
-
 }
 
 @keyframes go-left-3-column {
@@ -147,21 +136,21 @@
 
 @keyframes go-left-2-column {
     from {
-        left: -1080px;
+        left: -620px;
     }
 
     to {
-        left: -2160px
+        left: -1240px
     }
 }
 
 @keyframes go-left-1-column {
     from {
-        left: -1080px;
+        left: -310px;
     }
 
     to {
-        left: -2160px
+        left: -620px
     }
 }
 

@@ -1,86 +1,14 @@
 console.log('1. Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14\n2. Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14\n 3. Вёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n4. Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n5. Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6\n6. Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6\n7. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20\n8. Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n9. При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4\nОткрытие меню при клике на иконку бургер-меню на текущем этапе не проверяется\n10. Верстка обеих страниц валидная: для проверки валидности вёрстки используйте сервис https://validator.w3.org/ : +8')
 
-//////Burger start///////
-
-//for open and closed burger menu
-function openClosed() {
-  let navMenu = document.querySelector('.header__nav');
-  let burger = document.querySelector('.burger');
-  let modal = document.querySelector('.modal_burger');
-  let height = document.documentElement.clientHeight;
-  let width = window.innerWidth;
-  let top = document.documentElement.scrollTop; //top overflow position
-
-  if (navMenu.classList.contains('header__nav_visible')) {
-    setTimeout(() => {
-      navMenu.style.height = '';
-      navMenu.style.top = '';
-      modal.style.top = '';
-    }, 500);//for transition burger menu
-
-    navMenu.classList.remove('header__nav_visible');
-    burger.classList.remove('burger_rotate');
-    modal.classList.remove('modal_vicible');
-    document.body.classList.remove('overflow');
-
-  } else if (width < 768) {
-    navMenu.style.height = `${height}px`;
-    navMenu.style.top = `${top}px`;
-    modal.style.top = `${top}px`;
-    navMenu.classList.add('header__nav_visible');
-    burger.classList.add('burger_rotate');
-    modal.classList.add('modal_vicible');
-    document.body.classList.add('overflow');
-  }
-}
-//////Burger end///////
-//////Slider start////////
-
 const SLIDER = document.querySelector('.slider__wraper');
 const LEFT_BTN = document.querySelector('#btn-left');
 const RIGHT_BTN = document.querySelector('#btn-right');
+const media1220 = window.matchMedia('(max-width: 1220px)');
+const media767 = window.matchMedia('(max-width: 767px)');
+let countCards;
 let left;
-
-function goLeft() {
-  left = true;
-  SLIDER.classList.add('slider__wraper_animation-left');
-  LEFT_BTN.removeEventListener('click', goLeft);//remoove event on animation time
-  RIGHT_BTN.removeEventListener('click', goRight);//remoove event on animation time
-}
-
-function goRight() {
-  left = false;
-  SLIDER.classList.add('slider__wraper_animation-right');
-  RIGHT_BTN.removeEventListener('click', goRight);//remoove event on animation time
-  LEFT_BTN.removeEventListener('click', goLeft);//remoove event on animation time
-}
-
-LEFT_BTN.addEventListener('click', goLeft);
-RIGHT_BTN.addEventListener('click', goRight);
-
-SLIDER.addEventListener('animationend', () => {
-  let cardPosition = document.querySelectorAll('.card__container');
-
-  if (left) {
-    SLIDER.classList.remove('slider__wraper_animation-left');
-    cardPosition[2].after(cardPosition[0]);
-  } else {
-    SLIDER.classList.remove('slider__wraper_animation-right');
-    cardPosition[0].before(cardPosition[2]);
-  }
-
-  LEFT_BTN.addEventListener('click', goLeft);//add event after animation
-  RIGHT_BTN.addEventListener('click', goRight);//add event after animation
-});
-
-
-//////Slider end////////
-
-//////Animals generation start////////
-
-
+let flag = false;//flag for break
 let random = [0, 1, 2, 3, 4, 5, 6, 7];
-let centerPictures = [];
 let animals = [
   {
     name: "Jennifer",
@@ -171,42 +99,187 @@ let animals = [
     parasites: ["lice", "fleas"]
   }
 ];
+let num;//number of cards in card__container
 
+//for shuffle pets massive index
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1)); // случайный индекс от 0 до i
+    let j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 }
 
-/////for add random pets in pets card/////
-function insertCards() {
-  let cardContainerWidth = document.querySelector('.card__container').offsetWidth;
-  let num;//number of cards in card__container
-  cardContainerWidth === 990 ? num = 3 : cardContainerWidth === 580 ? num = 2 : num = 1;
+//for open and closed burger menu
+function openClosed() {
+  let navMenu = document.querySelector('.header__nav');
+  let burger = document.querySelector('.burger');
+  let modal = document.querySelector('.modal_burger');
+  let height = document.documentElement.clientHeight;
+  let width = window.innerWidth;
+  let top = document.documentElement.scrollTop; //top overflow position
+  let scroll = width - document.body.clientWidth;
+  if (navMenu.classList.contains('header__nav_visible')) {
+    setTimeout(() => {
+      navMenu.style.height = '';
+      navMenu.style.top = '';
+      modal.style.top = '';
+    }, 500);//for transition burger menu
 
-  let cardContainer = document.querySelectorAll('.card__container');
-  let objImg = cardContainer[1].querySelectorAll('.card__img');
-  let objTitle = cardContainer[1].querySelectorAll('.card_title');
-  for (let i = 0; i < num; i++) {
-    centerPictures.push(random.pop());
-  }
+    navMenu.classList.remove('header__nav_visible');
+    burger.classList.remove('burger_rotate');
+    modal.classList.remove('modal_vicible');
+    document.body.classList.remove('overflow');
+    document.body.style.paddingRight = ``
 
-  for (let i = 0; i < num; i++) {
-    objImg[i].setAttribute('src', animals[centerPictures[i]].img);
-    objImg[i].setAttribute('alt', animals[centerPictures[i]].name);
-    objTitle[i].innerHTML = animals[centerPictures[i]].name;
-    if (centerPictures[i] === 1) {
-      objImg[i].classList.add('card_sophia');
-    }
+
+  } else if (width < 768) {
+    navMenu.style.height = `${height}px`;
+    navMenu.style.top = `${top}px`;
+    modal.style.top = `${top}px`;
+    navMenu.classList.add('header__nav_visible');
+    burger.classList.add('burger_rotate');
+    modal.classList.add('modal_vicible');
+    document.body.classList.add('overflow');
+    document.body.style.paddingRight = `${scroll}px`
+
   }
 }
 
+//////Slider start////////
+//Вычисляет количество карточек в слайдере при загрузке
+function numerCards() { 
+  const width = document.querySelector('.card__container').clientWidth;
+  width === 990 ? countCards = 3 : width === 580 ? countCards = 2 : countCards = 1;
+}
 
+function goLeft() {
+  left = true;
+  SLIDER.classList.add('slider__wraper_animation-right');
+  RIGHT_BTN.removeEventListener('click', goRight);//remoove event on animation time
+  LEFT_BTN.removeEventListener('click', goLeft);//remoove event on animation time
+}
 
-shuffle(random);
-insertCards();
-console.log(random);
+function goRight() {
+  left = false;
+  SLIDER.classList.add('slider__wraper_animation-left');
+  LEFT_BTN.removeEventListener('click', goLeft);//remoove event on animation time
+  RIGHT_BTN.removeEventListener('click', goRight);//remoove event on animation time
+}
 
+//for add random pets in pets center card container
+function addCardCenter(number) {
+  shuffle(random);
+  const CARD_CONTAINER = document.querySelectorAll('.card__container');
+  const OBJ_IMG = CARD_CONTAINER[1].querySelectorAll('.card__img');
+  const OBJ_TITLE = CARD_CONTAINER[1].querySelectorAll('.card_title');
 
-//////Animals generation start////////
+  for (let i = 0; i < number; i++) {
+    OBJ_IMG[i].setAttribute('src', animals[random[i]].img);
+    OBJ_IMG[i].setAttribute('alt', animals[random[i]].name);
+    OBJ_IMG[i].setAttribute('id', random[i]);
+    OBJ_TITLE[i].innerText = animals[random[i]].name;
+    random[i] === 1 ? OBJ_IMG[i].classList.add('card_sophia') : OBJ_IMG[i].classList.remove('card_sophia');
+  }
+}
+
+//for add random pets in pets left card container
+function addCardLeft(number) {
+  shuffle(random);
+  const CARD_CONTAINER = document.querySelectorAll('.card__container');
+  const OBJ_IMG = CARD_CONTAINER[0].querySelectorAll('.card__img');
+  const OBJ_TITLE = CARD_CONTAINER[0].querySelectorAll('.card_title');
+  let i = 0;
+
+  for (const index of random) {
+    for (let k = 0; k < number; k++) {
+      if (+CARD_CONTAINER[1].querySelectorAll('.card__img')[k].getAttribute('id') === index) {
+        flag = true;
+        break;
+      }
+    }
+    if (flag) {
+      flag = false;
+      continue;
+    }
+    OBJ_IMG[i].setAttribute('src', animals[index].img);
+    OBJ_IMG[i].setAttribute('alt', animals[index].name);
+    OBJ_IMG[i].setAttribute('id', index);
+    OBJ_TITLE[i].innerText = animals[index].name;
+    index === 1 ? OBJ_IMG[i].classList.add('card_sophia') : OBJ_IMG[i].classList.remove('card_sophia');
+    i++;
+    if (i >= number) break;
+  }
+}
+
+//for add random pets in pets right card container
+function addCardRight(number) {
+  shuffle(random);
+  const CARD_CONTAINER = document.querySelectorAll('.card__container');
+  const OBJ_IMG = CARD_CONTAINER[2].querySelectorAll('.card__img');
+  const OBJ_TITLE = CARD_CONTAINER[2].querySelectorAll('.card_title');
+  let i = 0;
+
+  for (const index of random) {
+    for (let k = 0; k < number; k++) {
+      if (+CARD_CONTAINER[1].querySelectorAll('.card__img')[k].getAttribute('id') === index) {
+        flag = true;
+        break;
+      }
+    }
+    if (flag) {
+      flag = false;
+      continue;
+
+    }
+    OBJ_IMG[i].setAttribute('src', animals[index].img);
+    OBJ_IMG[i].setAttribute('alt', animals[index].name);
+    OBJ_IMG[i].setAttribute('id', index);
+    OBJ_TITLE[i].innerText = animals[index].name;
+    index === 1 ? OBJ_IMG[i].classList.add('card_sophia') : OBJ_IMG[i].classList.remove('card_sophia');
+    i++;
+    if (i >= 3) break;
+  }
+}
+
+//add random pets on cards slider
+numerCards();
+addCardCenter(countCards);
+addCardLeft(countCards);
+addCardRight(countCards);
+
+//slider, buttons event
+LEFT_BTN.addEventListener('click', goLeft);
+RIGHT_BTN.addEventListener('click', goRight);
+
+SLIDER.addEventListener('animationend', () => {
+  let cardPosition = document.querySelectorAll('.card__container');
+
+  if (left) {
+    SLIDER.classList.remove('slider__wraper_animation-right');
+    cardPosition[0].before(cardPosition[2]);
+    addCardLeft(countCards);
+  } else {
+    SLIDER.classList.remove('slider__wraper_animation-left');
+    cardPosition[2].after(cardPosition[0]);
+    addCardRight(countCards);
+  }
+
+  LEFT_BTN.addEventListener('click', goLeft);//add event after animation
+  RIGHT_BTN.addEventListener('click', goRight);//add event after animation
+});
+
+//отслеживание медиазапросов
+media1220.addEventListener('change', function (event) {
+  event.matches ? countCards = 2 : countCards = 3;
+  addCardCenter(countCards);
+  addCardLeft(countCards);
+  addCardRight(countCards);
+});
+
+media767.addEventListener('change', function (event) {
+  event.matches ? countCards = 1 : countCards = 2;
+  addCardCenter(countCards);
+  addCardLeft(countCards);
+  addCardRight(countCards);
+});
+

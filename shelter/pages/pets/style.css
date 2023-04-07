@@ -151,7 +151,7 @@ ul {
   border-radius: 9px 9px 0 0;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1220px) {
   .slider-3 {
     display: none;
   }
@@ -207,13 +207,27 @@ ul {
   justify-content: center;
   align-items: center;
   align-self: center;
-  cursor: pointer;
   height: 52px;
   border-radius: 100px;
   border: 2px solid;
+  border-color: #F1CDB3;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pagination-btn:hover {
+    background: #fddcc4;
+    border-color: #fddcc4;
+  }
+}
+.pagination-btn:active {
+  background: #f1cdb3;
+  border-color: #f1cdb3;
 }
 .pagination-btn_inactiv {
   border-color: #CDCDCD;
+  cursor: default;
+  pointer-events: none;
 }
 .pagination-btn_inactiv .text_h4 {
   color: #cdcdcd;
@@ -221,20 +235,7 @@ ul {
 .pagination-btn_page {
   background: #F1CDB3;
   border: none;
-}
-.pagination-btn_normal {
-  border-color: #F1CDB3;
-  transition: all 0.5s;
-}
-@media (hover: hover) and (pointer: fine) {
-  .pagination-btn_normal:hover {
-    background: #fddcc4;
-    border-color: #fddcc4;
-  }
-}
-.pagination-btn_normal:active {
-  background: #f1cdb3;
-  border-color: #f1cdb3;
+  pointer-events: none;
 }
 @media (max-width: 480px) {
   .pagination-btn_order {
@@ -722,11 +723,11 @@ ul {
   }
 }
 
-.inactive {
-  cursor: default;
-  pointer-events: none;
+/* .inactive {
+    cursor: default;
+    pointer-events: none;
 }
-
+ */
 .rotate {
   transform: rotate(180deg);
 }

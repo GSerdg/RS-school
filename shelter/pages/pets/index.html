@@ -88,7 +88,7 @@
               <a class="disabled-320" href="#!">
                 <article class="card">
                   <div class="card_picture">
-                    <img src="../../assets/images/pets/sophia.png" alt="Sophia" class="card__img card_sophia">
+                    <img src="../../assets/images/pets/sophia.png" alt="Sophia" class="card__img">
                   </div>
                   <h5 class="card_title">Sophia</h5>
                   <div class="btn btn_uncolored">Learn more</div>
@@ -132,29 +132,21 @@
               </a>
             </div>
             <div class="pets__nav">
-              <a class="inactive" href="#!">
-                <div class="pagination-btn pagination-btn_inactiv">
+                <div class="pagination-btn pagination-btn_inactiv" id="pgn-all-left" onclick="pgnAllLeft()">
                   <span class="text_h4 rotate">>></span>
                 </div>
-              </a>
-              <a class="inactive" href="#!">
-                <div class="pagination-btn pagination-btn_inactiv">
+                <div class="pagination-btn pagination-btn_inactiv" id="pgn-left"  onclick="pgnLeft()">
                   <span class="text_h4 rotate">></span>
                 </div>
-              </a>
-                <div class="pagination-btn pagination-btn_page">
+                <div class="pagination-btn pagination-btn_page" id="pgn-center">
                   <span class="text_h4">1</span>
                 </div>
-              <a href="#!">
-                <div class="pagination-btn pagination-btn_normal">
+                <div class="pagination-btn" id="pgn-right" onclick="pgnRight()">
                   <span class="text_h4">></span>
                 </div>
-              </a>
-              <a href="#!">
-                <div class="pagination-btn pagination-btn_normal">
+                <div class="pagination-btn" id="pgn-all-right" onclick="pgnAllRight()">
                   <span class="text_h4">>></span>
                 </div>
-              </a>
             </div>
           </div>
         </div>
