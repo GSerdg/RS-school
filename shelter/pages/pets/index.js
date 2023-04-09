@@ -110,26 +110,27 @@ let numPage = 1;
 let num;//Количество карточек для отображения на странице
 //for open and closed burger menu
 
-function openClosed() {
+function navBurger() {
   let navMenu = document.querySelector('.header__nav');
   let burger = document.querySelector('.burger');
-  let modal = document.querySelector('.modal_burger');
+  let modal = document.getElementById('modal-nav');
   let height = document.documentElement.clientHeight;
   let width = window.innerWidth;
   let top = document.documentElement.scrollTop; //top overflow position
   let scroll = width - document.body.clientWidth;
 
   if (navMenu.classList.contains('header__nav_visible')) {
-    setTimeout(() => {
+/*     setTimeout(() => {
       navMenu.style.height = '';
       navMenu.style.top = '';
       modal.style.top = '';
     }, 500);//for transition burger menu
-
+ */
     navMenu.classList.remove('header__nav_visible');
     burger.classList.remove('burger_rotate');
     modal.classList.remove('modal_vicible');
     document.body.classList.remove('overflow');
+    document.body.style.paddingRight = ``
 
   } else if (width < 768) {
     navMenu.style.height = `${height}px`;

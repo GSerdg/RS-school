@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="modal modal_burger" onclick="openClosed()"></div>
+  <div class="modal" id="modal-nav" onclick="navBurger()"></div>
   <div class="body__wraper">
     <!-- Header start -->
     <header class="header header_pets">
@@ -27,24 +27,24 @@
           <nav class="header__nav header__nav_color-pets">
             <ul class="header__list">
               <li class="header__item">
-                <a href="../main/index.html" class="header__link-pets" onclick="openClosed()">About the shelter</a>
+                <a href="../main/index.html" class="header__link-pets" onclick="navBurger()">About the shelter</a>
                 <div class="header__link_border"></div>
               </li>
               <li class="header__item">
-                <span class="header__link-pets header__link-pets_active" onclick="openClosed()">Our pets</span>
+                <span class="header__link-pets header__link-pets_active" onclick="navBurger()">Our pets</span>
                 <div class="header__link_border header__link_border_active"></div>
               </li>
               <li class="header__item">
-                <a href="../main/index.html#help_bar" class="header__link-pets" onclick="openClosed()">Help the shelter</a>
+                <a href="../main/index.html#help_bar" class="header__link-pets" onclick="navBurger()">Help the shelter</a>
                 <div class="header__link_border"></div>
               </li>
               <li class="header__item">
-                <a href="#footer" class="header__link-pets" onclick="openClosed()">Contacts</a>
+                <a href="#footer" class="header__link-pets" onclick="navBurger()">Contacts</a>
                 <div class="header__link_border"></div>
               </li>
             </ul>
           </nav>
-          <span class="burger burger_color" onclick="openClosed()">
+          <span class="burger burger_color" onclick="navBurger()">
             <span class="burger__line burger__line_color"></span>
           </span>
         </div>

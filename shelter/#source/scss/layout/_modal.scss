@@ -1,4 +1,7 @@
 .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
     position: absolute;
     left: 0;
@@ -6,16 +9,18 @@
     width: 100%;
     opacity: 0;
     z-index: 1;
-    transition: all 0.5s;
-
+    transition-duration: 0.5s;
+    transition-property: opacity, visibility;
+    background-color: #29292960;
+    
     &_vicible {
         visibility: visible;
         opacity: 1;
         
     }
 
-    &_burger {
+    /* &_burger {
         background-color: #29292960;
         
-    }
+    } */
 }

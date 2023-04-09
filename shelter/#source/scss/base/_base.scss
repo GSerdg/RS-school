@@ -45,6 +45,10 @@ ul {
     letter-spacing: 0.06em;
     color: #545454;
 
+    &_modal {
+        color: #000000;
+    }
+
     @include media-mobile-fonts {
         font-size: 2.5rem;
     }
@@ -60,4 +64,8 @@ ul {
     align-items: center;
     letter-spacing: 0.06em;
     color: #545454;
+
+    &_modal {
+        color: #000000;
+    }
 }
