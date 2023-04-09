@@ -127,12 +127,12 @@ function navBurger() {
   let top = document.documentElement.scrollTop; //top overflow position
   let scroll = width - document.body.clientWidth;
   if (navMenu.classList.contains('header__nav_visible')) {
-    /*     setTimeout(() => {
+        setTimeout(() => {
           navMenu.style.height = '';
           navMenu.style.top = '';
           modal.style.top = '';
         }, 500);//for transition
-     */
+    
     navMenu.classList.remove('header__nav_visible');
     burger.classList.remove('burger_rotate');
     modal.classList.remove('modal_vicible');
@@ -155,7 +155,7 @@ function navBurger() {
 
 //////Slider start////////
 //Вычисляет количество карточек в слайдере при загрузке
-function numerCards() {
+function numberCards() {
   const width = document.querySelector('.card__container').clientWidth;
   width === 990 ? countCards = 3 : width === 580 ? countCards = 2 : countCards = 1;
 }
@@ -249,8 +249,57 @@ function addCardRight(number) {
   }
 }
 
+//Для создания и заполнения контентом модального окна карточки питомца
+function addModal(petIndex) {
+  let inoculations = "none";
+  let diseases = "none";
+  let parasites = "none";
+
+  //fill modal
+  if (animals[petIndex].inoculations.length != 0) {
+    inoculations = animals[petIndex].inoculations.map((item, index) => {
+      if (index == 0) return item;
+      return ` ${item}`;
+    });
+  }
+  if (animals[petIndex].diseases.length != 0) {
+    diseases = animals[petIndex].diseases.map((item, index) => {
+      if (index == 0) return item;
+      return ` ${item}`;
+    });
+  }
+  if (animals[petIndex].parasites.length != 0) {
+    parasites = animals[petIndex].parasites.map((item, index) => {
+      if (index == 0) return item;
+      return ` ${item}`;
+    });
+  }
+
+  document.body.insertAdjacentHTML("afterbegin",
+    `<div class="modal" id="modal-card">
+    <div class="modal__pets">
+      <div class="closed__btn"></div>
+      <div class="modal__picture">
+        <img src="${animals[petIndex].imgModal}" alt="${animals[petIndex].name}" class="modal__img">
+      </div>
+      <div class="modal__title">
+        <h3 class="text_h3">${animals[petIndex].name}</h3>
+        <h4 class="text_h4">${animals[petIndex].type} - ${animals[petIndex].breed}</h4>
+        <h5>${animals[petIndex].description}</h5>
+        <ul class="modal__text">
+          <li><h5><strong>Age:</strong> ${animals[petIndex].age}</h5></li>
+          <li><h5><strong>Inoculations:</strong> ${inoculations}</h5></li>
+          <li><h5><strong>Diseases:</strong> ${diseases}</h5></li>
+          <li><h5><strong>Parasites:</strong> ${parasites}</h5></li>
+        </ul>
+      </div>
+    </div>
+  </div>`
+  );
+}
+
 //add random pets on cards slider
-numerCards();
+numberCards();
 addCardCenter(countCards);
 addCardLeft(countCards);
 addCardRight(countCards);
@@ -292,65 +341,44 @@ media767.addEventListener('change', function (event) {
 });
 
 ////////////////////////////////////
-
+//открытие и закрытие модального окна с карточкой питомца
 const slider = document.body.querySelector('.pets-main__slider__container');
 slider.addEventListener('click', (event) => {
   let card = event.target.closest('.card');
   if (!card) return;
-  modal(card.firstElementChild.firstElementChild.getAttribute('id'));
-});
-
-function modal(petIndex) {
-  document.body.insertAdjacentHTML("afterbegin", 
-  `<div class="modal" id="modal-card">
-    <div class="modal__pets">
-      <div class="closed__btn"></div>
-      <div class="modal__picture">
-        <img src="${animals[petIndex].imgModal}" alt="${animals[petIndex].name}" class="modal__img">
-      </div>
-      <div class="modal__title">
-        <h3 class="text_h3">${animals[petIndex].name}</h3>
-        <h4 class="text_h4">${animals[petIndex].type} - ${animals[petIndex].breed}</h4>
-        <h5>${animals[petIndex].description}</h5>
-        <ul class="modal__text">
-          <li><h5><strong>Age:</strong> ${animals[petIndex].age}</h5></li>
-          <li><h5><strong>Inoculations:</strong> ${animals[petIndex].inoculations}</h5></li>
-          <li><h5><strong>Diseases:</strong> ${animals[petIndex].diseases}</h5></li>
-          <li><h5><strong>Parasites:</strong> ${animals[petIndex].parasites}</h5></li>
-        </ul>
-      </div>
-    </div>
-  </div>`
-  );
-
-
-  let modal = document.getElementById('modal-card');
-  let top = document.documentElement.scrollTop; //top overflow position
-  let width = window.innerWidth;
-  let scroll = width - document.body.clientWidth;
-  modal.style.top = `${top}px`;
-  modal.style.width = `calc(100% - ${scroll}px)`;
-
-  modal.classList.add('modal_vicible');
-  document.body.classList.add('overflow');
-  document.body.style.paddingRight = `${scroll}px`;
-
-  //closed modal-pets
-  modal.addEventListener('click', (event) => {
-    let target = event.target;
-    if (target.id == 'modal-card' || target.className == 'closed__btn') {
-      modal.classList.remove('modal_vicible');
-      setTimeout(() => {
-        //modal.style.bottom = '100%';
-        //modal.style.top = '';
-        modal.remove();
-        document.body.style.paddingRight = ``;
-        document.body.classList.remove('overflow');
-      }, 500);//for transition
-    }
+  //Промис для открытия окна после его создания
+  const promise = new Promise((rezolve) => {
+    addModal(card.firstElementChild.firstElementChild.getAttribute('id'));
+    rezolve();
   });
 
+  promise.then(() => {
+    let modal = document.getElementById('modal-card');
+    let top = document.documentElement.scrollTop; //top overflow position
+    let scroll = window.innerWidth - document.body.clientWidth;
+    //open modal
+    modal.style.top = `${top}px`;
+    modal.style.width = `calc(100% - ${scroll}px)`;
+    modal.classList.add('modal_vicible');
+    document.body.classList.add('overflow');
+    document.body.style.paddingRight = `${scroll}px`;
+    //closed modal
+    modal.addEventListener('click', (event) => {
+      let target = event.target;
+      if (target.id == 'modal-card' || target.className == 'closed__btn') {
+        modal.classList.remove('modal_vicible');
+        setTimeout(() => {
+          modal.remove();
+          document.body.style.paddingRight = ``;
+          document.body.classList.remove('overflow');
+        }, 500);//for transition
+      }
+    });
+  });
+});
 
-  console.log(petIndex);
-}
+
+
+
+
 
