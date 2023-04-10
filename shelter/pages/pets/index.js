@@ -117,7 +117,11 @@ let numPage = 1;
 let num;//Количество карточек для отображения на странице
 //for open and closed burger menu
 
-function navBurger() {
+function navBurger(event) {
+  let target = event.target;
+  if (target.classList[0] != 'header__link-pets' && !target.closest('#burger') && target.id != 'modal-nav') return;
+
+
   let navMenu = document.querySelector('.header__nav');
   let burger = document.querySelector('.burger');
   let modal = document.getElementById('modal-nav');
@@ -127,16 +131,19 @@ function navBurger() {
   let scroll = width - document.body.clientWidth;
 
   if (navMenu.classList.contains('header__nav_visible')) {
-         setTimeout(() => {
-          navMenu.style.height = '';
-          navMenu.style.top = '';
-          modal.style.top = '';
-        }, 500);//for transition burger menu
     navMenu.classList.remove('header__nav_visible');
     burger.classList.remove('burger_rotate');
     modal.classList.remove('modal_vicible');
     document.body.classList.remove('overflow');
     document.body.style.paddingRight = ``
+    document.body.removeEventListener('click', navBurger);
+
+    setTimeout(() => {
+      navMenu.style.height = '';
+      navMenu.style.top = '';
+      modal.style.top = '';
+      document.body.addEventListener('click', navBurger);
+    }, 500);//for transition burger menu
 
   } else if (width < 768) {
     navMenu.style.height = `${height}px`;
@@ -308,6 +315,9 @@ for (let i = 0; i < 6; i++) {
 }
 console.log('Suffle animals massive for checked:');
 animalsPagination.forEach((value, index) => console.log(`${index}: ${value.name}`));
+
+document.body.addEventListener('click', navBurger);
+
 //Заполняем карточки
 fillPagination();
 
@@ -318,7 +328,7 @@ media969.addEventListener('change', function (event) {
       numPage = 6;
       PGN_PAGE.firstElementChild.innerText = numPage;
       PGN_RIGHT.classList.add('pagination-btn_inactiv');
-      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
+      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');
     }
   } else {
     PGN_RIGHT.classList.remove('pagination-btn_inactiv');
@@ -333,7 +343,7 @@ media639.addEventListener('change', function (event) {
       numPage = 8;
       PGN_PAGE.firstElementChild.innerText = numPage;
       PGN_RIGHT.classList.add('pagination-btn_inactiv');
-      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
+      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');
     }
   } else {
     PGN_RIGHT.classList.remove('pagination-btn_inactiv');
