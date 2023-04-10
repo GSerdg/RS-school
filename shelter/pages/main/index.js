@@ -114,9 +114,11 @@ function shuffle(arr) {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 }
+//for open-closed nav burger-menu
+function navBurger(event) {
+  let target = event.target;
+  if (target.classList[0] != 'header__link-main' && !target.closest('#burger') && target.id != 'modal-nav') return;
 
-//for open and closed burger menu
-function navBurger() {
   let navMenu = document.querySelector('.header__nav');
   let burger = document.querySelector('.burger');
   let modal = document.getElementById('modal-nav');
@@ -130,11 +132,14 @@ function navBurger() {
     modal.classList.remove('modal_vicible');
     document.body.classList.remove('overflow');
     document.body.style.paddingRight = ``
-        setTimeout(() => {
-          navMenu.style.height = '';
-          navMenu.style.top = '';
-          modal.style.top = '';
-        }, 500);//for transition
+    document.body.removeEventListener('click', navBurger);
+
+    setTimeout(() => {
+      navMenu.style.height = '';
+      navMenu.style.top = '';
+      modal.style.top = '';
+      document.body.addEventListener('click', navBurger);
+    }, 500);//for transition
   } else if (width < 768) {
     navMenu.style.height = `${height}px`;
     navMenu.style.top = `${top}px`;
@@ -291,6 +296,8 @@ function addModal(petIndex) {
   </div>`
   );
 }
+
+document.body.addEventListener('click', navBurger);
 
 //add random pets on cards slider
 countCards = numberCards();
