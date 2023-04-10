@@ -1,5 +1,3 @@
-console.log('1. Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14\n2. Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14\n 3. Вёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n4. Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n5. Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6\n6. Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6\n7. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20\n8. Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n9. При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4\nОткрытие меню при клике на иконку бургер-меню на текущем этапе не проверяется\n10. Верстка обеих страниц валидная: для проверки валидности вёрстки используйте сервис https://validator.w3.org/ : +8')
-
 let animals = [
   {
     name: "Jennifer",
@@ -108,6 +106,7 @@ let animals = [
 ];
 let animalsPagination = [];
 const media969 = window.matchMedia('(max-width: 969px)');
+const media767 = window.matchMedia('(max-width: 767px)');
 const media639 = window.matchMedia('(max-width: 639px)');
 const PGN_PAGE = document.getElementById('pgn-center');
 const PGN_RIGHT = document.getElementById('pgn-right');
@@ -226,73 +225,6 @@ function pgnAllLeft() {
   fillPagination();
 }
 
-//Формируем массив объектов из 48 животных, расположенных
-//в случайном порядке с учетом разбивки по 8, 6 и 3 карточки.
-let count = 0;
-for (let i = 0; i < 6; i++) {
-  if (i == 1 || i == 4) {
-    let flag = true;
-    while (flag) {
-      shuffle(animals);
-      flag = false;
-      for (let j = 0; j < 4; j++) {
-        if (animals[j] == animalsPagination[animalsPagination.length - 1] || animals[j] == animalsPagination[animalsPagination.length - 2]) {
-          flag = true;
-          break;
-        }
-      }
-    }
-  } else if (i == 2 || i == 5) {
-    let flag = true;
-    while (flag) {
-      shuffle(animals);
-      flag = false;
-      for (let j = 0; j < 4; j++) {
-        if (animals[0] == animalsPagination[animalsPagination.length - 1 - j] || animals[1] == animalsPagination[animalsPagination.length - 1 - j]) {
-          flag = true;
-          break;
-        }
-      }
-    }
-  } else { shuffle(animals); }
-
-  animalsPagination = animalsPagination.concat(animals);
-}
-
-//Заполняем карточки
-fillPagination();
-
-//Ждем медиазапрос, который изменяет количество карточек на странице
-media969.addEventListener('change', function (event) {
-  if (!event.matches) {
-    if (numPage >= 6) {
-      numPage = 6;
-      PGN_PAGE.firstElementChild.innerText = numPage;
-      PGN_RIGHT.classList.add('pagination-btn_inactiv');
-      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
-    }
-  } else {
-    PGN_RIGHT.classList.remove('pagination-btn_inactiv');
-    PGN_ALL_RIGHT.classList.remove('pagination-btn_inactiv');
-  }
-  fillPagination();
-});
-
-media639.addEventListener('change', function (event) {
-  if (!event.matches) {
-    if (numPage >= 8) {
-      numPage = 8;
-      PGN_PAGE.firstElementChild.innerText = numPage;
-      PGN_RIGHT.classList.add('pagination-btn_inactiv');
-      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
-    }
-  } else {
-    PGN_RIGHT.classList.remove('pagination-btn_inactiv');
-    PGN_ALL_RIGHT.classList.remove('pagination-btn_inactiv');
-  }
-  fillPagination();
-});
-
 //Для создания и заполнения контентом модального окна карточки питомца
 function addModal(petIndex, animals) {
   let inoculations = "none";
@@ -341,6 +273,81 @@ function addModal(petIndex, animals) {
   </div>`
   );
 }
+
+//Формируем массив объектов из 48 животных, расположенных
+//в случайном порядке с учетом разбивки по 8, 6 и 3 карточки.
+let count = 0;
+for (let i = 0; i < 6; i++) {
+  if (i == 1 || i == 4) {
+    let flag = true;
+    while (flag) {
+      shuffle(animals);
+      flag = false;
+      for (let j = 0; j < 4; j++) {
+        if (animals[j] == animalsPagination[animalsPagination.length - 1] || animals[j] == animalsPagination[animalsPagination.length - 2]) {
+          flag = true;
+          break;
+        }
+      }
+    }
+  } else if (i == 2 || i == 5) {
+    let flag = true;
+    while (flag) {
+      shuffle(animals);
+      flag = false;
+      for (let j = 0; j < 4; j++) {
+        if (animals[0] == animalsPagination[animalsPagination.length - 1 - j] || animals[1] == animalsPagination[animalsPagination.length - 1 - j]) {
+          flag = true;
+          break;
+        }
+      }
+    }
+  } else { shuffle(animals); }
+
+  animalsPagination = animalsPagination.concat(animals);
+}
+console.log('Suffle animals massive for checked:');
+animalsPagination.forEach((value, index) => console.log(`${index}: ${value.name}`));
+//Заполняем карточки
+fillPagination();
+
+//Ждем медиазапрос, который изменяет количество карточек на странице
+media969.addEventListener('change', function (event) {
+  if (!event.matches) {
+    if (numPage >= 6) {
+      numPage = 6;
+      PGN_PAGE.firstElementChild.innerText = numPage;
+      PGN_RIGHT.classList.add('pagination-btn_inactiv');
+      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
+    }
+  } else {
+    PGN_RIGHT.classList.remove('pagination-btn_inactiv');
+    PGN_ALL_RIGHT.classList.remove('pagination-btn_inactiv');
+  }
+  fillPagination();
+});
+
+media639.addEventListener('change', function (event) {
+  if (!event.matches) {
+    if (numPage >= 8) {
+      numPage = 8;
+      PGN_PAGE.firstElementChild.innerText = numPage;
+      PGN_RIGHT.classList.add('pagination-btn_inactiv');
+      PGN_ALL_RIGHT.classList.add('pagination-btn_inactiv');  
+    }
+  } else {
+    PGN_RIGHT.classList.remove('pagination-btn_inactiv');
+    PGN_ALL_RIGHT.classList.remove('pagination-btn_inactiv');
+  }
+  fillPagination();
+});
+
+//Закрываем бургер меню при увеличении масштаба
+media767.addEventListener('change', function (event) {
+  if (!event.matches) {
+    navBurger();
+  }
+})
 
 //открытие и закрытие модального окна с карточкой питомца
 const container = document.body.querySelector('.pets__container');

@@ -1,5 +1,3 @@
-console.log('1. Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14\n2. Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14\n 3. Вёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n4. Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n5. Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6\n6. Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6\n7. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20\n8. Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n9. При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4\nОткрытие меню при клике на иконку бургер-меню на текущем этапе не проверяется\n10. Верстка обеих страниц валидная: для проверки валидности вёрстки используйте сервис https://validator.w3.org/ : +8')
-
 const SLIDER = document.querySelector('.slider__wraper');
 const LEFT_BTN = document.querySelector('#btn-left');
 const RIGHT_BTN = document.querySelector('#btn-right');
@@ -127,19 +125,16 @@ function navBurger() {
   let top = document.documentElement.scrollTop; //top overflow position
   let scroll = width - document.body.clientWidth;
   if (navMenu.classList.contains('header__nav_visible')) {
-        setTimeout(() => {
-          navMenu.style.height = '';
-          navMenu.style.top = '';
-          modal.style.top = '';
-        }, 500);//for transition
-    
     navMenu.classList.remove('header__nav_visible');
     burger.classList.remove('burger_rotate');
     modal.classList.remove('modal_vicible');
     document.body.classList.remove('overflow');
     document.body.style.paddingRight = ``
-
-
+        setTimeout(() => {
+          navMenu.style.height = '';
+          navMenu.style.top = '';
+          modal.style.top = '';
+        }, 500);//for transition
   } else if (width < 768) {
     navMenu.style.height = `${height}px`;
     navMenu.style.top = `${top}px`;
@@ -149,7 +144,6 @@ function navBurger() {
     modal.classList.add('modal_vicible');
     document.body.classList.add('overflow');
     document.body.style.paddingRight = `${scroll}px`
-
   }
 }
 
@@ -157,7 +151,7 @@ function navBurger() {
 //Вычисляет количество карточек в слайдере при загрузке
 function numberCards() {
   const width = document.querySelector('.card__container').clientWidth;
-  width === 990 ? countCards = 3 : width === 580 ? countCards = 2 : countCards = 1;
+  return width === 990 ? 3 : width === 580 ? 2 : 1;
 }
 
 function goLeft() {
@@ -299,7 +293,7 @@ function addModal(petIndex) {
 }
 
 //add random pets on cards slider
-numberCards();
+countCards = numberCards();
 addCardCenter(countCards);
 addCardLeft(countCards);
 addCardRight(countCards);
@@ -334,7 +328,12 @@ media1220.addEventListener('change', function (event) {
 });
 
 media767.addEventListener('change', function (event) {
-  event.matches ? countCards = 1 : countCards = 2;
+  if (event.matches) {
+    countCards = 1;
+  } else {
+    countCards = 2;
+    navBurger();//для закрытия бургер меню при увеличении разрешения
+  }
   addCardCenter(countCards);
   addCardLeft(countCards);
   addCardRight(countCards);
