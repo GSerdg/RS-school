@@ -1,0 +1,151 @@
+.modal__pets {
+    display: flex;
+    position: relative;
+    max-width: 900px;
+    //height: 500px;
+    background: #FAFAFA;
+    border-radius: 9px;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    margin: 0 60px;
+
+    @include media-tablet {
+        max-width: 630px;
+        //height: 350px;
+    }
+
+    @include media-mobile-fonts {
+        width: 240px;
+        //height: 341px;
+        margin: 0;
+    }
+
+}
+
+.closed__btn {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: calc(100% - 10px);
+    bottom: 100%;
+    cursor: pointer;
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+    background: url(../../assets/icons/Closed-icon.svg) no-repeat center;
+
+    @include hover {
+        background-color: #fddcc4;
+    }
+
+    @include media-mobile-fonts {
+        left: calc(100% - 22px);
+    }
+}
+
+.modal__picture {
+    display: flex;
+    align-items: center;
+    border-radius: 9px 0px 0px 9px;
+}
+
+.modal__img {
+    border-radius: 9px 0px 0px 9px;
+    width: 100%;
+
+    @include media-mobile-burger {
+        display: none;
+    }
+}
+
+.modal__title {
+    max-width: 44.6%;
+    padding: 50px 20px 20px 29px;
+
+    @include media-mobile-burger {
+        max-width: 100%;
+
+    }
+
+    @include media-mobile-fonts {
+        text-align: justify;
+    }
+
+
+    h3,
+    h4,
+    h5 {
+        color: #000000;
+    }
+
+    @include media-tablet {
+        padding: 10px 9px 10px 11px;
+    }
+
+    >h3 {
+        margin-bottom: 10px;
+
+        @include media-mobile-fonts {
+            text-align: center;
+            font-size: 3.5rem;
+        }
+    }
+
+
+
+    >h4 {
+        margin-bottom: 40px;
+
+        @include media-tablet {
+            margin-bottom: 20px;
+        }
+
+        @include media-mobile-fonts {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+
+    h5 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 110%;
+        letter-spacing: 0.06em;
+    }
+
+    >h5 {
+        margin-bottom: 40px;
+
+        @include media-tablet {
+            margin-bottom: 13px;
+            font-size: 1.3rem;
+        }
+
+        @include media-mobile-fonts {
+            margin-bottom: 19px;
+        }
+
+    }
+}
+
+.modal__text {
+    list-style-type: disc;
+    padding-inline-start: 16px;
+
+    @include media-mobile-fonts {
+        padding-inline-start: 14px;
+    }
+
+    >li {
+        margin-bottom: 7px;
+        color: #F1CDB3;
+
+        @include media-tablet {
+            margin-bottom: 3px;
+        }
+
+        @include media-mobile-fonts {
+            margin-bottom: 2px;
+        }
+    }
+}

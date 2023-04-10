@@ -12,155 +12,132 @@
 </head>
 
 <body>
-  <!-- Header start -->
-  <header>
-    <div class="wraper">
-      <div class="header__wraper header__wraper_pets">
-        <div class="header__logo">
-          <a href="../main/index.html" class="header__logo-link header__logo-link_colored">
-            <h2>Cozy House</h2>
-            <h3>Shelter for pets in Boston</h3>
-          </a>
-        </div>
-        <nav class="header__nav">
-          <ul class="header__list">
-            <li class="header__item">
-              <a href="../main/index.html" class="header__link-pets">About the shelter</a>
-              <div class="header__link_border"></div>
-            </li>
-            <li class="header__item">
-              <a href="../pets/index.html" class="header__link-pets header__link-pets_active">Our pets</a>
-              <div class="header__link_border header__link_border_active"></div>
-            </li>
-            <li class="header__item">
-              <a href="../main/index.html#help_bar" class="header__link-pets">Help the shelter</a>
-              <div class="header__link_border"></div>
-            </li>
-            <li class="header__item">
-              <a href="#footer" class="header__link-pets">Contacts</a>
-              <div class="header__link_border"></div>
-            </li>
-          </ul>
-        </nav>
-        <span class="burger burger_color">
-          <span class="burger__line burger__line_color"></span>
-        </span>
-      </div>
-    </div>
-  </header>
-  <!-- Header end -->
-
-  <main class="main">
-    <!-- Pets start -->
-    <div class="pets">
+  <div class="modal" id="modal-nav" onclick="navBurger()"></div>
+  <div class="body__wraper">
+    <!-- Header start -->
+    <header class="header header_pets">
       <div class="wraper">
-        <div class="pets__wraper">
-          <h1 class="pets__header text_h3 text_h3">Our friends who<br>are looking for a house</h1>
-          <div class="pets__container">
-            <a href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/katrine.png" alt="katrine" class="card__img">
-                </div>
-                <h5 class="card_title">Katrine</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="card__img">
-                </div>
-                <h5 class="card_title">Jennifer</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/woody.png" alt="Woody" class="card__img">
-                </div>
-                <h5 class="card_title">Woody</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a class="disabled-320" href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/sophia.png" alt="Sophia" class="card__img card_sophia">
-                </div>
-                <h5 class="card_title">Sophia</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a class="disabled-320" href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/timmy.png" alt="Timmy" class="card__img">
-                </div>
-                <h5 class="card_title">Timmy</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a class="disabled-320" href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/charly.png" alt="Charly" class="card__img">
-                </div>
-                <h5 class="card_title">Charly</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a class="disabled-768" href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/scarlett.png" alt="Scarlett" class="card__img">
-                </div>
-                <h5 class="card_title">Scarlett</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
-            </a>
-            <a class="disabled-768" href="#!">
-              <article class="card">
-                <div class="card_picture">
-                  <img src="../../assets/images/pets/freddie.png" alt="Freddie" class="card__img">
-                </div>
-                <h5 class="card_title">Freddie</h5>
-                <div class="btn btn_uncolored">Learn more</div>
-              </article>
+        <div class="header__wraper header__wraper_pets">
+          <div class="header__logo">
+            <a href="../main/index.html" class="header__logo-link header__logo-link_colored">
+              <h2>Cozy House</h2>
+              <h3>Shelter for pets in Boston</h3>
             </a>
           </div>
-          <div class="pets__nav">
-            <a class="inactive" href="#!">
-              <div class="pagination-btn pagination-btn_inactiv">
-                <span class="text_h4 rotate">>></span>
-              </div>
-            </a>
-            <a class="inactive" href="#!">
-              <div class="pagination-btn pagination-btn_inactiv">
-                <span class="text_h4 rotate">></span>
-              </div>
-            </a>
-              <div class="pagination-btn pagination-btn_page">
-                <span class="text_h4">1</span>
-              </div>
-            <a href="#!">
-              <div class="pagination-btn pagination-btn_normal">
-                <span class="text_h4">></span>
-              </div>
-            </a>
-            <a href="#!">
-              <div class="pagination-btn pagination-btn_normal">
-                <span class="text_h4">>></span>
-              </div>
-            </a>
-
+          <nav class="header__nav header__nav_color-pets">
+            <ul class="header__list">
+              <li class="header__item">
+                <a href="../main/index.html" class="header__link-pets" onclick="navBurger()">About the shelter</a>
+                <div class="header__link_border"></div>
+              </li>
+              <li class="header__item">
+                <span class="header__link-pets header__link-pets_active" onclick="navBurger()">Our pets</span>
+                <div class="header__link_border header__link_border_active"></div>
+              </li>
+              <li class="header__item">
+                <a href="../main/index.html#help_bar" class="header__link-pets" onclick="navBurger()">Help the shelter</a>
+                <div class="header__link_border"></div>
+              </li>
+              <li class="header__item">
+                <a href="#footer" class="header__link-pets" onclick="navBurger()">Contacts</a>
+                <div class="header__link_border"></div>
+              </li>
+            </ul>
+          </nav>
+          <span class="burger burger_color" onclick="navBurger()">
+            <span class="burger__line burger__line_color"></span>
+          </span>
+        </div>
+      </div>
+    </header>
+    <!-- Header end -->
+    <main class="main">
+      <!-- Pets start -->
+      <div class="pets">
+        <div class="wraper">
+          <div class="pets__wraper">
+            <h1 class="pets__header text_h3 text_h3">Our friends who<br>are looking for a house</h1>
+            <div class="pets__container">
+                <article class="card">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/katrine.png" alt="katrine" class="card__img">
+                  </div>
+                  <h5 class="card_title">Katrine</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/jennifer.png" alt="Jennifer" class="card__img">
+                  </div>
+                  <h5 class="card_title">Jennifer</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/woody.png" alt="Woody" class="card__img">
+                  </div>
+                  <h5 class="card_title">Woody</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card disabled-320">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/sophia.png" alt="Sophia" class="card__img">
+                  </div>
+                  <h5 class="card_title">Sophia</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card disabled-320">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/timmy.png" alt="Timmy" class="card__img">
+                  </div>
+                  <h5 class="card_title">Timmy</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card disabled-320">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/charly.png" alt="Charly" class="card__img">
+                  </div>
+                  <h5 class="card_title">Charly</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card disabled-768">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/scarlett.png" alt="Scarlett" class="card__img">
+                  </div>
+                  <h5 class="card_title">Scarlett</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+                <article class="card disabled-768">
+                  <div class="card_picture">
+                    <img src="../../assets/images/pets/freddie.png" alt="Freddie" class="card__img">
+                  </div>
+                  <h5 class="card_title">Freddie</h5>
+                  <div class="btn btn_uncolored">Learn more</div>
+                </article>
+            </div>
+            <div class="pets__nav">
+                <div class="pagination-btn pagination-btn_inactiv" id="pgn-all-left" onclick="pgnAllLeft()">
+                  <span class="text_h4 rotate">>></span>
+                </div>
+                <div class="pagination-btn pagination-btn_inactiv" id="pgn-left"  onclick="pgnLeft()">
+                  <span class="text_h4 rotate">></span>
+                </div>
+                <div class="pagination-btn pagination-btn_page" id="pgn-center">
+                  <span class="text_h4">1</span>
+                </div>
+                <div class="pagination-btn" id="pgn-right" onclick="pgnRight()">
+                  <span class="text_h4">></span>
+                </div>
+                <div class="pagination-btn" id="pgn-all-right" onclick="pgnAllRight()">
+                  <span class="text_h4">>></span>
+                </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Pets end -->
-  </main>
+      <!-- Pets end -->
+    </main>
+  </div>
   <!-- footer start -->
   <footer class="footer" id="footer">
     <div class="wraper">

@@ -51,10 +51,9 @@
 
 .pets-main__slider__container {
     display: flex;
-    justify-content: space-between;
     width: 990px;
+    overflow: hidden;
     margin: 0 12px;
-    column-gap: 40px;
 
     @include media-laptop-slider {
         max-width: 580px;
@@ -69,17 +68,121 @@
     }
 }
 
-/* .card__container {
+.slider__wraper {
     display: flex;
-    max-width: 990px;
-    flex-grow: 1;
-    //column-gap: 90px;
-    >a {
-        margin-right: 40px;
-        &:last-child {
-            margin-right: 0;
+    position: relative;
+    left: -1080px;
+    column-gap: 90px;
+
+    @include media-laptop-slider {
+        left: -620px;
+        column-gap: 40px;
+    }
+
+    @include media-mobile-burger {
+        left: -310px;
+    }
+
+    &_animation-left {
+        animation: go-left-3-column 1s ease-in-out;
+
+        @include media-laptop-slider {
+            animation: go-left-2-column 1s ease-in-out;
+        }
+
+        @include media-mobile-burger {
+            animation: go-left-1-column 1s ease-in-out;
         }
     }
+
+    &_animation-right {
+        animation: go-right-3-column 1s ease-in-out;
+
+        @include media-laptop-slider {
+            animation: go-right-2-column 1s ease-in-out;
+        }
+
+        @include media-mobile-burger {
+            animation: go-right-1-column 1s ease-in-out;
+        }
+    }
+
 }
- */
+
+.card__container {
+    display: flex;
+    //position: relative;
+    column-gap: 90px;
+
+    @include media-laptop-slider {
+        column-gap: 40px;
+        left: -620px;
+    }
+
+    @include media-mobile-burger {
+        left: -310px;
+    }
+}
+
+@keyframes go-left-3-column {
+    from {
+        left: -1080px;
+    }
+
+    to {
+        left: -2160px
+    }
+}
+
+@keyframes go-left-2-column {
+    from {
+        left: -620px;
+    }
+
+    to {
+        left: -1240px
+    }
+}
+
+@keyframes go-left-1-column {
+    from {
+        left: -310px;
+    }
+
+    to {
+        left: -620px
+    }
+}
+
+@keyframes go-right-3-column {
+    from {
+        left: -1080px;
+    }
+
+    to {
+        left: 0px
+    }
+}
+
+@keyframes go-right-2-column {
+    from {
+        left: -620px;
+    }
+
+    to {
+        left: 0px
+    }
+}
+
+@keyframes go-right-1-column {
+    from {
+        left: -310px;
+    }
+
+    to {
+        left: 0px
+    }
+}
+
+
 /* Pets-main end */
