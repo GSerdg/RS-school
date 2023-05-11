@@ -1,0 +1,30 @@
+
+//  abstracts
+@import "abstract/variables";
+@import "abstract/fonts";
+@import "abstract/constants";
+@import "abstract/mixins";
+@import "abstract/placeholders";
+
+//base
+@import "base/base";
+@import "base/card";
+@import "base/buttons";
+@import "base/burger";
+
+//layouts
+@import "layout/modal";
+@import "layout/wrapper";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/modal_pets";
+
+//components
+@import "component/start";
+@import "component/about";
+@import "component/pets_main";
+@import "component/help";
+@import "component/donation";
+
+
+
