@@ -1,0 +1,27 @@
+.field {
+    width: 100%;
+    height: 700px;
+    background-color: #f5f5dc;
+}
+
+.field__wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px 40px 0;
+  }
+
+  .table {
+    border-collapse: collapse;
+  }
+
+  .table__cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000000;
+    background-color: #d89944;
+    //box-shadow: 0px 0px 21px 0px #000000 inset;
+    box-shadow:
+   inset rgba(0,0,0,.5) -3px -3px 8px,
+   inset rgba(255,255,255,.9) 3px 3px 8px,
+   rgba(0,0,0,.8) 3px 3px 8px -3px;
+  }
