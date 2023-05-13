@@ -1,6 +1,6 @@
 import './field.scss';
 import createElement from '../../modules/createElement';
-import { cellClick, getExclIndex } from '../../modules/events';
+import { cellClick, getExclIndex, setFlag } from '../../modules/events';
 
 const field = {
   FIELD_WRAPPER: createElement('div', ['field__wrapper']),
@@ -11,7 +11,10 @@ const field = {
       const tableRow = createElement('tr', ['table__row']);
       for (let j = 0; j < cell; j += 1) {
         const tableCell = createElement('td', ['table__cell']);
-        tableCell.innerText = '2';
+        const mineImg = createElement('img', ['table__cell__img', 'hidden']);
+        mineImg.setAttribute('src', '/images/mine.png');
+        // tableCell.innerText = '2';
+        tableCell.append(mineImg);
         tableRow.append(tableCell);
       }
       this.TABLE_BODY.append(tableRow);
@@ -21,6 +24,7 @@ const field = {
 
     this.TABLE.addEventListener('click', getExclIndex, { once: true });
     this.TABLE.addEventListener('click', cellClick);
+    this.TABLE.addEventListener('contextmenu', setFlag);
     return this.FIELD_WRAPPER;
   },
 };

@@ -28,11 +28,14 @@
 }
 
 .table__cell {
-  width: 50px;
-  height: 50px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 38px;
   cursor: pointer;
   text-align: center;
-  font-size: x-large;
+  font-size: large;
+  font-weight: 900;
   border: 1px solid #000000;
   background-color: #d89944;
   //box-shadow: 0px 0px 21px 0px #000000 inset;
@@ -41,7 +44,7 @@
     inset rgba(255, 255, 255, .9) 3px 3px 8px,
     rgba(0, 0, 0, .8) 3px 3px 8px -3px;
 
-  &_shadow {
+  &_open {
     box-shadow:
       inset 0 0 100px hsla(0, 0%, 0%, .2),
       inset 0px 1px 5px #999,
@@ -53,4 +56,34 @@
       inset 0px 7px 0px #333,
       inset 0px 8px 7px #001135;
   }
+  &_color-1 {
+    color: #03b603;
+  }
+  &_color-2 {
+    color: #cfcc22;
+  }
+  &_color-3 {
+    color: #dd9222;
+  }
+  &_color-4 {
+    color: #e9845b;
+  }
+  &_color-5 {
+    color: #e42b2b;
+  }
+  &_color-6 {
+    color: #85067a;
+  }
+  &_color-7 {
+    color: #5f41e2;
+  }
+  &_color-8 {
+    color: #13d1d1;
+  }
+
+}
+
+.table__cell__img {
+  width: 100%;
+  
 }

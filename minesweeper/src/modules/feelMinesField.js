@@ -1,7 +1,7 @@
 const settings = {
   row: 10,
   cell: 10,
-  mine: 10,
+  mine: 30,
   rowExcl: false,
   cellExcl: false,
 };
