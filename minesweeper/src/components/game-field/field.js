@@ -16,7 +16,16 @@ function createGameField(row, cell) {
   }
   TABLE.append(TABLE_BODY);
   FIELD_WRAPPER.append(TABLE);
-  return FIELD_WRAPPER;
+
+  TABLE.addEventListener('click', (event) => {
+    const { target } = event;
+    if (target.tagName !== 'TD') return;
+    target.classList.add('table__cell_shadow');
+  });
+  return {
+    FIELD_WRAPPER,
+    TABLE_BODY,
+  };
 }
 
 export default createGameField;

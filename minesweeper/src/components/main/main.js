@@ -7,7 +7,7 @@ function createMainWindow() {
   const FIELD = createElement('div', ['field']);
   const WRAPPER = createElement('div', ['wrapper']);
 
-  WRAPPER.append(createGameField(10, 10));
+  WRAPPER.append(createGameField(10, 10).FIELD_WRAPPER);
   FIELD.append(WRAPPER);
   MAIN.append(FIELD);
 
