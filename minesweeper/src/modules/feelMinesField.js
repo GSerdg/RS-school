@@ -1,3 +1,11 @@
+const settings = {
+  row: 10,
+  cell: 10,
+  mine: 10,
+  rowExcl: false,
+  cellExcl: false,
+};
+
 function shuffle(arr) {
   const array = arr.slice();
   for (let i = arr.length - 1; i > 0; i -= 1) {
@@ -6,6 +14,7 @@ function shuffle(arr) {
   }
   return array;
 }
+
 // Создает матрицу чисел на основе расставленных мин
 function feelNumbers(matrix) {
   const arr = [];
@@ -42,15 +51,20 @@ function feelNumbers(matrix) {
 function feelMines(row, cell, mine, rowExcl, cellExcl) {
   const minesMatrix = [];
   const array = [];
+  // Абсолютный номер нажатой клетки для исключения из массива мин
+  const number = rowExcl * cell + cellExcl;
+  console.log(number);
   for (let i = 0; i < row * cell; i += 1) {
-    array.push(i);
+    if (i !== number) array.push(i);
   }
+  console.log(array);
   const minesArray = shuffle(array).slice(0, mine);
 
   for (let i = 0; i < row; i += 1) {
     const arr = Array(cell).fill(false);
     minesMatrix.push(arr);
   }
+
   minesArray.forEach((item) => {
     const a = Math.floor(item / cell);
     const b = item - cell * a;
@@ -69,4 +83,4 @@ function feelMines(row, cell, mine, rowExcl, cellExcl) {
   return minesNumbers;
 }
 
-export default feelMines;
+export { feelMines, settings };
