@@ -1,9 +1,11 @@
 const settings = {
   row: 10,
   cell: 10,
-  mine: 10,
+  mine: 5,
   rowExcl: false,
   cellExcl: false,
+  cellCouner: 0,
+  gemeOverFlag: false,
 };
 
 function shuffle(arr) {
@@ -80,7 +82,7 @@ function feelMines(row, cell, mine, rowExcl, cellExcl) {
   console.log(minesNumbers);
   // console.log(minesMatrix);
 
-  return minesNumbers;
+  return { minesNumbers, minesArray };
 }
 
 export { feelMines, settings };

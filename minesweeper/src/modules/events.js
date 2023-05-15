@@ -2,18 +2,35 @@ import { feelMines, settings } from './feelMinesField';
 // import field from '../components/game-field/field';
 
 let fieldMatrix;
+let minesArray;
 function getExclIndex(event) {
   const { target } = event;
   if (target.tagName !== 'TD') return;
   settings.cellExcl = target.cellIndex;
   settings.rowExcl = target.parentElement.rowIndex;
-  fieldMatrix = feelMines(
+  const mines = feelMines(
     settings.row,
     settings.cell,
     settings.mine,
     settings.rowExcl,
     settings.cellExcl,
   );
+  fieldMatrix = mines.minesNumbers;
+  minesArray = mines.minesArray;
+}
+function setFlag(event) {
+  const { target } = event;
+  const TD = target.closest('td');
+  if (!TD || Array.from(TD.classList).includes('table__cell_open')) return;
+  event.preventDefault();
+  const IMG = TD.firstElementChild;
+  if (IMG.classList.length === 2) {
+    IMG.setAttribute('src', '/images/flag.png');
+    IMG.classList.remove('hidden');
+  } else {
+    IMG.setAttribute('src', '/images/mine.png');
+    IMG.classList.add('hidden');
+  }
 }
 
 function cellClick(event) {
@@ -30,13 +47,29 @@ function cellClick(event) {
     const elemImg = elemTd.firstElementChild;
     elemTd.classList.add('table__cell_open');
     elemImg.classList.add('hidden');
+    settings.cellCouner += 1;
     if (Number.isInteger(fieldMatrix[i][j]) && fieldMatrix[i][j] !== 0) {
       elemTd.innerText = fieldMatrix[i][j];
       elemTd.classList.add(`table__cell_color-${fieldMatrix[i][j]}`);
       return;
     }
+    // Если открыли мину
     if (fieldMatrix[i][j] === 'mine') {
       elemImg.classList.remove('hidden');
+      settings.gemeOverFlag = true;
+      TABLE.removeEventListener('click', cellClick);
+      TABLE.removeEventListener('contextmenu', setFlag);
+
+      minesArray.forEach((element) => {
+        const a = Math.floor(element / settings.cell);
+        const b = element - settings.cell * a;
+        const TD_MINE = TABLE.rows[a].cells[b];
+        if (Array.from(TD_MINE.firstElementChild.classList).includes('hidden')) {
+          TD_MINE.firstElementChild.classList.remove('hidden');
+          TD_MINE.classList.add('table__cell_open');
+        }
+      });
+      console.log('game over');
       return;
     }
     if (fieldMatrix[i][j] === 0) {
@@ -53,21 +86,13 @@ function cellClick(event) {
 
   if (IMG.classList.length === 2) {
     openCells(row, cell);
-  }
-}
-
-function setFlag(event) {
-  const { target } = event;
-  const TD = target.closest('td');
-  if (!TD || Array.from(TD.classList).includes('table__cell_open')) return;
-  event.preventDefault();
-  const IMG = TD.firstElementChild;
-  if (IMG.classList.length === 2) {
-    IMG.setAttribute('src', '/images/flag.png');
-    IMG.classList.remove('hidden');
-  } else {
-    IMG.setAttribute('src', '/images/mine.png');
-    IMG.classList.add('hidden');
+    // Если победили
+    if (settings.cellCouner === settings.cell * settings.row - settings.mine
+      && !settings.gemeOverFlag) {
+      TABLE.removeEventListener('click', cellClick);
+      TABLE.removeEventListener('contextmenu', setFlag);
+      console.log('finish game');
+    }
   }
 }
 
