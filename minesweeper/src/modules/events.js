@@ -29,6 +29,7 @@ function cellClick(event) {
     const elemTd = TABLE.rows[i].cells[j];
     const elemImg = elemTd.firstElementChild;
     elemTd.classList.add('table__cell_open');
+    elemImg.classList.add('hidden');
     if (Number.isInteger(fieldMatrix[i][j]) && fieldMatrix[i][j] !== 0) {
       elemTd.innerText = fieldMatrix[i][j];
       elemTd.classList.add(`table__cell_color-${fieldMatrix[i][j]}`);
