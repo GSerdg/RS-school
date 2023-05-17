@@ -1,12 +1,4 @@
-const settings = {
-  row: 10,
-  cell: 10,
-  mine: 5,
-  rowExcl: false,
-  cellExcl: false,
-  cellCouner: 0,
-  gemeOverFlag: false,
-};
+// import settings from './settings';
 
 function shuffle(arr) {
   const array = arr.slice();
@@ -80,9 +72,7 @@ function feelMines(row, cell, mine, rowExcl, cellExcl) {
     minesNumbers[a][b] = 'mine';
   });
   console.log(minesNumbers);
-  // console.log(minesMatrix);
-
   return { minesNumbers, minesArray };
 }
 
-export { feelMines, settings };
+export default feelMines;

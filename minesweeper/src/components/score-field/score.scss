@@ -1,0 +1,25 @@
+.score {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
+.score__count,
+.score__timer {
+  display: flex;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.score__count {
+  border-right: 1px solid #000000;
+}
+
+.score__timer {
+  border-left: 1px solid #000000;
+}

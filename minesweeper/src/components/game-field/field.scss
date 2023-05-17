@@ -6,7 +6,8 @@
 
 .field__wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 30px 40px 0;
   /* position: relative;
   padding-top: 100%;

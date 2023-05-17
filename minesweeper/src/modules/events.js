@@ -1,11 +1,20 @@
-import { feelMines, settings } from './feelMinesField';
+import feelMines from './feelMinesField';
+import settings from './settings';
 // import field from '../components/game-field/field';
+import score from '../components/score-field/score';
 
-let fieldMatrix;
-let minesArray;
+// let fieldMatrix;
+// let minesArray;
+// const fieldMatrix = fieldMatrixSave || localStorage.getItem('fieldMatrix');
+// const minesArray = minesArraySave || localStorage.getItem('minesArray');
 function getExclIndex(event) {
   const { target } = event;
   if (target.tagName !== 'TD') return;
+  settings.timerId = setInterval(() => {
+    settings.timer += 1;
+    score.SCORE_TIMER.innerText = score.convertCount(settings.timer);
+  }, 1000);
+
   settings.cellExcl = target.cellIndex;
   settings.rowExcl = target.parentElement.rowIndex;
   const mines = feelMines(
@@ -15,14 +24,20 @@ function getExclIndex(event) {
     settings.rowExcl,
     settings.cellExcl,
   );
-  fieldMatrix = mines.minesNumbers;
-  minesArray = mines.minesArray;
+  settings.fieldMatrix = mines.minesNumbers;
+  settings.minesArray = mines.minesArray;
 }
+
 function setFlag(event) {
+  event.preventDefault();
   const { target } = event;
   const TD = target.closest('td');
   if (!TD || Array.from(TD.classList).includes('table__cell_open')) return;
-  event.preventDefault();
+  if (!settings.rowExcl) return;
+
+  // settings.stepCount += 1;
+  // score.SCORE_COUNT.innerText = score.convertCount(settings.stepCount);
+
   const IMG = TD.firstElementChild;
   if (IMG.classList.length === 2) {
     IMG.setAttribute('src', '/images/flag.png');
@@ -41,6 +56,7 @@ function cellClick(event) {
   const IMG = TD.firstElementChild;
   const cell = TD.cellIndex;
   const row = TD.parentElement.rowIndex;
+  const scoreCount = document.body.querySelector('.score__count');
 
   function openCells(i, j) {
     const elemTd = TABLE.rows[i].cells[j];
@@ -48,19 +64,19 @@ function cellClick(event) {
     elemTd.classList.add('table__cell_open');
     elemImg.classList.add('hidden');
     settings.cellCouner += 1;
-    if (Number.isInteger(fieldMatrix[i][j]) && fieldMatrix[i][j] !== 0) {
-      elemTd.innerText = fieldMatrix[i][j];
-      elemTd.classList.add(`table__cell_color-${fieldMatrix[i][j]}`);
+    if (Number.isInteger(settings.fieldMatrix[i][j]) && settings.fieldMatrix[i][j] !== 0) {
+      elemTd.innerText = settings.fieldMatrix[i][j];
+      elemTd.classList.add(`table__cell_color-${settings.fieldMatrix[i][j]}`);
       return;
     }
     // Если открыли мину
-    if (fieldMatrix[i][j] === 'mine') {
+    if (settings.fieldMatrix[i][j] === 'mine') {
       elemImg.classList.remove('hidden');
       settings.gemeOverFlag = true;
       TABLE.removeEventListener('click', cellClick);
       TABLE.removeEventListener('contextmenu', setFlag);
 
-      minesArray.forEach((element) => {
+      settings.minesArray.forEach((element) => {
         const a = Math.floor(element / settings.cell);
         const b = element - settings.cell * a;
         const TD_MINE = TABLE.rows[a].cells[b];
@@ -69,10 +85,12 @@ function cellClick(event) {
           TD_MINE.classList.add('table__cell_open');
         }
       });
+      clearInterval(settings.timerId);
+      localStorage.clear();
       console.log('game over');
       return;
     }
-    if (fieldMatrix[i][j] === 0) {
+    if (settings.fieldMatrix[i][j] === 0) {
       if (j > 0 && !Array.from(TABLE.rows[i].cells[j - 1].classList).includes('table__cell_open')) openCells(i, j - 1);
       if (j > 0 && i > 0 && !Array.from(TABLE.rows[i - 1].cells[j - 1].classList).includes('table__cell_open')) openCells(i - 1, j - 1);
       if (i > 0 && !Array.from(TABLE.rows[i - 1].cells[j].classList).includes('table__cell_open')) openCells(i - 1, j);
@@ -84,6 +102,10 @@ function cellClick(event) {
     }
   }
 
+  // Счутчик ходов
+  settings.stepCount += 1;
+  scoreCount.innerText = score.convertCount(settings.stepCount);
+
   if (IMG.classList.length === 2) {
     openCells(row, cell);
     // Если победили
@@ -91,6 +113,9 @@ function cellClick(event) {
       && !settings.gemeOverFlag) {
       TABLE.removeEventListener('click', cellClick);
       TABLE.removeEventListener('contextmenu', setFlag);
+
+      clearInterval(settings.timerId);
+      localStorage.clear();
       console.log('finish game');
     }
   }
