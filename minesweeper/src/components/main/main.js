@@ -10,7 +10,7 @@ function createMainWindow() {
   const FIELD = createElement('div', ['field']);
   const WRAPPER = createElement('div', ['wrapper']);
 
-  if (localStorage.getItem('save')) {
+  if (localStorage.getItem('save') && localStorage.getItem('startGame')) {
     // Если был reload во время игры
     const saveSettings = JSON.parse(localStorage.settings);
     const saveSettingsKeys = Object.keys(saveSettings);

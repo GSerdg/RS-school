@@ -10,6 +10,7 @@ import score from '../components/score-field/score';
 function getExclIndex(event) {
   const { target } = event;
   if (target.tagName !== 'TD') return;
+  localStorage.setItem('startGame', true);
   settings.timerId = setInterval(() => {
     settings.timer += 1;
     score.SCORE_TIMER.innerText = score.convertCount(settings.timer);
@@ -91,14 +92,14 @@ function cellClick(event) {
       return;
     }
     if (settings.fieldMatrix[i][j] === 0) {
-      if (j > 0 && !Array.from(TABLE.rows[i].cells[j - 1].classList).includes('table__cell_open')) openCells(i, j - 1);
-      if (j > 0 && i > 0 && !Array.from(TABLE.rows[i - 1].cells[j - 1].classList).includes('table__cell_open')) openCells(i - 1, j - 1);
-      if (i > 0 && !Array.from(TABLE.rows[i - 1].cells[j].classList).includes('table__cell_open')) openCells(i - 1, j);
-      if (i > 0 && j < settings.cell - 1 && !Array.from(TABLE.rows[i - 1].cells[j + 1].classList).includes('table__cell_open')) openCells(i - 1, j + 1);
-      if (j < settings.cell - 1 && !Array.from(TABLE.rows[i].cells[j + 1].classList).includes('table__cell_open')) openCells(i, j + 1);
-      if (i < settings.row - 1 && j < settings.cell - 1 && !Array.from(TABLE.rows[i + 1].cells[j + 1].classList).includes('table__cell_open')) openCells(i + 1, j + 1);
-      if (i < settings.row - 1 && !Array.from(TABLE.rows[i + 1].cells[j].classList).includes('table__cell_open')) openCells(i + 1, j);
-      if (j > 0 && i < settings.row - 1 && !Array.from(TABLE.rows[i + 1].cells[j - 1].classList).includes('table__cell_open')) openCells(i + 1, j - 1);
+      if (j > 0 && !Array.from(TABLE.rows[i].cells[j - 1].classList).includes('table__cell_open') && TABLE.rows[i].cells[j - 1].firstElementChild.classList.length !== 1) openCells(i, j - 1);
+      if (j > 0 && i > 0 && !Array.from(TABLE.rows[i - 1].cells[j - 1].classList).includes('table__cell_open') && TABLE.rows[i - 1].cells[j - 1].firstElementChild.classList.length !== 1) openCells(i - 1, j - 1);
+      if (i > 0 && !Array.from(TABLE.rows[i - 1].cells[j].classList).includes('table__cell_open') && TABLE.rows[i - 1].cells[j].firstElementChild.classList.length !== 1) openCells(i - 1, j);
+      if (i > 0 && j < settings.cell - 1 && !Array.from(TABLE.rows[i - 1].cells[j + 1].classList).includes('table__cell_open') && TABLE.rows[i - 1].cells[j + 1].firstElementChild.classList.length !== 1) openCells(i - 1, j + 1);
+      if (j < settings.cell - 1 && !Array.from(TABLE.rows[i].cells[j + 1].classList).includes('table__cell_open') && TABLE.rows[i].cells[j + 1].firstElementChild.classList.length !== 1) openCells(i, j + 1);
+      if (i < settings.row - 1 && j < settings.cell - 1 && !Array.from(TABLE.rows[i + 1].cells[j + 1].classList).includes('table__cell_open') && TABLE.rows[i + 1].cells[j + 1].firstElementChild.classList.length !== 1) openCells(i + 1, j + 1);
+      if (i < settings.row - 1 && !Array.from(TABLE.rows[i + 1].cells[j].classList).includes('table__cell_open') && TABLE.rows[i + 1].cells[j].firstElementChild.classList.length !== 1) openCells(i + 1, j);
+      if (j > 0 && i < settings.row - 1 && !Array.from(TABLE.rows[i + 1].cells[j - 1].classList).includes('table__cell_open') && TABLE.rows[i + 1].cells[j - 1].firstElementChild.classList.length !== 1) openCells(i + 1, j - 1);
     }
   }
 
