@@ -88,6 +88,7 @@ function cellClick(event) {
       });
       clearInterval(settings.timerId);
       localStorage.clear();
+      TD.classList.add('table__cell_fail');
       console.log('game over');
       return;
     }

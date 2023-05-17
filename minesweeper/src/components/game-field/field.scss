@@ -57,27 +57,39 @@
       inset 0px 7px 0px #333,
       inset 0px 8px 7px #001135;
   }
+
+  &_fail {
+    background-color: #ff0000;
+  }
+
   &_color-1 {
     color: #03b603;
   }
+
   &_color-2 {
     color: #cfcc22;
   }
+
   &_color-3 {
     color: #dd9222;
   }
+
   &_color-4 {
     color: #e9845b;
   }
+
   &_color-5 {
     color: #e42b2b;
   }
+
   &_color-6 {
     color: #85067a;
   }
+
   &_color-7 {
     color: #5f41e2;
   }
+
   &_color-8 {
     color: #13d1d1;
   }
@@ -86,5 +98,5 @@
 
 .table__cell__img {
   width: 100%;
-  
+
 }

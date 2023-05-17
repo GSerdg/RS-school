@@ -1,7 +1,7 @@
 .score {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: 80px;
   border-left: 1px solid #000000;
   border-right: 1px solid #000000;
   border-top: 1px solid #000000;
@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   font-size: 3rem;
+  font-weight: 700;
 }
 
 .score__count {
@@ -22,4 +23,56 @@
 
 .score__timer {
   border-left: 1px solid #000000;
+}
+
+.score__menu {
+  display: grid;
+  position: relative;
+  align-items: center;
+  align-content: center;
+}
+
+.menu__btn {
+  font-size: 1.6rem;
+  color: #262425;
+  border: #000000 1px solid;
+  text-align: center;
+  padding: 1px 5px;
+  margin: 3px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #d899446e;
+  box-shadow:
+    inset rgba(0, 0, 0, .5) -3px -3px 8px,
+    inset rgba(255, 255, 255, .9) 3px 3px 8px,
+    rgba(0, 0, 0, .8) 3px 3px 8px -3px;
+
+    &_start {
+      display: inline-block;
+      margin: 10px;
+    }
+}
+
+.new__input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: -58%;
+  background-color: #ebebeb;
+}
+
+.input__width {
+  display: inline-flex;
+  margin-bottom: 10px;
+}
+
+.input__width__label {
+  padding: 0 13px 0 5px;
+}
+
+.input__mines {
+  margin-bottom: 20px;
 }
