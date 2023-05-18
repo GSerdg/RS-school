@@ -35,11 +35,20 @@ function setFlag(event) {
   const FLAG_COUNT = document.body.querySelector('.flag__count');
   const MINE_COUNT = document.body.querySelector('.mine__count');
 
-  settings.flagCount += 1;
-  FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
-  if (settings.mineCount > 0) {
-    settings.mineCount -= 1;
-    MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
+  if (Array.from(TD.firstElementChild.classList).includes('hidden')) {
+    settings.flagCount += 1;
+    FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
+    if (settings.mineCount > 0) {
+      settings.mineCount -= 1;
+      MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
+    }
+  } else {
+    settings.flagCount -= 1;
+    FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
+    if (settings.mineCount < settings.mine && settings.flagCount < settings.mine) {
+      settings.mineCount += 1;
+      MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
+    }
   }
 
   const IMG = TD.firstElementChild;

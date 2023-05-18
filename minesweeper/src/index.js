@@ -31,6 +31,8 @@ function StartNewGame() {
     }
   }
   settings.mine = document.body.querySelector('.mines__range').value;
+  settings.mineCount = document.body.querySelector('.mines__range').value;
+  settings.flagCount = 0;
   localStorage.clear();
   clearInterval(settings.timerId);
   settings.timer = 0;
