@@ -18,14 +18,23 @@ const score = {
   createScoreField() {
     const SCORE = createElement('div', ['score']);
     const SCORE_TIMER = createElement('div', ['score__timer']);
+    const SCORE_COUNT_CONTAINER = createElement('div', ['score__count__container']);
     const SCORE_COUNT = createElement('div', ['score__count']);
+    const MINE_COUNT = createElement('div', ['mine__count']);
+    const FLAG_COUNT = createElement('div', ['flag__count']);
     const SCORE_MENU = createElement('div', ['score__menu']);
 
     SCORE_TIMER.innerText = this.convertCount(settings.timer);
     SCORE_COUNT.innerText = this.convertCount(settings.stepCount);
+    MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
+    FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
+
     this.BTN_NEW.innerText = 'New Game';
     this.BTN_RESULTS.innerText = 'results';
-    SCORE.append(SCORE_COUNT);
+    SCORE_COUNT_CONTAINER.append(MINE_COUNT);
+    SCORE_COUNT_CONTAINER.append(SCORE_COUNT);
+    SCORE_COUNT_CONTAINER.append(FLAG_COUNT);
+    SCORE.append(SCORE_COUNT_CONTAINER);
     SCORE_MENU.append(this.BTN_NEW);
     SCORE_MENU.append(this.BTN_RESULTS);
     SCORE.append(SCORE_MENU);

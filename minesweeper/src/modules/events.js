@@ -32,9 +32,15 @@ function setFlag(event) {
   const TD = target.closest('td');
   if (!TD || Array.from(TD.classList).includes('table__cell_open')) return;
   if (!settings.rowExcl) return;
+  const FLAG_COUNT = document.body.querySelector('.flag__count');
+  const MINE_COUNT = document.body.querySelector('.mine__count');
 
-  // settings.stepCount += 1;
-  // score.SCORE_COUNT.innerText = score.convertCount(settings.stepCount);
+  settings.flagCount += 1;
+  FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
+  if (settings.mineCount > 0) {
+    settings.mineCount -= 1;
+    MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
+  }
 
   const IMG = TD.firstElementChild;
   if (IMG.classList.length === 2) {

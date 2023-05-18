@@ -7,22 +7,29 @@
   border-top: 1px solid #000000;
 }
 
-.score__count,
+.score__count__container {
+  border-right: 1px solid #000000;
+}
+
+.score__count__container,
 .score__timer {
   display: flex;
+  flex-direction: column;
   width: 70px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  
+}
+
+.score__count {
   font-size: 3rem;
   font-weight: 700;
 }
 
-.score__count {
-  border-right: 1px solid #000000;
-}
-
 .score__timer {
   border-left: 1px solid #000000;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .score__menu {
@@ -60,9 +67,10 @@
   position: absolute;
   z-index: 1;
   top: 5px;
-  left: -65%;
+  left: -68%;
   background-color: #ebebeb;
   border-radius: 7px;
+  padding: 10px;
 }
 
 .input__width {
@@ -72,6 +80,10 @@
 
 .input__width__label {
   padding: 0 13px 0 5px;
+
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 .input__mines {
