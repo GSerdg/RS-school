@@ -4,6 +4,8 @@ import settings from '../../modules/settings';
 
 const score = {
   BTN_START: createElement('div', ['menu__btn', 'menu__btn_start']),
+  BTN_NEW: createElement('div', ['menu__btn']),
+  BTN_RESULTS: createElement('div', ['menu__btn']),
 
   // Конвертирует число n в формат '00n'
   convertCount(count) {
@@ -18,22 +20,16 @@ const score = {
     const SCORE_TIMER = createElement('div', ['score__timer']);
     const SCORE_COUNT = createElement('div', ['score__count']);
     const SCORE_MENU = createElement('div', ['score__menu']);
-    const BTN_NEW = createElement('div', ['menu__btn']);
-    const BTN_RESULTS = createElement('div', ['menu__btn']);
 
     SCORE_TIMER.innerText = this.convertCount(settings.timer);
     SCORE_COUNT.innerText = this.convertCount(settings.stepCount);
-    BTN_NEW.innerText = 'New Game';
-    BTN_RESULTS.innerText = 'results';
+    this.BTN_NEW.innerText = 'New Game';
+    this.BTN_RESULTS.innerText = 'results';
     SCORE.append(SCORE_COUNT);
-    SCORE_MENU.append(BTN_NEW);
-    SCORE_MENU.append(BTN_RESULTS);
+    SCORE_MENU.append(this.BTN_NEW);
+    SCORE_MENU.append(this.BTN_RESULTS);
     SCORE.append(SCORE_MENU);
     SCORE.append(SCORE_TIMER);
-
-    BTN_NEW.addEventListener('click', () => {
-      SCORE_MENU.append(this.createSettingsMenu());
-    });
 
     return SCORE;
   },

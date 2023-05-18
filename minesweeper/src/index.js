@@ -5,7 +5,7 @@ import createMainWindow from './components/main/main';
 import saveGame from './modules/save';
 import score from './components/score-field/score';
 import settings from './modules/settings';
-import { cellClick, setFlag } from './modules/events';
+import { cellClick, getExclIndex, setFlag } from './modules/events';
 
 function StartNewGame() {
   const radio = Array.from(document.body.querySelectorAll('.input__width__check'));
@@ -39,13 +39,37 @@ function StartNewGame() {
   document.body.append(createMainWindow());
   saveGame();
 }
+// Управляет слушателями для открытия и закрытия окна настроек
+function settingsMenu() {
+  const TABLE = document.body.querySelector('.table');
+  const ELEM = document.body.querySelector('.score__menu');
+
+  function closeSettingsMenu(event) {
+    const { target } = event;
+    const MENU = target.closest('.new__input');
+    if (MENU || target.classList[0] === 'menu__btn') return;
+    ELEM.lastChild.remove();
+    document.removeEventListener('click', closeSettingsMenu);
+    TABLE.addEventListener('click', getExclIndex, { once: true });
+    TABLE.addEventListener('click', cellClick);
+    TABLE.addEventListener('contextmenu', setFlag);
+    localStorage.setItem('startGame', true);
+  }
+
+  ELEM.append(score.createSettingsMenu());
+  TABLE.removeEventListener('click', cellClick);
+  TABLE.removeEventListener('contextmenu', setFlag);
+  TABLE.removeEventListener('click', getExclIndex);
+  localStorage.removeItem('startGame');
+  document.addEventListener('click', closeSettingsMenu);
+}
 
 document.body.append(createHeader());
 saveGame();
-// console.log(score.BTN_START);
 score.BTN_START.addEventListener('click', StartNewGame);
+score.BTN_NEW.addEventListener('click', settingsMenu);
 
-if (localStorage.getItem('save') && localStorage.getItem('startGame')) {
+if (localStorage.getItem('startGame')) {
   // Если был reload во время игры
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
@@ -61,9 +85,7 @@ if (localStorage.getItem('save') && localStorage.getItem('startGame')) {
 
   TABLE_SAVE.addEventListener('click', cellClick);
   TABLE_SAVE.addEventListener('contextmenu', setFlag);
-  NEW_GAME_BTN.addEventListener('click', () => {
-    NEW_GAME_BTN.after(score.createSettingsMenu());
-  });
+  NEW_GAME_BTN.addEventListener('click', settingsMenu);
 
   settings.timerId = setInterval(() => {
     settings.timer += 1;

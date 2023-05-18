@@ -5,7 +5,7 @@ import score from '../components/score-field/score';
 
 function getExclIndex(event) {
   const { target } = event;
-  if (target.tagName !== 'TD') return;
+  if (target.tagName !== 'TD' || localStorage.getItem('startGame')) return;
   const SCORE_TIMER = document.body.querySelector('.score__timer');
   localStorage.setItem('startGame', true);
   settings.timerId = setInterval(() => {
@@ -102,11 +102,11 @@ function cellClick(event) {
   }
 
   // Счетчик ходов
-  settings.stepCount += 1;
-  scoreCount.innerText = score.convertCount(settings.stepCount);
 
-  if (IMG.classList.length === 2) {
+  if (Array.from(IMG.classList).includes('hidden')) {
     openCells(row, cell);
+    settings.stepCount += 1;
+    scoreCount.innerText = score.convertCount(settings.stepCount);
     // Если победили
     if (settings.cellCouner === settings.cell * settings.row - settings.mine
       && !settings.gemeOverFlag) {
