@@ -3,9 +3,9 @@ import settings from './settings';
 function saveGame() {
   localStorage.setItem('save', true);
   window.addEventListener('unload', () => {
-    const SAVE_FIELD_WRAPPER = document.body.querySelector('.field__wrapper');
+    const MAIN = document.body.querySelector('.main');
     localStorage.setItem('settings', JSON.stringify(settings));
-    localStorage.setItem('table', SAVE_FIELD_WRAPPER.parentNode.innerHTML);
+    localStorage.setItem('main', MAIN.innerHTML);
   });
 }
 

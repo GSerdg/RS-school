@@ -8,7 +8,12 @@ const field = {
   GAME_FIELD: createElement('div', ['game-field']),
   TABLE: createElement('table', ['table']),
   TABLE_BODY: createElement('tbody', ['table_body']),
+
   createGameField(row, cell) {
+    const FIELD_WRAPPER = createElement('div', ['field__wrapper']);
+    const GAME_FIELD = createElement('div', ['game-field']);
+    const TABLE = createElement('table', ['table']);
+    const TABLE_BODY = createElement('tbody', ['table_body']);
     for (let i = 0; i < row; i += 1) {
       const tableRow = createElement('tr', ['table__row']);
       for (let j = 0; j < cell; j += 1) {
@@ -18,17 +23,17 @@ const field = {
         tableCell.append(mineImg);
         tableRow.append(tableCell);
       }
-      this.TABLE_BODY.append(tableRow);
+      TABLE_BODY.append(tableRow);
     }
-    this.TABLE.append(this.TABLE_BODY);
-    this.GAME_FIELD.append(score.createScoreField());
-    this.GAME_FIELD.append(this.TABLE);
-    this.FIELD_WRAPPER.append(this.GAME_FIELD);
+    TABLE.append(TABLE_BODY);
+    GAME_FIELD.append(score.createScoreField());
+    GAME_FIELD.append(TABLE);
+    FIELD_WRAPPER.append(GAME_FIELD);
 
-    this.TABLE.addEventListener('click', getExclIndex, { once: true });
-    this.TABLE.addEventListener('click', cellClick);
-    this.TABLE.addEventListener('contextmenu', setFlag);
-    return this.FIELD_WRAPPER;
+    TABLE.addEventListener('click', getExclIndex, { once: true });
+    TABLE.addEventListener('click', cellClick);
+    TABLE.addEventListener('contextmenu', setFlag);
+    return FIELD_WRAPPER;
   },
 };
 

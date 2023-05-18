@@ -3,17 +3,14 @@ import settings from './settings';
 // import field from '../components/game-field/field';
 import score from '../components/score-field/score';
 
-// let fieldMatrix;
-// let minesArray;
-// const fieldMatrix = fieldMatrixSave || localStorage.getItem('fieldMatrix');
-// const minesArray = minesArraySave || localStorage.getItem('minesArray');
 function getExclIndex(event) {
   const { target } = event;
   if (target.tagName !== 'TD') return;
+  const SCORE_TIMER = document.body.querySelector('.score__timer');
   localStorage.setItem('startGame', true);
   settings.timerId = setInterval(() => {
     settings.timer += 1;
-    score.SCORE_TIMER.innerText = score.convertCount(settings.timer);
+    SCORE_TIMER.innerText = score.convertCount(settings.timer);
   }, 1000);
 
   settings.cellExcl = target.cellIndex;
@@ -104,7 +101,7 @@ function cellClick(event) {
     }
   }
 
-  // Счутчик ходов
+  // Счетчик ходов
   settings.stepCount += 1;
   scoreCount.innerText = score.convertCount(settings.stepCount);
 
