@@ -71,6 +71,12 @@
   background-color: #ebebeb;
   border-radius: 7px;
   padding: 10px;
+
+  &_popup {
+    width: 250px;
+    row-gap: 7px;
+    left: -85%;
+  }
 }
 
 .input__width {

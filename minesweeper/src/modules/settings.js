@@ -3,7 +3,7 @@
 const settings = {
   row: 10,
   cell: 10,
-  mine: 10,
+  mine: 2,
   rowExcl: false,
   cellExcl: false,
   cellCouner: 0,

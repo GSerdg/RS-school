@@ -2,6 +2,7 @@ import feelMines from './feelMinesField';
 import settings from './settings';
 // import field from '../components/game-field/field';
 import score from '../components/score-field/score';
+import createPopup from '../components/popup/popup';
 
 function getExclIndex(event) {
   const { target } = event;
@@ -101,6 +102,7 @@ function cellClick(event) {
       clearInterval(settings.timerId);
       localStorage.clear();
       TD.classList.add('table__cell_fail');
+      document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
       console.log('game over');
       return;
     }
@@ -130,6 +132,7 @@ function cellClick(event) {
 
       clearInterval(settings.timerId);
       localStorage.clear();
+      document.body.querySelector('.score__menu').append(createPopup(`Hooray! You found all mines in ${settings.timer} seconds and ${settings.stepCount} moves!`));
       console.log('finish game');
     }
   }

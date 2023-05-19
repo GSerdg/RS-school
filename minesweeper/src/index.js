@@ -37,6 +37,7 @@ function StartNewGame() {
   clearInterval(settings.timerId);
   settings.timer = 0;
   settings.stepCount = 0;
+  settings.cellCouner = 0;
   document.body.querySelector('.main').remove();
   document.body.append(createMainWindow());
   saveGame();
