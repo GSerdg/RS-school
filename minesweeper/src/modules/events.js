@@ -54,10 +54,10 @@ function setFlag(event) {
 
   const IMG = TD.firstElementChild;
   if (IMG.classList.length === 2) {
-    IMG.setAttribute('src', '/images/flag.png');
+    IMG.setAttribute('src', './images/flag.png');
     IMG.classList.remove('hidden');
   } else {
-    IMG.setAttribute('src', '/images/mine.png');
+    IMG.setAttribute('src', './images/mine.png');
     IMG.classList.add('hidden');
   }
 }
@@ -100,7 +100,10 @@ function cellClick(event) {
         }
       });
       clearInterval(settings.timerId);
-      localStorage.clear();
+      // localStorage.clear();
+      // localStorage.removeItem('settings');
+      // localStorage.removeItem('main');
+      localStorage.removeItem('startGame');
       TD.classList.add('table__cell_fail');
       document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
       settings.cellCouner = 0;
@@ -132,9 +135,13 @@ function cellClick(event) {
       TABLE.removeEventListener('contextmenu', setFlag);
 
       clearInterval(settings.timerId);
-      localStorage.clear();
+      // localStorage.clear();
+      // localStorage.removeItem('settings');
+      // localStorage.removeItem('main');
+      localStorage.removeItem('startGame');
       document.body.querySelector('.score__menu').append(createPopup(`Hooray! You found all mines in ${settings.timer} seconds and ${settings.stepCount} moves!`));
       settings.results.push([settings.level, settings.mine, settings.timer, settings.stepCount]);
+      if (settings.results.length === 11) settings.results.shift();
       settings.cellCouner = 0;
       console.log('finish game');
       console.log(settings);

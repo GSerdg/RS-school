@@ -13,9 +13,9 @@ function createHeader() {
 
   // const MENU = createMenu();
   LOGO_HEADER.innerText = 'Mineswipper';
-  LOGO_IMG1.setAttribute('src', '/images/logo.png');
+  LOGO_IMG1.setAttribute('src', './images/logo.png');
   LOGO_IMG1.setAttribute('alt', 'minesweeper-logo');
-  LOGO_IMG2.setAttribute('src', '/images/logo.png');
+  LOGO_IMG2.setAttribute('src', './images/logo.png');
   LOGO_IMG2.setAttribute('alt', 'minesweeper-logo');
 
   WRAPPER.append(HEADER_WRAPPER);

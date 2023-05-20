@@ -19,7 +19,23 @@ function createResultsTable(results) {
     RESULTS.append(TITLE);
   } else {
     TITLE.innerText = 'Your results';
-    for (let i = 0; i < results.length + 1; i += 1) {
+    for (let i = results.length; i >= 0; i -= 1) {
+      const tableRow = createElement('tr', ['results__row']);
+      for (let j = 0; j < 4; j += 1) {
+        if (i === results.length) {
+          const tableCell = createElement('th', ['results__cell']);
+          tableCell.innerText = header[j];
+          tableRow.append(tableCell);
+        } else {
+          const tableCell = createElement('td', ['results__cell']);
+          tableCell.innerText = results[i][j];
+          tableRow.append(tableCell);
+        }
+      }
+      TABLE.append(tableRow);
+    }
+
+/*     for (let i = 0; i < results.length + 1; i += 1) {
       const tableRow = createElement('tr', ['results__row']);
       for (let j = 0; j < 4; j += 1) {
         if (i === 0) {
@@ -34,18 +50,19 @@ function createResultsTable(results) {
       }
       TABLE.append(tableRow);
     }
-    RESULTS.append(TITLE);
+ */    RESULTS.append(TITLE);
     RESULTS.append(TABLE);
   }
   RESULTS.append(TABLE_BTN);
 
   TABLE_BTN.addEventListener('click', () => {
     const table = document.body.querySelector('.table');
-
+    if (localStorage.getItem('startGame')) {
+      table.addEventListener('click', getExclIndex, { once: true });
+      table.addEventListener('click', cellClick);
+      table.addEventListener('contextmenu', setFlag);
+    }
     RESULTS.remove();
-    table.addEventListener('click', getExclIndex, { once: true });
-    table.addEventListener('click', cellClick);
-    table.addEventListener('contextmenu', setFlag);
   });
 
   return RESULTS;

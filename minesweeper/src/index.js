@@ -35,7 +35,10 @@ function StartNewGame() {
   settings.mine = +document.body.querySelector('.mines__range').value;
   settings.mineCount = +document.body.querySelector('.mines__range').value;
   settings.flagCount = 0;
-  localStorage.clear();
+  // localStorage.clear();
+  // localStorage.removeItem('settings');
+  // localStorage.removeItem('main');
+  localStorage.removeItem('startGame');
   clearInterval(settings.timerId);
   settings.timer = 0;
   settings.stepCount = 0;
@@ -80,6 +83,8 @@ function resultsTable() {
   TABLE.removeEventListener('click', getExclIndex);
   // localStorage.removeItem('startGame');
 }
+let saveSettings;
+if (localStorage.getItem('settings')) saveSettings = JSON.parse(localStorage.settings);
 
 document.body.append(createHeader());
 saveGame();
@@ -91,7 +96,6 @@ score.BTN_RESULTS.addEventListener('click', resultsTable);
 if (localStorage.getItem('startGame')) {
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
-  const saveSettings = JSON.parse(localStorage.settings);
   const saveSettingsKeys = Object.keys(saveSettings);
   saveSettingsKeys.forEach((key) => {
     settings[key] = saveSettings[key];
@@ -113,4 +117,5 @@ if (localStorage.getItem('startGame')) {
   }, 1000);
 } else {
   document.body.append(createMainWindow());
+  settings.results = saveSettings.results;
 }

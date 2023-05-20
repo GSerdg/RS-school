@@ -19,7 +19,7 @@ const field = {
       for (let j = 0; j < cell; j += 1) {
         const tableCell = createElement('td', ['table__cell']);
         const mineImg = createElement('img', ['table__cell__img', 'hidden']);
-        mineImg.setAttribute('src', '/images/mine.png');
+        mineImg.setAttribute('src', './images/mine.png');
         tableCell.append(mineImg);
         tableRow.append(tableCell);
       }
