@@ -1,0 +1,32 @@
+.results {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  position: absolute;
+  background-color: #ebebeb;
+  top: -2px;
+  left: -151%;
+  padding: 10px;
+  min-width: 370px;
+  border-radius: 12px;
+}
+
+.results__table {
+  border-collapse: collapse;
+  width: 350px;
+  border: 2px solid #211f20;
+}
+
+.results__cell {
+  padding: 3px;
+  border: #211f20 1px solid;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.results__title {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}

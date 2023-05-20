@@ -4,11 +4,11 @@ import { cellClick, getExclIndex, setFlag } from '../../modules/events';
 import score from '../score-field/score';
 
 const field = {
-  FIELD_WRAPPER: createElement('div', ['field__wrapper']),
+  /* FIELD_WRAPPER: createElement('div', ['field__wrapper']),
   GAME_FIELD: createElement('div', ['game-field']),
   TABLE: createElement('table', ['table']),
   TABLE_BODY: createElement('tbody', ['table_body']),
-
+ */
   createGameField(row, cell) {
     const FIELD_WRAPPER = createElement('div', ['field__wrapper']);
     const GAME_FIELD = createElement('div', ['game-field']);

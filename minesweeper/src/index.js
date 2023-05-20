@@ -6,11 +6,13 @@ import saveGame from './modules/save';
 import score from './components/score-field/score';
 import settings from './modules/settings';
 import { cellClick, getExclIndex, setFlag } from './modules/events';
+import createResultsTable from './components/results-table/table';
 
 function StartNewGame() {
   const radio = Array.from(document.body.querySelectorAll('.input__width__check'));
   for (let i = 0; i < 3; i += 1) {
     if (radio[i].checked) {
+      settings.level = radio[i].value;
       switch (radio[i].value) {
         case 'small':
           settings.cell = 10;
@@ -30,8 +32,8 @@ function StartNewGame() {
       break;
     }
   }
-  settings.mine = document.body.querySelector('.mines__range').value;
-  settings.mineCount = document.body.querySelector('.mines__range').value;
+  settings.mine = +document.body.querySelector('.mines__range').value;
+  settings.mineCount = +document.body.querySelector('.mines__range').value;
   settings.flagCount = 0;
   localStorage.clear();
   clearInterval(settings.timerId);
@@ -50,6 +52,7 @@ function settingsMenu() {
   function closeSettingsMenu(event) {
     const { target } = event;
     const MENU = target.closest('.new__input');
+
     if (MENU || target.classList[0] === 'menu__btn') return;
     ELEM.lastChild.remove();
     document.removeEventListener('click', closeSettingsMenu);
@@ -67,13 +70,25 @@ function settingsMenu() {
   document.addEventListener('click', closeSettingsMenu);
 }
 
+function resultsTable() {
+  const ELEM = document.body.querySelector('.score__menu');
+  const TABLE = document.body.querySelector('.table');
+
+  ELEM.append(createResultsTable(settings.results));
+  TABLE.removeEventListener('click', cellClick);
+  TABLE.removeEventListener('contextmenu', setFlag);
+  TABLE.removeEventListener('click', getExclIndex);
+  // localStorage.removeItem('startGame');
+}
+
 document.body.append(createHeader());
 saveGame();
 score.BTN_START.addEventListener('click', StartNewGame);
 score.BTN_NEW.addEventListener('click', settingsMenu);
+score.BTN_RESULTS.addEventListener('click', resultsTable);
 
+// Если был reload во время игры
 if (localStorage.getItem('startGame')) {
-  // Если был reload во время игры
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
   const saveSettings = JSON.parse(localStorage.settings);
@@ -85,11 +100,13 @@ if (localStorage.getItem('startGame')) {
   const TABLE_SAVE = MAIN.querySelector('.table');
   const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
   const NEW_GAME_BTN = MAIN.querySelectorAll('.menu__btn')[0];
-
+  const RESULTS_BTN = MAIN.querySelectorAll('.menu__btn')[1];
+  const RESULTS = document.body.querySelector('.results');
   TABLE_SAVE.addEventListener('click', cellClick);
   TABLE_SAVE.addEventListener('contextmenu', setFlag);
   NEW_GAME_BTN.addEventListener('click', settingsMenu);
-
+  RESULTS_BTN.addEventListener('click', resultsTable);
+  if (RESULTS) RESULTS.remove();
   settings.timerId = setInterval(() => {
     settings.timer += 1;
     SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);

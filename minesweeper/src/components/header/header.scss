@@ -5,10 +5,16 @@
 
 .header__wrapper {
   display: flex;
-  justify-content: space-between;
-  padding: 30px 40px 0;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 20px;
 }
 
 .logo__img {
-  width: 150px;
+  width: 70px;
+}
+
+.logo__header {
+  font-family: fantasy;
+  font-size: 4rem;
 }

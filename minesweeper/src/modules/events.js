@@ -86,7 +86,7 @@ function cellClick(event) {
     // Если открыли мину
     if (settings.fieldMatrix[i][j] === 'mine') {
       elemImg.classList.remove('hidden');
-      settings.gemeOverFlag = true;
+      // settings.gemeOverFlag = true;
       TABLE.removeEventListener('click', cellClick);
       TABLE.removeEventListener('contextmenu', setFlag);
 
@@ -103,6 +103,7 @@ function cellClick(event) {
       localStorage.clear();
       TD.classList.add('table__cell_fail');
       document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
+      settings.cellCouner = 0;
       console.log('game over');
       return;
     }
@@ -123,17 +124,20 @@ function cellClick(event) {
   if (Array.from(IMG.classList).includes('hidden')) {
     openCells(row, cell);
     settings.stepCount += 1;
+    console.log('cellCouner', settings.cellCouner, settings.cell, settings.row, settings.mine, settings.gemeOverFlag);
     scoreCount.innerText = score.convertCount(settings.stepCount);
     // Если победили
-    if (settings.cellCouner === settings.cell * settings.row - settings.mine
-      && !settings.gemeOverFlag) {
+    if (settings.cellCouner === settings.cell * settings.row - settings.mine) {
       TABLE.removeEventListener('click', cellClick);
       TABLE.removeEventListener('contextmenu', setFlag);
 
       clearInterval(settings.timerId);
       localStorage.clear();
       document.body.querySelector('.score__menu').append(createPopup(`Hooray! You found all mines in ${settings.timer} seconds and ${settings.stepCount} moves!`));
+      settings.results.push([settings.level, settings.mine, settings.timer, settings.stepCount]);
+      settings.cellCouner = 0;
       console.log('finish game');
+      console.log(settings);
     }
   }
 }
