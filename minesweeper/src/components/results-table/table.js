@@ -35,22 +35,7 @@ function createResultsTable(results) {
       TABLE.append(tableRow);
     }
 
-/*     for (let i = 0; i < results.length + 1; i += 1) {
-      const tableRow = createElement('tr', ['results__row']);
-      for (let j = 0; j < 4; j += 1) {
-        if (i === 0) {
-          const tableCell = createElement('th', ['results__cell']);
-          tableCell.innerText = header[j];
-          tableRow.append(tableCell);
-        } else {
-          const tableCell = createElement('td', ['results__cell']);
-          tableCell.innerText = results[i - 1][j];
-          tableRow.append(tableCell);
-        }
-      }
-      TABLE.append(tableRow);
-    }
- */    RESULTS.append(TITLE);
+    RESULTS.append(TITLE);
     RESULTS.append(TABLE);
   }
   RESULTS.append(TABLE_BTN);

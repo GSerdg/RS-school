@@ -1,8 +1,19 @@
 import feelMines from './feelMinesField';
 import settings from './settings';
-// import field from '../components/game-field/field';
 import score from '../components/score-field/score';
 import createPopup from '../components/popup/popup';
+import createElement from './createElement';
+
+function playAudio(src) {
+  const audio = createElement('audio', ['audio']);
+  audio.setAttribute('autoplay', 'true');
+  audio.innerHTML = `<source src=${src} type="audio/mp3">`;
+  const oldAudio = document.body.querySelectorAll('.audio');
+  if (oldAudio.length > 0) {
+    oldAudio.forEach((elem) => elem.remove());
+  }
+  document.body.appendChild(audio);
+}
 
 function getExclIndex(event) {
   const { target } = event;
@@ -38,6 +49,7 @@ function setFlag(event) {
 
   if (Array.from(TD.firstElementChild.classList).includes('hidden')) {
     settings.flagCount += 1;
+    playAudio('./audio/flag-set.mp3');
     FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
     if (settings.mineCount > 0) {
       settings.mineCount -= 1;
@@ -45,6 +57,7 @@ function setFlag(event) {
     }
   } else {
     settings.flagCount -= 1;
+    playAudio('./audio/flag-clear.mp3');
     FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
     if (settings.mineCount < settings.mine && settings.flagCount < settings.mine) {
       settings.mineCount += 1;
@@ -71,7 +84,7 @@ function cellClick(event) {
   const cell = TD.cellIndex;
   const row = TD.parentElement.rowIndex;
   const scoreCount = document.body.querySelector('.score__count');
-
+  playAudio('./audio/cell-open.mp3');
   function openCells(i, j) {
     const elemTd = TABLE.rows[i].cells[j];
     const elemImg = elemTd.firstElementChild;
@@ -107,6 +120,7 @@ function cellClick(event) {
       TD.classList.add('table__cell_fail');
       document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
       settings.cellCouner = 0;
+      playAudio('./audio/game-over.mp3');
       console.log('game over');
       return;
     }
@@ -143,6 +157,7 @@ function cellClick(event) {
       settings.results.push([settings.level, settings.mine, settings.timer, settings.stepCount]);
       if (settings.results.length === 11) settings.results.shift();
       settings.cellCouner = 0;
+      playAudio('./audio/win.mp3');
       console.log('finish game');
       console.log(settings);
     }
