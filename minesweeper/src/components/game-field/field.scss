@@ -92,13 +92,22 @@
     width: 20px;
     height: 20px;
   }
-/*   @include mobile {
-    width: 20px;
-    height: 20px;
-  }
- */}
+}
 
 .table__cell__img {
   width: 100%;
 
+}
+
+.field__theme {
+  display: flex;
+  column-gap: 3px;
+}
+
+.input__theme__label {
+  margin-right: 14px;
+}
+
+.theme__title {
+  margin-right: 7px;
 }

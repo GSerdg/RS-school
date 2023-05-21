@@ -28,7 +28,6 @@ const score = {
     SCORE_COUNT.innerText = this.convertCount(settings.stepCount);
     MINE_COUNT.innerText = `mines: ${settings.mineCount}`;
     FLAG_COUNT.innerText = `flags: ${settings.flagCount}`;
-
     this.BTN_NEW.innerText = 'New Game';
     this.BTN_RESULTS.innerText = 'results';
     SCORE_COUNT_CONTAINER.append(MINE_COUNT);
@@ -37,6 +36,7 @@ const score = {
     SCORE.append(SCORE_COUNT_CONTAINER);
     SCORE_MENU.append(this.BTN_NEW);
     SCORE_MENU.append(this.BTN_RESULTS);
+
     SCORE.append(SCORE_MENU);
     SCORE.append(SCORE_TIMER);
 

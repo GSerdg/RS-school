@@ -15,6 +15,28 @@ function playAudio(src) {
   document.body.appendChild(audio);
 }
 
+function changeTheme(event) {
+  const { target } = event;
+  if (target.tagName !== 'INPUT') return;
+  if (target.id === 'theme1') {
+    const input2 = target.parentNode.querySelector('#theme2');
+    input2.removeAttribute('checked');
+    target.setAttribute('checked', '');
+    settings.theme = 'light';
+
+    document.body.querySelector('main').classList.remove('main_theme');
+    console.log(settings.theme);
+  } else {
+    const input1 = target.parentNode.querySelector('#theme1');
+    input1.removeAttribute('checked');
+    target.setAttribute('checked', '');
+    settings.theme = 'dark';
+
+    document.body.querySelector('main').classList.add('main_theme');
+    console.log(settings.theme);
+  }
+}
+
 function getExclIndex(event) {
   const { target } = event;
   if (target.tagName !== 'TD' || localStorage.getItem('startGame')) return;
@@ -164,4 +186,6 @@ function cellClick(event) {
   }
 }
 
-export { cellClick, getExclIndex, setFlag };
+export {
+  cellClick, getExclIndex, setFlag, changeTheme,
+};

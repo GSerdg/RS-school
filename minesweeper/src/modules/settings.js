@@ -14,6 +14,7 @@ const settings = {
   mineCount: 10,
   flagCount: 0,
   results: [],
+  theme: 'light',
 };
 
 export default settings;

@@ -5,7 +5,9 @@ import createMainWindow from './components/main/main';
 import saveGame from './modules/save';
 import score from './components/score-field/score';
 import settings from './modules/settings';
-import { cellClick, getExclIndex, setFlag } from './modules/events';
+import {
+  cellClick, getExclIndex, setFlag, changeTheme,
+} from './modules/events';
 import createResultsTable from './components/results-table/table';
 
 const media780 = window.matchMedia('(max-width: 780px)');
@@ -101,6 +103,7 @@ function resultsTable() {
   TABLE.removeEventListener('click', getExclIndex);
   // localStorage.removeItem('startGame');
 }
+
 let saveSettings;
 if (localStorage.getItem('settings')) saveSettings = JSON.parse(localStorage.settings);
 
@@ -111,13 +114,16 @@ score.BTN_NEW.addEventListener('click', settingsMenu);
 score.BTN_RESULTS.addEventListener('click', resultsTable);
 
 // Если был reload во время игры
-if (localStorage.getItem('startGame')) {
+
+// ??? Подумать над этим. Старт потерял слушателя при перезагрузке с открытым меню
+if (localStorage.settings !== undefined/* getItem('startGame') */) {
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
   const saveSettingsKeys = Object.keys(saveSettings);
   saveSettingsKeys.forEach((key) => {
     settings[key] = saveSettings[key];
   });
+  if (settings.theme === 'dark') MAIN.classList.add('main_theme');
   MAIN.innerHTML = localStorage.getItem('main');
   const TABLE_SAVE = MAIN.querySelector('.table');
   const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
@@ -128,6 +134,8 @@ if (localStorage.getItem('startGame')) {
   TABLE_SAVE.addEventListener('contextmenu', setFlag);
   NEW_GAME_BTN.addEventListener('click', settingsMenu);
   RESULTS_BTN.addEventListener('click', resultsTable);
+  document.body.querySelector('.field__theme').addEventListener('change', changeTheme);
+
   if (RESULTS) RESULTS.remove();
   settings.timerId = setInterval(() => {
     settings.timer += 1;
