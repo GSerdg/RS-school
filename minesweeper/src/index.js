@@ -8,6 +8,21 @@ import settings from './modules/settings';
 import { cellClick, getExclIndex, setFlag } from './modules/events';
 import createResultsTable from './components/results-table/table';
 
+const media780 = window.matchMedia('(max-width: 780px)');
+
+function media(event) {
+  const cells = document.body.querySelectorAll('.table__cell');
+  if (event.matches) {
+    cells.forEach((elem) => {
+      elem.classList.add('table__cell_width');
+    });
+  } else {
+    cells.forEach((elem) => {
+      elem.classList.remove('table__cell_width');
+    });
+  }
+}
+
 function StartNewGame() {
   const radio = Array.from(document.body.querySelectorAll('.input__width__check'));
   for (let i = 0; i < 3; i += 1) {
@@ -17,14 +32,17 @@ function StartNewGame() {
         case 'small':
           settings.cell = 10;
           settings.row = 10;
+          media780.removeEventListener('change', media);
           break;
         case 'medium':
           settings.cell = 15;
           settings.row = 15;
+          media780.removeEventListener('change', media);
           break;
         case 'hard':
           settings.cell = 25;
           settings.row = 25;
+          media780.addEventListener('change', media);
           break;
         default:
           break;
@@ -118,4 +136,10 @@ if (localStorage.getItem('startGame')) {
 } else {
   document.body.append(createMainWindow());
   settings.results = saveSettings.results;
+}
+
+if (document.body.querySelectorAll('.table__cell').length > 624) {
+  media780.addEventListener('change', media);
+} else {
+  media780.removeEventListener('change', media);
 }

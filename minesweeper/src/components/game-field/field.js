@@ -14,10 +14,16 @@ const field = {
     const GAME_FIELD = createElement('div', ['game-field']);
     const TABLE = createElement('table', ['table']);
     const TABLE_BODY = createElement('tbody', ['table_body']);
+    const width = window.innerWidth;
+    let tableCell;
     for (let i = 0; i < row; i += 1) {
       const tableRow = createElement('tr', ['table__row']);
       for (let j = 0; j < cell; j += 1) {
-        const tableCell = createElement('td', ['table__cell']);
+        if (width <= 780 && row === 25) {
+          tableCell = createElement('td', ['table__cell', 'table__cell_width']);
+        } else {
+          tableCell = createElement('td', ['table__cell']);
+        }
         const mineImg = createElement('img', ['table__cell__img', 'hidden']);
         mineImg.setAttribute('src', './images/mine.png');
         tableCell.append(mineImg);

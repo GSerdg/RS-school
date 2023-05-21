@@ -58,6 +58,10 @@
       display: inline-block;
       margin: 10px;
     }
+
+    @include hover {
+      background-color: #d89944;
+    }
 }
 
 .new__input {
