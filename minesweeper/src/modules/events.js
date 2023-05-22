@@ -37,29 +37,6 @@ function changeTheme(event) {
   }
 }
 
-function getExclIndex(event) {
-  const { target } = event;
-  if (target.tagName !== 'TD' || localStorage.getItem('startGame') !== 'start') return;
-  const SCORE_TIMER = document.body.querySelector('.score__timer');
-  localStorage.setItem('startGame', 'game');
-  settings.timerId = setInterval(() => {
-    settings.timer += 1;
-    SCORE_TIMER.innerText = score.convertCount(settings.timer);
-  }, 1000);
-
-  settings.cellExcl = target.cellIndex;
-  settings.rowExcl = target.parentElement.rowIndex;
-  const mines = feelMines(
-    settings.row,
-    settings.cell,
-    settings.mine,
-    settings.rowExcl,
-    settings.cellExcl,
-  );
-  settings.fieldMatrix = mines.minesNumbers;
-  settings.minesArray = mines.minesArray;
-}
-
 function setFlag(event) {
   event.preventDefault();
   const { target } = event;
@@ -95,6 +72,31 @@ function setFlag(event) {
     IMG.setAttribute('src', './images/mine.png');
     IMG.classList.add('hidden');
   }
+}
+
+function getExclIndex(event) {
+  const { target } = event;
+  if (target.tagName !== 'TD' || localStorage.getItem('startGame') !== 'start') return;
+  const SCORE_TIMER = document.body.querySelector('.score__timer');
+  const TABLE = target.closest('table');
+  localStorage.setItem('startGame', 'game');
+  settings.timerId = setInterval(() => {
+    settings.timer += 1;
+    SCORE_TIMER.innerText = score.convertCount(settings.timer);
+  }, 1000);
+
+  settings.cellExcl = target.cellIndex;
+  settings.rowExcl = target.parentElement.rowIndex;
+  const mines = feelMines(
+    settings.row,
+    settings.cell,
+    settings.mine,
+    settings.rowExcl,
+    settings.cellExcl,
+  );
+  settings.fieldMatrix = mines.minesNumbers;
+  settings.minesArray = mines.minesArray;
+  TABLE.addEventListener('contextmenu', setFlag);
 }
 
 function cellClick(event) {
