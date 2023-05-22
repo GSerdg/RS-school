@@ -126,7 +126,7 @@ if (localStorage.settings !== undefined) {
     document.body.querySelector('.main').remove();
     document.body.append(createMainWindow());
   } else {
-    if (settings.theme === 'dark') MAIN.classList.add('main_theme');
+    if (settings.theme === 'dark') document.body.classList.add('body_theme');
     MAIN.innerHTML = localStorage.getItem('main');
     const TABLE_SAVE = MAIN.querySelector('.table');
     const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
@@ -152,6 +152,7 @@ if (localStorage.settings !== undefined) {
     }, 1000);
   }
 } else {
+  localStorage.setItem('startGame', 'start');
   document.body.append(createMainWindow());
   settings.results = saveSettings.results;
 }

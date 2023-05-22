@@ -1,8 +1,6 @@
 import './field.scss';
 import createElement from '../../modules/createElement';
-import {
-  cellClick, getExclIndex, setFlag, changeTheme,
-} from '../../modules/events';
+import { cellClick, getExclIndex, changeTheme } from '../../modules/events';
 import score from '../score-field/score';
 import settings from '../../modules/settings';
 

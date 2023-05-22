@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "main": "sass --watch ./#source/scss/main.scss ./pages/main/style.css",
     "build": "webpack --progress",
     "start": "webpack-dev-server --mode development --open",
+    "deploy": "npm run build && npx gh-pages -d dist -e minesweeper",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "eslint": "^8.39.0",
+    "gh-pages": "^5.0.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
     "sass": "^1.62.1",

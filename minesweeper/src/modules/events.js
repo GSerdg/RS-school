@@ -24,7 +24,7 @@ function changeTheme(event) {
     target.setAttribute('checked', '');
     settings.theme = 'light';
 
-    document.body.querySelector('main').classList.remove('main_theme');
+    document.body.classList.remove('body_theme');
     console.log(settings.theme);
   } else {
     const input1 = target.parentNode.querySelector('#theme1');
@@ -32,7 +32,7 @@ function changeTheme(event) {
     target.setAttribute('checked', '');
     settings.theme = 'dark';
 
-    document.body.querySelector('main').classList.add('main_theme');
+    document.body.classList.add('body_theme');
     console.log(settings.theme);
   }
 }
