@@ -1,4 +1,4 @@
-import '../#source/scss/base/_base.scss';
+import './styles/base/_base.scss';
 import createElement from './modules/createElement';
 import createHeader from './components/header/header';
 import createMainWindow from './components/main/main';

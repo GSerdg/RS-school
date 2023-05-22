@@ -34,11 +34,11 @@ module.exports = [
               loader: 'sass-resources-loader',
               options: {
                 resources: [
-                  '#source/scss/abstract/_variables.scss',
-                  '#source/scss/abstract/_constants.scss',
+                  'src/styles/abstract/_variables.scss',
+                  'src/styles/abstract/_constants.scss',
                   // '#source/scss/abstract/_fonts.scss',
-                  '#source/scss/abstract/_mixins.scss',
-                  '#source/scss/abstract/_placeholders.scss',
+                  'src/styles/abstract/_mixins.scss',
+                  'src/styles/abstract/_placeholders.scss',
                 ],
               },
             },
