@@ -106,13 +106,14 @@ function cellClick(event) {
   const cell = TD.cellIndex;
   const row = TD.parentElement.rowIndex;
   const scoreCount = document.body.querySelector('.score__count');
-  playAudio('./audio/cell-open.mp3');
+  playAudio('./audio/fail.mp3');
   function openCells(i, j) {
     const elemTd = TABLE.rows[i].cells[j];
     const elemImg = elemTd.firstElementChild;
     elemTd.classList.add('table__cell_open');
     elemImg.classList.add('hidden');
     settings.cellCouner += 1;
+    playAudio('./audio/cell-open.mp3');
     if (Number.isInteger(settings.fieldMatrix[i][j]) && settings.fieldMatrix[i][j] !== 0) {
       elemTd.innerText = settings.fieldMatrix[i][j];
       elemTd.classList.add(`table__cell_color-${settings.fieldMatrix[i][j]}`);
