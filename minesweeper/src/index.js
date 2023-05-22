@@ -125,32 +125,32 @@ if (localStorage.settings !== undefined) {
   if (localStorage.getItem('startGame') === 'start') {
     document.body.querySelector('.main').remove();
     document.body.append(createMainWindow());
+  } else {
+    if (settings.theme === 'dark') MAIN.classList.add('main_theme');
+    MAIN.innerHTML = localStorage.getItem('main');
+    const TABLE_SAVE = MAIN.querySelector('.table');
+    const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
+    const NEW_GAME_BTN = MAIN.querySelectorAll('.menu__btn')[0];
+    const RESULTS_BTN = MAIN.querySelectorAll('.menu__btn')[1];
+    const RESULTS = document.body.querySelector('.results');
+    const NEW_INPUT = document.body.querySelector('.new__input');
+
+    if (localStorage.getItem('startGame') === 'game') {
+      TABLE_SAVE.addEventListener('click', cellClick);
+      TABLE_SAVE.addEventListener('contextmenu', setFlag);
+      TABLE_SAVE.addEventListener('click', getExclIndex, { once: true });
+    }
+    NEW_GAME_BTN.addEventListener('click', settingsMenu);
+    RESULTS_BTN.addEventListener('click', resultsTable);
+    document.body.querySelector('.field__theme').addEventListener('change', changeTheme);
+
+    if (RESULTS) RESULTS.remove();
+    if (NEW_INPUT) NEW_INPUT.remove();
+    settings.timerId = setInterval(() => {
+      settings.timer += 1;
+      SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);
+    }, 1000);
   }
-
-  if (settings.theme === 'dark') MAIN.classList.add('main_theme');
-  MAIN.innerHTML = localStorage.getItem('main');
-  const TABLE_SAVE = MAIN.querySelector('.table');
-  const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
-  const NEW_GAME_BTN = MAIN.querySelectorAll('.menu__btn')[0];
-  const RESULTS_BTN = MAIN.querySelectorAll('.menu__btn')[1];
-  const RESULTS = document.body.querySelector('.results');
-  const NEW_INPUT = document.body.querySelector('.new__input');
-
-  if (/* localStorage.getItem('startGame') === 'start' ||  */localStorage.getItem('startGame') === 'game') {
-    TABLE_SAVE.addEventListener('click', cellClick);
-    TABLE_SAVE.addEventListener('contextmenu', setFlag);
-    TABLE_SAVE.addEventListener('click', getExclIndex, { once: true });
-  }
-  NEW_GAME_BTN.addEventListener('click', settingsMenu);
-  RESULTS_BTN.addEventListener('click', resultsTable);
-  document.body.querySelector('.field__theme').addEventListener('change', changeTheme);
-
-  if (RESULTS) RESULTS.remove();
-  if (NEW_INPUT) NEW_INPUT.remove();
-  settings.timerId = setInterval(() => {
-    settings.timer += 1;
-    SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);
-  }, 1000);
 } else {
   document.body.append(createMainWindow());
   settings.results = saveSettings.results;
