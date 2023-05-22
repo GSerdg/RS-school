@@ -154,7 +154,7 @@ if (localStorage.settings !== undefined) {
 } else {
   localStorage.setItem('startGame', 'start');
   document.body.append(createMainWindow());
-  settings.results = saveSettings.results;
+  // if (saveSettings) settings.results = saveSettings.results;
 }
 
 if (document.body.querySelectorAll('.table__cell').length > 624) {
