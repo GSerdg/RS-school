@@ -114,8 +114,6 @@ score.BTN_NEW.addEventListener('click', settingsMenu);
 score.BTN_RESULTS.addEventListener('click', resultsTable);
 
 // Если был reload во время игры
-
-// ??? Подумать над этим. Старт потерял слушателя при перезагрузке с открытым меню
 if (localStorage.settings !== undefined/* getItem('startGame') */) {
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
@@ -130,6 +128,7 @@ if (localStorage.settings !== undefined/* getItem('startGame') */) {
   const NEW_GAME_BTN = MAIN.querySelectorAll('.menu__btn')[0];
   const RESULTS_BTN = MAIN.querySelectorAll('.menu__btn')[1];
   const RESULTS = document.body.querySelector('.results');
+  const NEW_INPUT = document.body.querySelector('.new__input');
   TABLE_SAVE.addEventListener('click', cellClick);
   TABLE_SAVE.addEventListener('contextmenu', setFlag);
   NEW_GAME_BTN.addEventListener('click', settingsMenu);
@@ -137,6 +136,7 @@ if (localStorage.settings !== undefined/* getItem('startGame') */) {
   document.body.querySelector('.field__theme').addEventListener('change', changeTheme);
 
   if (RESULTS) RESULTS.remove();
+  if (NEW_INPUT) NEW_INPUT.remove();
   settings.timerId = setInterval(() => {
     settings.timer += 1;
     SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);
