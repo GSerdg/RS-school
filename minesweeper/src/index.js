@@ -84,9 +84,13 @@ function settingsMenu() {
     if (target.tagName === 'INPUT' || target.tagName === 'LABEL') return;
     ELEM.lastChild.remove();
     document.removeEventListener('click', closeSettingsMenu);
-    TABLE.addEventListener('click', getExclIndex, { once: true });
-    TABLE.addEventListener('click', cellClick);
-    TABLE.addEventListener('contextmenu', setFlag);
+    if (localStorage.getItem('startGame') !== 'finish') {
+      TABLE.addEventListener('click', getExclIndex, { once: true });
+      TABLE.addEventListener('click', cellClick);
+    }
+    if (localStorage.getItem('startGame') === 'game') {
+      TABLE.addEventListener('contextmenu', setFlag);
+    }
   }
 
   ELEM.append(score.createSettingsMenu());

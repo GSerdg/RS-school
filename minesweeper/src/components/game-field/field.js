@@ -59,7 +59,6 @@ const field = {
 
     TABLE.addEventListener('click', getExclIndex, { once: true });
     TABLE.addEventListener('click', cellClick);
-    // TABLE.addEventListener('contextmenu', setFlag);
     return FIELD_WRAPPER;
   },
 };

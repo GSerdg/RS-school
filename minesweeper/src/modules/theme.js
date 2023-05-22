@@ -11,6 +11,7 @@ function darkTheme() {
   document.body.querySelector('.score').classList.add('score_theme');
   document.body.querySelector('.score__count__container').classList.add('score__count__container_theme');
   document.body.querySelector('.score__timer').classList.add('score__timer_theme');
+  document.body.firstElementChild.classList.add('header_theme');
   if (RESULTS) {
     RESULTS.classList.add('results_theme');
     RESULTS.querySelectorAll('.results__cell').forEach((elem) => {
@@ -36,6 +37,7 @@ function lightTheme() {
   document.body.querySelector('.score').classList.remove('score_theme');
   document.body.querySelector('.score__count__container').classList.remove('score__count__container_theme');
   document.body.querySelector('.score__timer').classList.remove('score__timer_theme');
+  document.body.firstElementChild.classList.remove('header_theme');
   if (RESULTS) {
     RESULTS.classList.remove('results_theme');
     RESULTS.querySelectorAll('.results__cell').forEach((elem) => {

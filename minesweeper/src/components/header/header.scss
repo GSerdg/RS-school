@@ -1,6 +1,10 @@
 .header {
   width: 100%;
   background: radial-gradient(100% 215.42% at 0% 0%, #ffffc8 0%, #c4b19a 100%), #211F20;
+
+  &_theme {
+    background: radial-gradient(100% 215.42% at 0% 0%, #95958b 0%, #100d0a 100%), #211F20;
+  }
 }
 
 .header__wrapper {

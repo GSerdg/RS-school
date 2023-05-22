@@ -25,14 +25,12 @@ function changeTheme(event) {
     target.setAttribute('checked', '');
     settings.theme = 'light';
     lightTheme();
-    console.log(settings.theme);
   } else {
     const input1 = target.parentNode.querySelector('#theme1');
     input1.removeAttribute('checked');
     target.setAttribute('checked', '');
     settings.theme = 'dark';
     darkTheme();
-    console.log(settings.theme);
   }
 }
 
@@ -123,7 +121,6 @@ function cellClick(event) {
     // Если открыли мину
     if (settings.fieldMatrix[i][j] === 'mine') {
       elemImg.classList.remove('hidden');
-      // settings.gemeOverFlag = true;
       TABLE.removeEventListener('click', cellClick);
       TABLE.removeEventListener('contextmenu', setFlag);
 
@@ -137,15 +134,11 @@ function cellClick(event) {
         }
       });
       clearInterval(settings.timerId);
-      // localStorage.clear();
-      // localStorage.removeItem('settings');
-      // localStorage.removeItem('main');
       localStorage.setItem('startGame', 'finish');
       TD.classList.add('table__cell_fail');
       document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
       settings.cellCouner = 0;
       playAudio('./audio/game-over.mp3');
-      console.log('game over');
       return;
     }
     if (settings.fieldMatrix[i][j] === 0) {
@@ -165,7 +158,6 @@ function cellClick(event) {
     playAudio('./audio/cell-open.mp3');
     openCells(row, cell);
     settings.stepCount += 1;
-    console.log('cellCouner', settings.cellCouner, settings.cell, settings.row, settings.mine, settings.gemeOverFlag);
     scoreCount.innerText = score.convertCount(settings.stepCount);
     // Если победили
     if (settings.cellCouner === settings.cell * settings.row - settings.mine) {
@@ -173,17 +165,12 @@ function cellClick(event) {
       TABLE.removeEventListener('contextmenu', setFlag);
 
       clearInterval(settings.timerId);
-      // localStorage.clear();
-      // localStorage.removeItem('settings');
-      // localStorage.removeItem('main');
       localStorage.setItem('startGame', 'finish');
       document.body.querySelector('.score__menu').append(createPopup(`Hooray! You found all mines in ${settings.timer} seconds and ${settings.stepCount} moves!`));
       settings.results.push([settings.level, settings.mine, settings.timer, settings.stepCount]);
       if (settings.results.length === 11) settings.results.shift();
       settings.cellCouner = 0;
       playAudio('./audio/win.mp3');
-      console.log('finish game');
-      console.log(settings);
     }
   }
 }

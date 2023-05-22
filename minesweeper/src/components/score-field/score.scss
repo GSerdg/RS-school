@@ -9,7 +9,7 @@
   &_theme {
     border-left: 1px solid #7f7e7e;
     border-right: 1px solid #7f7e7e;
-    border-top: 1px solid #7f7e7e;  
+    border-top: 1px solid #7f7e7e;
   }
 }
 
@@ -28,7 +28,7 @@
   width: 70px;
   justify-content: space-around;
   align-items: center;
-  
+
 }
 
 .score__count {
@@ -68,19 +68,23 @@
     inset rgba(255, 255, 255, .9) 3px 3px 8px,
     rgba(0, 0, 0, .8) 3px 3px 8px -3px;
 
-    &_start {
-      display: inline-block;
-      margin: 10px;
-    }
+  &_start {
+    display: inline-block;
+    margin: 10px;
+  }
 
-    &_theme {
-      background-color: #53432d;
-      color: #b3b3b3;
-    }
+  @include hover {
+    background-color: #d89944;
+  }
+
+  &_theme {
+    background-color: #1a150e;
+    color: #b3b3b3;
 
     @include hover {
-      background-color: #d89944;
+      background-color: #584020;
     }
+  }
 }
 
 .new__input {

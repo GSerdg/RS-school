@@ -1,5 +1,6 @@
 import './popup.scss';
 import createElement from '../../modules/createElement';
+import settings from '../../modules/settings';
 
 function createPopup(title) {
   const POPUP = createElement('div', ['new__input', 'new__input_popup']);
@@ -14,6 +15,12 @@ function createPopup(title) {
   POPUP_BTN.addEventListener('click', () => {
     POPUP.remove();
   });
+
+  if (settings.theme === 'dark') {
+    POPUP.classList.add('new__input_theme');
+    POPUP_BTN.classList.add('menu__btn_theme');
+  }
+
   return POPUP;
 }
 

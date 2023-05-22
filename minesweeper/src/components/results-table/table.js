@@ -3,14 +3,11 @@ import createElement from '../../modules/createElement';
 import { cellClick, getExclIndex, setFlag } from '../../modules/events';
 import settings from '../../modules/settings';
 
-// import settings from '../../modules/settings';
-
 function createResultsTable(results) {
   const header = ['Level', 'Number of\nmines', 'Time', 'Number of\nsteps'];
   const RESULTS = createElement('div', ['results']);
   const TITLE = createElement('p', ['results__title']);
   const TABLE = createElement('table', ['results__table']);
-  // const TABLE_BODY = createElement('tbody', []);
   const TABLE_BTN = createElement('div', ['menu__btn']);
 
   TABLE_BTN.innerText = 'OK';
@@ -43,11 +40,14 @@ function createResultsTable(results) {
 
   TABLE_BTN.addEventListener('click', () => {
     const table = document.body.querySelector('.table');
-    if (localStorage.getItem('startGame') === 'game') {
+    if (localStorage.getItem('startGame') !== 'finish') {
       table.addEventListener('click', getExclIndex, { once: true });
       table.addEventListener('click', cellClick);
+    }
+    if (localStorage.getItem('startGame') === 'game') {
       table.addEventListener('contextmenu', setFlag);
     }
+
     RESULTS.remove();
   });
 
