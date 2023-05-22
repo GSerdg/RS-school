@@ -42,7 +42,7 @@ function createResultsTable(results) {
 
   TABLE_BTN.addEventListener('click', () => {
     const table = document.body.querySelector('.table');
-    if (localStorage.getItem('startGame')) {
+    if (localStorage.getItem('startGame') === 'game') {
       table.addEventListener('click', getExclIndex, { once: true });
       table.addEventListener('click', cellClick);
       table.addEventListener('contextmenu', setFlag);

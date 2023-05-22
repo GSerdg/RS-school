@@ -39,9 +39,9 @@ function changeTheme(event) {
 
 function getExclIndex(event) {
   const { target } = event;
-  if (target.tagName !== 'TD' || localStorage.getItem('startGame')) return;
+  if (target.tagName !== 'TD' || localStorage.getItem('startGame') !== 'start') return;
   const SCORE_TIMER = document.body.querySelector('.score__timer');
-  localStorage.setItem('startGame', true);
+  localStorage.setItem('startGame', 'game');
   settings.timerId = setInterval(() => {
     settings.timer += 1;
     SCORE_TIMER.innerText = score.convertCount(settings.timer);
@@ -139,7 +139,7 @@ function cellClick(event) {
       // localStorage.clear();
       // localStorage.removeItem('settings');
       // localStorage.removeItem('main');
-      localStorage.removeItem('startGame');
+      localStorage.setItem('startGame', 'finish');
       TD.classList.add('table__cell_fail');
       document.body.querySelector('.score__menu').append(createPopup('Game over. Try again.'));
       settings.cellCouner = 0;
@@ -160,7 +160,6 @@ function cellClick(event) {
   }
 
   // Счетчик ходов
-
   if (Array.from(IMG.classList).includes('hidden')) {
     openCells(row, cell);
     settings.stepCount += 1;
@@ -175,7 +174,7 @@ function cellClick(event) {
       // localStorage.clear();
       // localStorage.removeItem('settings');
       // localStorage.removeItem('main');
-      localStorage.removeItem('startGame');
+      localStorage.setItem('startGame', 'finish');
       document.body.querySelector('.score__menu').append(createPopup(`Hooray! You found all mines in ${settings.timer} seconds and ${settings.stepCount} moves!`));
       settings.results.push([settings.level, settings.mine, settings.timer, settings.stepCount]);
       if (settings.results.length === 11) settings.results.shift();

@@ -58,7 +58,7 @@ function StartNewGame() {
   // localStorage.clear();
   // localStorage.removeItem('settings');
   // localStorage.removeItem('main');
-  localStorage.removeItem('startGame');
+  localStorage.setItem('startGame', 'start');
   clearInterval(settings.timerId);
   settings.timer = 0;
   settings.stepCount = 0;
@@ -82,14 +82,14 @@ function settingsMenu() {
     TABLE.addEventListener('click', getExclIndex, { once: true });
     TABLE.addEventListener('click', cellClick);
     TABLE.addEventListener('contextmenu', setFlag);
-    localStorage.setItem('startGame', true);
+    // localStorage.setItem('startGame', true);
   }
 
   ELEM.append(score.createSettingsMenu());
   TABLE.removeEventListener('click', cellClick);
   TABLE.removeEventListener('contextmenu', setFlag);
   TABLE.removeEventListener('click', getExclIndex);
-  localStorage.removeItem('startGame');
+  // localStorage.removeItem('startGame');
   document.addEventListener('click', closeSettingsMenu);
 }
 
@@ -114,13 +114,19 @@ score.BTN_NEW.addEventListener('click', settingsMenu);
 score.BTN_RESULTS.addEventListener('click', resultsTable);
 
 // Если был reload во время игры
-if (localStorage.settings !== undefined/* getItem('startGame') */) {
+if (localStorage.settings !== undefined) {
   const MAIN = createElement('main', ['main']);
   document.body.append(MAIN);
   const saveSettingsKeys = Object.keys(saveSettings);
   saveSettingsKeys.forEach((key) => {
     settings[key] = saveSettings[key];
   });
+
+  if (localStorage.getItem('startGame') === 'start') {
+    document.body.querySelector('.main').remove();
+    document.body.append(createMainWindow());
+  }
+
   if (settings.theme === 'dark') MAIN.classList.add('main_theme');
   MAIN.innerHTML = localStorage.getItem('main');
   const TABLE_SAVE = MAIN.querySelector('.table');
@@ -129,8 +135,12 @@ if (localStorage.settings !== undefined/* getItem('startGame') */) {
   const RESULTS_BTN = MAIN.querySelectorAll('.menu__btn')[1];
   const RESULTS = document.body.querySelector('.results');
   const NEW_INPUT = document.body.querySelector('.new__input');
-  TABLE_SAVE.addEventListener('click', cellClick);
-  TABLE_SAVE.addEventListener('contextmenu', setFlag);
+
+  if (/* localStorage.getItem('startGame') === 'start' ||  */localStorage.getItem('startGame') === 'game') {
+    TABLE_SAVE.addEventListener('click', cellClick);
+    TABLE_SAVE.addEventListener('contextmenu', setFlag);
+    TABLE_SAVE.addEventListener('click', getExclIndex, { once: true });
+  }
   NEW_GAME_BTN.addEventListener('click', settingsMenu);
   RESULTS_BTN.addEventListener('click', resultsTable);
   document.body.querySelector('.field__theme').addEventListener('change', changeTheme);
