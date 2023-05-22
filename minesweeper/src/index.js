@@ -146,10 +146,12 @@ if (localStorage.settings !== undefined) {
 
     if (RESULTS) RESULTS.remove();
     if (NEW_INPUT) NEW_INPUT.remove();
-    settings.timerId = setInterval(() => {
-      settings.timer += 1;
-      SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);
-    }, 1000);
+    if (localStorage.getItem('startGame') === 'game') {
+      settings.timerId = setInterval(() => {
+        settings.timer += 1;
+        SCORE_TIMER_SAVE.innerText = score.convertCount(settings.timer);
+      }, 1000);
+    }
   }
 } else {
   localStorage.setItem('startGame', 'start');
