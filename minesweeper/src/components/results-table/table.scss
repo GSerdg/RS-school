@@ -10,12 +10,20 @@
   padding: 10px;
   min-width: 370px;
   border-radius: 12px;
+
+  &_theme {
+    background-color: #323232;
+  }
 }
 
 .results__table {
   border-collapse: collapse;
   width: 350px;
   border: 2px solid #211f20;
+
+  &_theme {
+    border: #7f7e7e 2px solid;
+  }
 }
 
 .results__cell {
@@ -23,6 +31,10 @@
   border: #211f20 1px solid;
   text-align: center;
   letter-spacing: 1px;
+
+  &_theme {
+    border: #7f7e7e 1px solid;
+  }
 }
 
 .results__title {

@@ -5,10 +5,20 @@
   border-left: 1px solid #000000;
   border-right: 1px solid #000000;
   border-top: 1px solid #000000;
+
+  &_theme {
+    border-left: 1px solid #7f7e7e;
+    border-right: 1px solid #7f7e7e;
+    border-top: 1px solid #7f7e7e;  
+  }
 }
 
 .score__count__container {
   border-right: 1px solid #000000;
+
+  &_theme {
+    border-right: 1px solid #7f7e7e;
+  }
 }
 
 .score__count__container,
@@ -30,6 +40,10 @@
   border-left: 1px solid #000000;
   font-size: 3rem;
   font-weight: 700;
+
+  &_theme {
+    border-left: 1px solid #7f7e7e;
+  }
 }
 
 .score__menu {
@@ -59,6 +73,11 @@
       margin: 10px;
     }
 
+    &_theme {
+      background-color: #53432d;
+      color: #b3b3b3;
+    }
+
     @include hover {
       background-color: #d89944;
     }
@@ -80,6 +99,10 @@
     width: 250px;
     row-gap: 7px;
     left: -85%;
+  }
+
+  &_theme {
+    background-color: #323232;
   }
 }
 

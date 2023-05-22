@@ -3,6 +3,7 @@ import settings from './settings';
 import score from '../components/score-field/score';
 import createPopup from '../components/popup/popup';
 import createElement from './createElement';
+import { darkTheme, lightTheme } from './theme';
 
 function playAudio(src) {
   const audio = createElement('audio', ['audio']);
@@ -23,16 +24,14 @@ function changeTheme(event) {
     input2.removeAttribute('checked');
     target.setAttribute('checked', '');
     settings.theme = 'light';
-
-    document.body.classList.remove('body_theme');
+    lightTheme();
     console.log(settings.theme);
   } else {
     const input1 = target.parentNode.querySelector('#theme1');
     input1.removeAttribute('checked');
     target.setAttribute('checked', '');
     settings.theme = 'dark';
-
-    document.body.classList.add('body_theme');
+    darkTheme();
     console.log(settings.theme);
   }
 }

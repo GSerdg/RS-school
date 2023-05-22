@@ -1,6 +1,7 @@
 import './table.scss';
 import createElement from '../../modules/createElement';
 import { cellClick, getExclIndex, setFlag } from '../../modules/events';
+import settings from '../../modules/settings';
 
 // import settings from '../../modules/settings';
 
@@ -49,6 +50,15 @@ function createResultsTable(results) {
     }
     RESULTS.remove();
   });
+
+  if (settings.theme === 'dark') {
+    RESULTS.classList.add('results_theme');
+    RESULTS.querySelectorAll('.results__cell').forEach((elem) => {
+      elem.classList.add('results__cell_theme');
+    });
+    TABLE.classList.add('results__table_theme');
+    TABLE_BTN.classList.add('menu__btn_theme');
+  }
 
   return RESULTS;
 }

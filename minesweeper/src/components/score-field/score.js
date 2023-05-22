@@ -76,6 +76,13 @@ const score = {
     this.BTN_START.innerText = 'Start Game';
     NEW_INPUT.append(this.BTN_START);
 
+    if (settings.theme === 'dark') {
+      NEW_INPUT.classList.add('new__input_theme');
+      this.BTN_START.classList.add('menu__btn_theme');
+    } else {
+      this.BTN_START.classList.remove('menu__btn_theme');
+    }
+
     return NEW_INPUT;
   },
 };

@@ -9,6 +9,7 @@ import {
   cellClick, getExclIndex, setFlag, changeTheme,
 } from './modules/events';
 import createResultsTable from './components/results-table/table';
+import { darkTheme, lightTheme } from './modules/theme';
 
 const media780 = window.matchMedia('(max-width: 780px)');
 
@@ -55,9 +56,6 @@ function StartNewGame() {
   settings.mine = +document.body.querySelector('.mines__range').value;
   settings.mineCount = +document.body.querySelector('.mines__range').value;
   settings.flagCount = 0;
-  // localStorage.clear();
-  // localStorage.removeItem('settings');
-  // localStorage.removeItem('main');
   localStorage.setItem('startGame', 'start');
   clearInterval(settings.timerId);
   settings.timer = 0;
@@ -66,6 +64,12 @@ function StartNewGame() {
   document.body.querySelector('.main').remove();
   document.body.append(createMainWindow());
   saveGame();
+
+  if (settings.theme === 'dark') {
+    darkTheme();
+  } else {
+    lightTheme();
+  }
 }
 // Управляет слушателями для открытия и закрытия окна настроек
 function settingsMenu() {
@@ -77,19 +81,18 @@ function settingsMenu() {
     const MENU = target.closest('.new__input');
 
     if (MENU || target.classList[0] === 'menu__btn') return;
+    if (target.tagName === 'INPUT' || target.tagName === 'LABEL') return;
     ELEM.lastChild.remove();
     document.removeEventListener('click', closeSettingsMenu);
     TABLE.addEventListener('click', getExclIndex, { once: true });
     TABLE.addEventListener('click', cellClick);
     TABLE.addEventListener('contextmenu', setFlag);
-    // localStorage.setItem('startGame', true);
   }
 
   ELEM.append(score.createSettingsMenu());
   TABLE.removeEventListener('click', cellClick);
   TABLE.removeEventListener('contextmenu', setFlag);
   TABLE.removeEventListener('click', getExclIndex);
-  // localStorage.removeItem('startGame');
   document.addEventListener('click', closeSettingsMenu);
 }
 
@@ -101,7 +104,6 @@ function resultsTable() {
   TABLE.removeEventListener('click', cellClick);
   TABLE.removeEventListener('contextmenu', setFlag);
   TABLE.removeEventListener('click', getExclIndex);
-  // localStorage.removeItem('startGame');
 }
 
 let saveSettings;
@@ -126,7 +128,6 @@ if (localStorage.settings !== undefined) {
     document.body.querySelector('.main').remove();
     document.body.append(createMainWindow());
   } else {
-    if (settings.theme === 'dark') document.body.classList.add('body_theme');
     MAIN.innerHTML = localStorage.getItem('main');
     const TABLE_SAVE = MAIN.querySelector('.table');
     const SCORE_TIMER_SAVE = MAIN.querySelector('.score__timer');
@@ -156,7 +157,12 @@ if (localStorage.settings !== undefined) {
 } else {
   localStorage.setItem('startGame', 'start');
   document.body.append(createMainWindow());
-  // if (saveSettings) settings.results = saveSettings.results;
+}
+
+if (settings.theme === 'dark') {
+  darkTheme();
+} else {
+  lightTheme();
 }
 
 if (document.body.querySelectorAll('.table__cell').length > 624) {
