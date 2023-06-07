@@ -1,12 +1,12 @@
 import './news.css';
-import { NewsApiData } from '../../../types/index';
+import { NewsApiData, NotNullElement } from '../../../types/index';
 
-class News {
-  private findNotNullElement(node: HTMLElement, selector: string) {
+class News extends NotNullElement {
+  /*   private findNotNullElement(node: HTMLElement, selector: string) {
     const element = node.querySelector<HTMLElement>(selector);
     if (element !== null) return element;
     throw new Error();
-  }
+  } */
 
   draw(data: NewsApiData[]) {
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
