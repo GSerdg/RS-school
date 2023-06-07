@@ -14,6 +14,12 @@ export interface NewsApiData {
   urlToImage: string;
 }
 
+export interface NewsAppViewData {
+  status: string;
+  totalResults: number;
+  articles: NewsApiData[];
+}
+
 export interface SourcesApiData {
   id: string;
   name: string;
@@ -22,6 +28,11 @@ export interface SourcesApiData {
   category: string;
   language: string;
   country: string;
+}
+
+export interface SourcesAppViewData {
+  status: string;
+  sources: SourcesApiData[];
 }
 
 export class NotNullElement {
