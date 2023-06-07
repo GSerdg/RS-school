@@ -35,6 +35,22 @@ export interface SourcesAppViewData {
   sources: SourcesApiData[];
 }
 
+export interface ApiKeyData {
+  apiKey: string;
+}
+
+export interface ResponseLoader {
+  body: { locked: boolean };
+  bodyUsed: boolean;
+  headers: object;
+  ok: boolean;
+  redirected: boolean;
+  status: number;
+  statusText: string;
+  type: string;
+  url: string;
+}
+
 export class NotNullElement {
   findNotNullElement(node: HTMLElement, selector: string) {
     const element = node.querySelector<HTMLElement>(selector);
