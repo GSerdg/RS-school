@@ -1,9 +1,15 @@
-export interface NewsApi {
+interface SourceData {
   id: string;
   name: string;
+}
+
+export interface NewsApiData {
+  author: string;
+  content: string;
   description: string;
+  publishedAt: string;
+  source: SourceData;
+  title: string;
   url: string;
-  category: string;
-  language: string;
-  country: string;
+  urlToImage: string;
 }
