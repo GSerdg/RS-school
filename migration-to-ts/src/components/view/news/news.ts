@@ -2,12 +2,6 @@ import './news.css';
 import { NewsApiData, NotNullElement } from '../../../types/index';
 
 class News extends NotNullElement {
-  /*   private findNotNullElement(node: HTMLElement, selector: string) {
-    const element = node.querySelector<HTMLElement>(selector);
-    if (element !== null) return element;
-    throw new Error();
-  } */
-
   draw(data: NewsApiData[]) {
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
     const fragment = document.createDocumentFragment();
@@ -18,9 +12,7 @@ class News extends NotNullElement {
       if (idx % 2) {
         this.findNotNullElement(newsClone, '.news__item').classList.add('alt');
       }
-      this.findNotNullElement(newsClone, '.news__meta-photo').style.backgroundImage = `url(${
-        item.urlToImage || 'img/news_placeholder.jpg'
-      })`;
+      this.findNotNullElement(newsClone, '.news__meta-photo').style.backgroundImage = `url(${item.urlToImage})`;
       this.findNotNullElement(newsClone, '.news__meta-author').textContent = item.author || item.source.name;
       this.findNotNullElement(newsClone, '.news__meta-date').textContent = item.publishedAt
         .slice(0, 10)
