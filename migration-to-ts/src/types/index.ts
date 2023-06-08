@@ -36,10 +36,11 @@ export interface SourcesAppViewData {
 }
 
 export interface ApiKeyData {
-  apiKey: string;
+  [apiKey: string]: string;
 }
 
-export interface ResponseLoader {
+/* export interface ResponseLoader {
+  json(): JSON;
   body: { locked: boolean };
   bodyUsed: boolean;
   headers: object;
@@ -49,7 +50,7 @@ export interface ResponseLoader {
   statusText: string;
   type: string;
   url: string;
-}
+} */
 
 export class NotNullElement {
   findNotNullElement(node: HTMLElement, selector: string) {
