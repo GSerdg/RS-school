@@ -35,9 +35,9 @@ export interface SourcesAppViewData {
   sources: SourcesApiData[];
 }
 
-export interface ApiKeyData {
-  [apiKey: string]: string;
-}
+export type ApiKeyData<T> = {
+  [apiKey in string]: T;
+};
 
 export function findNotNullElement(node: HTMLElement, selector: string) {
   const element = node.querySelector<HTMLElement>(selector);
