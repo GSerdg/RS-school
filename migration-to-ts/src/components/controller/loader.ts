@@ -1,8 +1,8 @@
 import { ApiKeyData } from '../../types/index';
 
 class Loader {
-  baseLink: string;
-  options: ApiKeyData;
+  private baseLink: string;
+  private options: ApiKeyData;
   constructor(baseLink: string, options: ApiKeyData) {
     this.baseLink = baseLink;
     this.options = options;
@@ -17,7 +17,7 @@ class Loader {
     this.load('GET', endpoint, callback, options);
   }
 
-  errorHandler(res: Response) {
+  private errorHandler(res: Response) {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -27,7 +27,7 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: Record<string, never>, endpoint: string) {
+  private makeUrl(options: Record<string, never>, endpoint: string) {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -38,7 +38,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: string, callback: { (): void; (arg0: JSON): void }, options = {}) {
+  private load(method: string, endpoint: string, callback: { (): void; (arg0: JSON): void }, options = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())

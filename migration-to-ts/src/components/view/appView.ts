@@ -3,8 +3,8 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-  news: { draw(data: NewsApiData[]): void };
-  sources: { draw(data: SourcesApiData[]): void };
+  private news: { draw(data: NewsApiData[]): void };
+  private sources: { draw(data: SourcesApiData[]): void };
   constructor() {
     this.news = new News();
     this.sources = new Sources();

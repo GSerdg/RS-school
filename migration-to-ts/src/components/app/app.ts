@@ -3,8 +3,8 @@ import { AppView } from '../view/appView';
 import { NotNullElement } from '../../types/index';
 
 class App extends NotNullElement {
-  controller: AppController;
-  view: AppView;
+  private controller: AppController;
+  private view: AppView;
   constructor() {
     super();
     this.controller = new AppController();
