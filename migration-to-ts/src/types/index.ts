@@ -39,6 +39,11 @@ export type ApiKeyData<T> = {
   [apiKey in string]: T;
 };
 
+export enum Endpoint {
+  Sources = 'sources',
+  Everything = 'everything',
+}
+
 export function findNotNullElement(node: HTMLElement, selector: string) {
   const element = node.querySelector<HTMLElement>(selector);
   if (element !== null) return element;
