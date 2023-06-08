@@ -1,16 +1,17 @@
+import { NewsAppViewData, SourcesAppViewData } from '../../types/index';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-  getSources(callback: (() => void) | undefined) {
+  getSources(callback: (arg0: SourcesAppViewData) => void) {
     super.getResp(
       {
         endpoint: 'sources',
       },
-      callback
+      callback as () => void
     );
   }
 
-  getNews(e: Event, callback: (() => void) | undefined) {
+  getNews(e: MouseEvent, callback: (arg0: NewsAppViewData) => void) {
     let target = e.target as HTMLElement;
     const newsContainer = e.currentTarget as HTMLDivElement;
     if (target === null || newsContainer === null) return;
@@ -28,7 +29,7 @@ class AppController extends AppLoader {
                   sources: sourceId,
                 },
               },
-              callback
+              callback as () => void
             );
           }
         }
