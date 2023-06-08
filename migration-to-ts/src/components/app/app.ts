@@ -14,7 +14,6 @@ class App extends NotNullElement {
   start() {
     this.findNotNullElement(document.body, '.sources').addEventListener('click', (e) =>
       this.controller.getNews(e, (data) => {
-        console.log('data', data);
         this.view.drawNews(data);
       })
     );
