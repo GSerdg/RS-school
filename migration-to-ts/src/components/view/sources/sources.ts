@@ -1,21 +1,21 @@
 import './sources.css';
-import { SourcesApiData, NotNullElement } from '../../../types/index';
+import { SourcesApiData, findNotNullElement } from '../../../types/index';
 
-class Sources extends NotNullElement {
+class Sources {
   draw(data: SourcesApiData[]) {
     const fragment = document.createDocumentFragment();
-    const sourceItemTemp = this.findNotNullElement(document.body, '#sourceItemTemp') as HTMLTemplateElement;
+    const sourceItemTemp = findNotNullElement(document.body, '#sourceItemTemp') as HTMLTemplateElement;
 
     data.forEach((item) => {
       const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
 
-      this.findNotNullElement(sourceClone, '.source__item-name').textContent = item.name;
-      this.findNotNullElement(sourceClone, '.source__item').setAttribute('data-source-id', item.id);
+      findNotNullElement(sourceClone, '.source__item-name').textContent = item.name;
+      findNotNullElement(sourceClone, '.source__item').setAttribute('data-source-id', item.id);
 
       fragment.append(sourceClone);
     });
 
-    this.findNotNullElement(document.body, '.sources').append(fragment);
+    findNotNullElement(document.body, '.sources').append(fragment);
   }
 }
 

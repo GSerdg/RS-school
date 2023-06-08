@@ -39,10 +39,8 @@ export interface ApiKeyData {
   [apiKey: string]: string;
 }
 
-export class NotNullElement {
-  findNotNullElement(node: HTMLElement, selector: string) {
-    const element = node.querySelector<HTMLElement>(selector);
-    if (element !== null) return element;
-    throw new Error();
-  }
+export function findNotNullElement(node: HTMLElement, selector: string) {
+  const element = node.querySelector<HTMLElement>(selector);
+  if (element !== null) return element;
+  throw new Error();
 }

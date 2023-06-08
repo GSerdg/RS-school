@@ -1,18 +1,17 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { NotNullElement } from '../../types/index';
+import { findNotNullElement } from '../../types/index';
 
-class App extends NotNullElement {
+class App {
   private controller: AppController;
   private view: AppView;
   constructor() {
-    super();
     this.controller = new AppController();
     this.view = new AppView();
   }
 
   start() {
-    this.findNotNullElement(document.body, '.sources').addEventListener('click', (e) =>
+    findNotNullElement(document.body, '.sources').addEventListener('click', (e) =>
       this.controller.getNews(e, (data) => {
         this.view.drawNews(data);
       })
