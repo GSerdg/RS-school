@@ -1,8 +1,8 @@
 import { ApiKeyData } from '../../types/index';
 
 class Loader {
-  private baseLink: string;
-  private options: ApiKeyData<string>;
+  private readonly baseLink: string;
+  private readonly options: ApiKeyData<string>;
   constructor(baseLink: string, options: ApiKeyData<string>) {
     this.baseLink = baseLink;
     this.options = options;
