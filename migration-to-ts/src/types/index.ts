@@ -14,10 +14,11 @@ export interface NewsApiData {
   urlToImage: string;
 }
 
-export interface NewsAppViewData {
+interface AppViewData {
   status: string;
   totalResults: number;
   articles: NewsApiData[];
+  sources: SourcesApiData[];
 }
 
 export interface SourcesApiData {
@@ -30,14 +31,12 @@ export interface SourcesApiData {
   country: string;
 }
 
-export interface SourcesAppViewData {
-  status: string;
-  sources: SourcesApiData[];
-}
-
 export type ApiKeyData<T> = {
   [apiKey in string]: T;
 };
+
+export type NewsAppViewData = Pick<AppViewData, 'status' | 'totalResults' | 'articles'>;
+export type SourcesAppViewData = Pick<AppViewData, 'status' | 'sources'>;
 
 export enum Endpoint {
   Sources = 'sources',
