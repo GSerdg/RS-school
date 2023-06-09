@@ -48,3 +48,17 @@ export function findNotNullElement(node: HTMLElement, selector: string) {
   if (element !== null) return element;
   throw new Error();
 }
+
+export function hideMenuButtons(event: MouseEvent) {
+  const target = event.target as HTMLDivElement;
+  const button = target.closest('.hidden-button');
+  if (!button) return;
+  const element = button.previousElementSibling as HTMLElement | null;
+  if (element !== null) {
+    if (Array.from(element.classList).includes('sources_height')) {
+      element.classList.remove('sources_height');
+    } else {
+      element.classList.add('sources_height');
+    }
+  }
+}
