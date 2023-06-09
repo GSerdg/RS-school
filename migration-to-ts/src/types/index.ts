@@ -45,7 +45,7 @@ export enum Endpoint {
 }
 
 export function findNotNullElement(node: HTMLElement, selector: string) {
-  const element = node.querySelector<HTMLElement>(selector);
+  const element: HTMLElement | null = node.querySelector<HTMLElement>(selector);
   if (element !== null) return element;
   throw new Error();
 }
