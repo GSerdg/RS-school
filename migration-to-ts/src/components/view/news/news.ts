@@ -2,7 +2,7 @@ import './news.css';
 import { findNotNullElement, NewsApiData } from '../../../types/index';
 
 class News {
-  draw(data: NewsApiData[]) {
+  draw(data: Readonly<NewsApiData[]>) {
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
     const fragment = document.createDocumentFragment();
     const newsItemTemp = findNotNullElement(document.body, '#newsItemTemp') as HTMLTemplateElement;

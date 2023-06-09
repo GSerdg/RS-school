@@ -2,7 +2,7 @@ import './sources.css';
 import { SourcesApiData, findNotNullElement } from '../../../types/index';
 
 class Sources {
-  draw(data: SourcesApiData[]) {
+  draw(data: Readonly<SourcesApiData[]>) {
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = findNotNullElement(document.body, '#sourceItemTemp') as HTMLTemplateElement;
 
