@@ -3,7 +3,21 @@ import { findNotNullElement, NewsApiData } from '../../../types/index';
 
 class News {
   draw(data: Readonly<NewsApiData[]>) {
-    const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    const dataTitleSet: Set<string> = new Set();
+    let i = 0;
+    const news: NewsApiData[] = [];
+    while (dataTitleSet.size < 10) {
+      if (!data[i]) break;
+      dataTitleSet.add(data[i].title);
+      i += 1;
+    }
+    data.forEach((item) => {
+      if (dataTitleSet.has(item.title)) {
+        news.push(item);
+        dataTitleSet.delete(item.title);
+      }
+    });
+
     const fragment = document.createDocumentFragment();
     const newsItemTemp = findNotNullElement(document.body, '#newsItemTemp') as HTMLTemplateElement;
 
