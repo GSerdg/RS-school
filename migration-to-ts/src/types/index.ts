@@ -3,17 +3,6 @@ interface SourceData {
   name: string;
 }
 
-export interface NewsApiData {
-  author: string;
-  content: string;
-  description: string;
-  publishedAt: string;
-  source: SourceData;
-  title: string;
-  url: string;
-  urlToImage: string;
-}
-
 interface AppViewData {
   status: string;
   totalResults: number;
@@ -21,7 +10,7 @@ interface AppViewData {
   sources: SourcesApiData[];
 }
 
-export interface SourcesApiData {
+interface ApiData {
   id: string;
   name: string;
   description: string;
@@ -29,7 +18,19 @@ export interface SourcesApiData {
   category: string;
   language: string;
   country: string;
+  author: string;
+  content: string;
+  publishedAt: string;
+  source: SourceData;
+  title: string;
+  urlToImage: string;
 }
+
+export type NewsApiData = Pick<
+  ApiData,
+  'description' | 'url' | 'author' | 'content' | 'publishedAt' | 'source' | 'title' | 'urlToImage'
+>;
+export type SourcesApiData = Pick<ApiData, 'id' | 'name' | 'description' | 'url' | 'category' | 'language' | 'country'>;
 
 export type ApiKeyData<T> = {
   [apiKey in string]: T;
@@ -43,22 +44,7 @@ export enum Endpoint {
   Everything = 'everything',
 }
 
-export function findNotNullElement(node: HTMLElement, selector: string) {
-  const element: HTMLElement | null = node.querySelector<HTMLElement>(selector);
-  if (element !== null) return element;
-  throw new Error();
-}
-
-export function hideMenuButtons(event: MouseEvent) {
-  const target = event.target as HTMLDivElement;
-  const button = target.closest('.hidden-button');
-  if (!button) return;
-  const element = button.previousElementSibling as HTMLElement | null;
-  if (element !== null) {
-    if (Array.from(element.classList).includes('sources_height')) {
-      element.classList.remove('sources_height');
-    } else {
-      element.classList.add('sources_height');
-    }
-  }
+export enum CodeStatus {
+  Unauthorized = 401,
+  NotFound = 404,
 }

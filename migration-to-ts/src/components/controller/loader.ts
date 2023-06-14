@@ -1,4 +1,5 @@
-import { ApiKeyData } from '../../types/index';
+import { ApiKeyData, NewsAppViewData, SourcesAppViewData } from '../../types/index';
+import { CodeStatus } from '../../types/index';
 
 class Loader {
   private readonly baseLink: string;
@@ -19,15 +20,16 @@ class Loader {
 
   private errorHandler(res: Response) {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404)
+      if (res.status === CodeStatus.Unauthorized || res.status === CodeStatus.NotFound) {
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+      }
       throw Error(res.statusText);
     }
 
     return res;
   }
 
-  private makeUrl(options: Record<string, never>, endpoint: string) {
+  private makeUrl(options: ApiKeyData<string>, endpoint: string) {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -38,12 +40,17 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  private load(method: string, endpoint: string, callback: { (): void; (arg0: JSON): void }, options = {}) {
+  private load(
+    method: string,
+    endpoint: string,
+    callback: { (arg0: NewsAppViewData | SourcesAppViewData): void },
+    options = {}
+  ) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
       .then((data) => callback(data))
-      .catch((err: string) => console.error(err));
+      .catch((err: Error) => console.error(err));
   }
 }
 

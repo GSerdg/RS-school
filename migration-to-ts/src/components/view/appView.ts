@@ -1,10 +1,5 @@
-import {
-  findNotNullElement,
-  NewsApiData,
-  NewsAppViewData,
-  SourcesApiData,
-  SourcesAppViewData,
-} from '../../types/index';
+import { NewsApiData, NewsAppViewData, SourcesApiData, SourcesAppViewData } from '../../types/index';
+import { findDomElement } from '../../helper/find-dom-element';
 import News from './news/news';
 import Sources from './sources/sources';
 
@@ -19,7 +14,7 @@ export class AppView {
   public drawNews(data: NewsAppViewData) {
     const values = data?.articles ? data?.articles : [];
     this.news.draw(values);
-    const sources = findNotNullElement(document.body, '.sources');
+    const sources = findDomElement<HTMLElement>(document.body, '.sources');
     sources.classList.add('sources_height');
   }
 
