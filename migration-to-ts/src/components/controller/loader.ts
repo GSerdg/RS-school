@@ -12,7 +12,7 @@ class Loader {
 
   getResp(
     { endpoint, options = {} }: GetRespType,
-    callback: Callback<NewsAppViewData | SourcesAppViewData> = () => {
+    callback: Callback<NewsAppViewData> | Callback<SourcesAppViewData> = () => {
       console.error('No callback for GET response');
     }
   ) {
@@ -44,13 +44,13 @@ class Loader {
   private load(
     method: string,
     endpoint: string,
-    callback: Callback<NewsAppViewData | SourcesAppViewData>,
+    callback: Callback<NewsAppViewData> | Callback<SourcesAppViewData>,
     options = {}
   ) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
-      .then((data: NewsAppViewData | SourcesAppViewData) => callback(data))
+      .then((data) => callback(data))
       .catch((err: Error) => console.error(err));
   }
 }

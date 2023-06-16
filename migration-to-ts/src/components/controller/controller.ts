@@ -7,7 +7,7 @@ class AppController extends AppLoader {
       {
         endpoint: Endpoint.Sources,
       },
-      callback as () => void
+      callback
     );
   }
 
@@ -29,7 +29,7 @@ class AppController extends AppLoader {
                   sources: sourceId,
                 },
               },
-              callback as () => void
+              callback
             );
           }
         }
