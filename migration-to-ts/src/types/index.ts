@@ -6,8 +6,8 @@ interface SourceData {
 interface AppViewData {
   status: string;
   totalResults: number;
-  articles: NewsApiData[];
-  sources: SourcesApiData[];
+  articles: NewsData[];
+  sources: SourcesData[];
 }
 
 interface ApiData {
@@ -26,14 +26,19 @@ interface ApiData {
   urlToImage: string;
 }
 
-export type NewsApiData = Pick<
+export interface GetRespType {
+  endpoint: Endpoint;
+  options?: Partial<{ sources: string }>;
+}
+
+export type NewsData = Pick<
   ApiData,
   'description' | 'url' | 'author' | 'content' | 'publishedAt' | 'source' | 'title' | 'urlToImage'
 >;
-export type SourcesApiData = Pick<ApiData, 'id' | 'name' | 'description' | 'url' | 'category' | 'language' | 'country'>;
+export type SourcesData = Pick<ApiData, 'id' | 'name' | 'description' | 'url' | 'category' | 'language' | 'country'>;
 
-export type ApiKeyData<T> = {
-  [apiKey in string]: T;
+export type ApiKeyData = {
+  [apiKey in string]: string;
 };
 
 export type NewsAppViewData = Pick<AppViewData, 'status' | 'totalResults' | 'articles'>;
@@ -48,3 +53,5 @@ export enum CodeStatus {
   Unauthorized = 401,
   NotFound = 404,
 }
+
+export type Callback<T> = (data: T) => void;

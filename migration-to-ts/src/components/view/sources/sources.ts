@@ -1,9 +1,9 @@
 import './sources.css';
-import { SourcesApiData } from '../../../types/index';
+import { SourcesData } from '../../../types/index';
 import { findDomElement } from '../../../helper/find-dom-element';
 
 class Sources {
-  draw(data: Readonly<SourcesApiData[]>) {
+  draw(data: Readonly<SourcesData[]>) {
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = findDomElement<HTMLTemplateElement>(document.body, '#sourceItemTemp');
 

@@ -1,8 +1,8 @@
-import { NewsAppViewData, SourcesAppViewData, Endpoint } from '../../types/index';
+import { NewsAppViewData, SourcesAppViewData, Endpoint, Callback } from '../../types/index';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-  getSources(callback: (arg0: SourcesAppViewData) => void) {
+  getSources(callback: Callback<SourcesAppViewData>) {
     super.getResp(
       {
         endpoint: Endpoint.Sources,
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(e: MouseEvent, callback: (arg0: NewsAppViewData) => void) {
+  getNews(e: MouseEvent, callback: Callback<NewsAppViewData>) {
     let target = e.target as HTMLElement;
     const newsContainer = e.currentTarget as HTMLDivElement;
     if (target === null || newsContainer === null) return;

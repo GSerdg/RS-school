@@ -1,12 +1,12 @@
 import './news.css';
-import { NewsApiData } from '../../../types/index';
+import { NewsData } from '../../../types/index';
 import { findDomElement } from '../../../helper/find-dom-element';
 
 class News {
-  draw(data: Readonly<NewsApiData[]>) {
+  draw(data: Readonly<NewsData[]>) {
     const dataTitleSet: Set<string> = new Set();
     let i = 0;
-    const news: NewsApiData[] = [];
+    const news: NewsData[] = [];
     while (dataTitleSet.size < 10) {
       if (!data[i]) break;
       dataTitleSet.add(data[i].title);

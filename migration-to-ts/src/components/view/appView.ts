@@ -1,11 +1,11 @@
-import { NewsApiData, NewsAppViewData, SourcesApiData, SourcesAppViewData } from '../../types/index';
+import { NewsData, NewsAppViewData, SourcesData, SourcesAppViewData } from '../../types/index';
 import { findDomElement } from '../../helper/find-dom-element';
 import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-  private readonly news: { draw(data: NewsApiData[]): void };
-  private readonly sources: { draw(data: SourcesApiData[]): void };
+  private readonly news: { draw(data: NewsData[]): void };
+  private readonly sources: { draw(data: SourcesData[]): void };
   constructor() {
     this.news = new News();
     this.sources = new Sources();
