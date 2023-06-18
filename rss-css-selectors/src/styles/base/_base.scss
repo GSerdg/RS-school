@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-size: 10px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 160%;
+    color: $main-text-color;
+    // background-color: #fffbdc;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .wrapper {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
