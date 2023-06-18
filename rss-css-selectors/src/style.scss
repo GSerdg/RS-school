@@ -8,8 +8,11 @@
 }
 
 .right-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 20%;
-  padding: 25px;
+  padding: 60px 25px 25px;
   background-color: $dark-border;
 }
 

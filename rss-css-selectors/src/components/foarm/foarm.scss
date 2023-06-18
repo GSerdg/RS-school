@@ -33,6 +33,11 @@
   }
 }
 
+.text-foarm__code {
+  padding: 10px;
+  font-weight: 700;
+}
+
 .rows-count {
   display: flex;
   flex-direction: column;
@@ -45,21 +50,13 @@
   }
 }
 
-.input,
-.input-btn {
-  margin: 10px 10px 0;
-}
-
 .input {
   border: none;
   outline: none;
   flex-grow: 1;
   background-color: #12464647;
+  margin: 10px 10px 0;
   animation: color 0.3s infinite alternate;
-}
-
-.input-btn {
-  padding: 0 3px;
 }
 
 @keyframes color {
