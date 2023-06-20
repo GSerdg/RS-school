@@ -1,6 +1,7 @@
 import { createElement } from './createElement';
 import { Tag } from '../types/types';
 
+// Создает текст HTML разметки с вложенностью в соответствии с выбранным уровнем
 function createPsevdoHtml(data: Tag[]) {
   const ELEMENTS: HTMLElement[] = [];
 
@@ -40,6 +41,7 @@ function createPsevdoHtml(data: Tag[]) {
   return ELEMENTS;
 }
 
+// Добавляет класс для подсветки текста при наведении мыши
 function addSelectForElements(event: Event) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'SPAN') return;
@@ -48,6 +50,7 @@ function addSelectForElements(event: Event) {
   parentElement?.classList.add('tag_light');
 }
 
+// Удаляет класс для подсветки текста при уходе курсора мыши с текста
 function removeSelectForElements(event: Event) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'SPAN') return;
