@@ -54,9 +54,11 @@
   border: none;
   outline: none;
   flex-grow: 1;
-  background-color: #12464647;
   margin: 10px 10px 0;
-  animation: color 0.3s infinite alternate;
+
+  &_strobe {
+    animation: color 0.3s infinite alternate;
+  }
 }
 
 @keyframes color {
