@@ -69,6 +69,10 @@
   }
 }
 
-.tag_light {
-  color: $light-text-color;
+.tag {
+  cursor: default;
+
+  &_light {
+    color: $light-text-color;
+  }
 }

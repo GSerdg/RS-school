@@ -1,7 +1,7 @@
 import { createElement } from './createElement';
 import { Tag } from '../types/types';
 
-function createLevelHtml(data: Tag[]) {
+function createPsevdoHtml(data: Tag[]) {
   const ELEMENTS: HTMLElement[] = [];
 
   data.forEach((item) => {
@@ -17,7 +17,7 @@ function createLevelHtml(data: Tag[]) {
     }
     if (item.inside) {
       TEXT_OPEN += '>';
-      CHILD_ELEMENTS = createLevelHtml(item.inside);
+      CHILD_ELEMENTS = createPsevdoHtml(item.inside);
     } else {
       TEXT_OPEN += ' />';
     }
@@ -48,16 +48,24 @@ function addSelectForElements(event: Event) {
   parentElement?.classList.add('tag_light');
 }
 
+function removeSelectForElements(event: Event) {
+  const target = event.target as HTMLElement;
+  if (target.tagName !== 'SPAN') return;
+
+  const parentElement = target.closest('.tag_open');
+  parentElement?.classList.remove('tag_light');
+}
+
 export function createViewHtml(data: Tag[]) {
   const TEXT_FOARM_CODE = createElement('div', ['text-foarm__code']);
   const STR_1_OPEN = createElement('p', ['tag', 'tag_open'], 'open-1', '<div class="table">');
   const STR_1_CLOSED = createElement('p', ['tag', 'tag_closed'], 'closed-1', '</div>');
 
   TEXT_FOARM_CODE.append(STR_1_OPEN);
-  STR_1_OPEN.append(...createLevelHtml(data));
+  STR_1_OPEN.append(...createPsevdoHtml(data));
   STR_1_OPEN.append(STR_1_CLOSED);
 
   TEXT_FOARM_CODE.addEventListener('mouseover', addSelectForElements);
-  // TEXT_FOARM_CODE.addEventListener('mouseout', removeSelectForElements);
+  TEXT_FOARM_CODE.addEventListener('mouseout', removeSelectForElements);
   return TEXT_FOARM_CODE;
 }
