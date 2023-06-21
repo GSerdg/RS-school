@@ -1,10 +1,11 @@
 // import './foarm.scss';
 import { createViewHtml } from '../../modules/create-html';
 import { findDomElement } from '../../modules/find-dom-element';
-import { levelData } from '../../modules/level-data';
-const level = 2;
+import { level, levelData } from '../../modules/level-data';
+
 const VIEWER = findDomElement(document.body, '.text-foarm_viewer');
 const INPUT = findDomElement(document.body, '.input');
+const BUTTON = findDomElement(document.body, '.btn');
 
 function addRemoveInputStrobe(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -16,5 +17,25 @@ function addRemoveInputStrobe(event: Event) {
   }
 }
 
+function submitInputClickButton(event: Event) {
+  const target = event.target as HTMLElement;
+  const input = target.previousElementSibling as HTMLInputElement;
+  const value = input?.value;
+
+  if (value === 'div') alert('Rite');
+}
+
+function submitInputPressEnter(event: Event) {
+  const target = event.target as HTMLInputElement;
+  let value: string;
+
+  if ((event as KeyboardEvent).code === 'Enter') {
+    value = target.value;
+    if (value === 'div') alert('Rite');
+  }
+}
+
 VIEWER.append(createViewHtml(levelData[level]));
 INPUT.addEventListener('input', addRemoveInputStrobe);
+INPUT.addEventListener('keyup', submitInputPressEnter);
+BUTTON.addEventListener('click', submitInputClickButton);

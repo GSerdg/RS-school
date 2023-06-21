@@ -1,8 +1,11 @@
 .foarms {
+  // position: relative;
   display: flex;
   width: 100%;
+  // background-color: $main-background-transparent;
   border: 10px solid $dark-border;
   border-radius: 6px;
+  // z-index: 1;
 }
 
 .editor {

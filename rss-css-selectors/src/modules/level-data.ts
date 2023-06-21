@@ -1,27 +1,28 @@
 import { Levels } from '../types/types';
 
+export const level = 2;
 export const levelData: Levels = {
   1: [
     {
-      value: 'square',
+      value: 'apple',
       class: null,
       id: null,
       inside: [
         {
-          value: 'circle',
-          class: 'green',
+          value: 'caterpillar',
+          class: 'angry',
           id: null,
           inside: null,
         },
       ],
     },
     {
-      value: 'square',
+      value: 'apple',
       class: null,
       id: 'big',
       inside: [
         {
-          value: 'circle',
+          value: 'butterfly',
           class: null,
           id: null,
           inside: null,
@@ -29,12 +30,12 @@ export const levelData: Levels = {
       ],
     },
     {
-      value: 'square',
+      value: 'flower',
       class: null,
       id: null,
       inside: [
         {
-          value: 'circle',
+          value: 'butterfly',
           class: null,
           id: null,
           inside: null,
@@ -44,23 +45,23 @@ export const levelData: Levels = {
   ],
   2: [
     {
-      value: 'square',
+      value: 'hedgehog',
       class: 'red',
       id: null,
       inside: [
         {
-          value: 'circle',
+          value: 'apple',
           class: 'green',
           id: null,
           inside: null,
         },
         {
-          value: 'circle',
+          value: 'apple',
           class: 'white',
           id: null,
           inside: [
             {
-              value: 'oval',
+              value: 'caterpillar',
               class: null,
               id: null,
               inside: null,
@@ -70,12 +71,12 @@ export const levelData: Levels = {
       ],
     },
     {
-      value: 'square',
+      value: 'apple',
       class: null,
       id: 'big',
       inside: [
         {
-          value: 'circle',
+          value: 'caterpillar',
           class: null,
           id: null,
           inside: null,
@@ -83,12 +84,12 @@ export const levelData: Levels = {
       ],
     },
     {
-      value: 'square',
+      value: 'flower',
       class: null,
       id: null,
       inside: [
         {
-          value: 'circle',
+          value: 'butterfly',
           class: null,
           id: null,
           inside: null,

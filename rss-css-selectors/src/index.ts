@@ -7,3 +7,4 @@ import './components/level/level.scss';
 import './styles/components/button.scss';
 
 import '../src/components/foarm/foarm';
+import '../src/components/animation/animation';

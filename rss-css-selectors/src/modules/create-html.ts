@@ -1,4 +1,4 @@
-import { createElement } from './createElement';
+import { createElement } from './create-element';
 import { Tag } from '../types/types';
 
 // Создает текст HTML разметки с вложенностью в соответствии с выбранным уровнем
@@ -42,7 +42,7 @@ function createPsevdoHtml(data: Tag[]) {
 }
 
 // Добавляет класс для подсветки текста при наведении мыши
-function addSelectForElements(event: Event) {
+function addSelectForElements(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'SPAN') return;
 
@@ -51,7 +51,7 @@ function addSelectForElements(event: Event) {
 }
 
 // Удаляет класс для подсветки текста при уходе курсора мыши с текста
-function removeSelectForElements(event: Event) {
+function removeSelectForElements(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'SPAN') return;
 
@@ -61,7 +61,7 @@ function removeSelectForElements(event: Event) {
 
 export function createViewHtml(data: Tag[]) {
   const TEXT_FOARM_CODE = createElement('div', ['text-foarm__code']);
-  const STR_1_OPEN = createElement('p', ['tag', 'tag_open'], 'open-1', '<div class="table">');
+  const STR_1_OPEN = createElement('p', ['tag', 'tag_open'], 'open-1', '<div class="field">');
   const STR_1_CLOSED = createElement('p', ['tag', 'tag_closed'], 'closed-1', '</div>');
 
   TEXT_FOARM_CODE.append(STR_1_OPEN);
