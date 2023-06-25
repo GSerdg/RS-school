@@ -5,43 +5,83 @@
 
 .field {
   width: 100%;
+  height: 9vw;
 }
 
 .animation__elements {
   display: flex;
   position: absolute;
-  bottom: 20%;
+  bottom: 25%;
   width: 100%;
-  column-gap: 5%;
+  column-gap: 4%;
   justify-content: center;
   align-items: flex-end;
 }
 
-.apple,
-.flower {
-  width: 13%;
-  position: relative;
-}
-.hedgehog {
+.animation-child {
   display: flex;
-  width: 30%;
-  position: relative;
-}
-.apple__img,
-.flower__img,
-.hedgehog__img {
+  align-items: flex-end;
   width: 100%;
-}
-
-.butterfly,
-.caterpillar {
   position: absolute;
-  width: 70%;
   bottom: 60%;
   left: 15%;
 }
 
+.apple,
+.flower {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  position: relative;
+
+  &_width {
+    width: 8%;
+  }
+
+  &_small {
+    width: 5%;
+  }
+
+}
+
+.hedgehog {
+  display: flex;
+  justify-content: center;
+  width: 15%;
+  position: relative;
+
+  >.animation-child>.apple {
+    width: 32%;
+  }
+}
+
+.apple__img,
+.flower__img,
+.hedgehog__img,
 .butterfly__img,
 .caterpillar__img {
+  width: 96%;
+  position: relative;
+  transition: width 0.2s;
+
+  @include hover {
+    filter: drop-shadow(2px 4px 6px white);
+    width: 100%;
+  }
+}
+
+.butterfly,
+.caterpillar {
+  position: relative;
+  width: 70%;
+
+  &_width {
+    width: 8%;
+  }
+}
+
+.img-light {
+  filter: drop-shadow(2px 4px 6px white);
   width: 100%;
+
 }

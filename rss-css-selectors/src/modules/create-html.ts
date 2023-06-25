@@ -1,14 +1,22 @@
 import { createElement } from './create-element';
 import { Tag } from '../types/types';
+import { findDomElement } from './find-dom-element';
+
+let id = 0;
 
 // Создает текст HTML разметки с вложенностью в соответствии с выбранным уровнем
 function createPsevdoHtml(data: Tag[]) {
   const ELEMENTS: HTMLElement[] = [];
 
   data.forEach((item) => {
+    id += 1;
     let TEXT_OPEN = `<${item.value}`;
     const TEXT_CLOSED = `</${item.value}>`;
     let CHILD_ELEMENTS: HTMLElement[] | undefined;
+    const STR_OPEN = createElement('p', ['tag', 'tag_open']);
+
+    STR_OPEN.setAttribute('style', `padding-left: 30px`);
+    STR_OPEN.setAttribute('id', `text${id}`);
 
     if (item.id) {
       TEXT_OPEN += ` id="${item.id}"`;
@@ -23,11 +31,11 @@ function createPsevdoHtml(data: Tag[]) {
       TEXT_OPEN += ' />';
     }
 
-    const STR_OPEN = createElement('p', ['tag', 'tag_open']);
     const STR_OPEN_SPAN = createElement('span', ['tag__text', 'tag__text_open'], undefined, TEXT_OPEN);
+
     STR_OPEN.append(STR_OPEN_SPAN);
-    STR_OPEN.setAttribute('style', `padding-left: 30px`);
     ELEMENTS.push(STR_OPEN);
+
     if (CHILD_ELEMENTS) {
       const STR_CLOSED = createElement('p', ['tag', 'tag_closed']);
       const STR_CLOSED_SPAN = createElement('span', ['tag__text', 'tag__text_closed'], undefined, TEXT_CLOSED);
@@ -42,21 +50,22 @@ function createPsevdoHtml(data: Tag[]) {
 }
 
 // Добавляет класс для подсветки текста при наведении мыши
-function addSelectForElements(event: MouseEvent) {
+function selectElements(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'SPAN') return;
 
   const parentElement = target.closest('.tag_open');
-  parentElement?.classList.add('tag_light');
-}
+  const targetId = (parentElement?.getAttribute('id') as string).match(/\d+/);
+  const IMG = findDomElement(document.body, `#img${targetId}`);
 
-// Удаляет класс для подсветки текста при уходе курсора мыши с текста
-function removeSelectForElements(event: MouseEvent) {
-  const target = event.target as HTMLElement;
-  if (target.tagName !== 'SPAN') return;
-
-  const parentElement = target.closest('.tag_open');
-  parentElement?.classList.remove('tag_light');
+  if (event.type === 'mouseover') {
+    parentElement?.classList.add('tag_light');
+    IMG.classList.add('img-light');
+  }
+  if (event.type === 'mouseout') {
+    parentElement?.classList.remove('tag_light');
+    IMG.classList.remove('img-light');
+  }
 }
 
 export function createViewHtml(data: Tag[]) {
@@ -68,7 +77,7 @@ export function createViewHtml(data: Tag[]) {
   STR_1_OPEN.append(...createPsevdoHtml(data));
   STR_1_OPEN.append(STR_1_CLOSED);
 
-  TEXT_FOARM_CODE.addEventListener('mouseover', addSelectForElements);
-  TEXT_FOARM_CODE.addEventListener('mouseout', removeSelectForElements);
+  TEXT_FOARM_CODE.addEventListener('mouseover', selectElements);
+  TEXT_FOARM_CODE.addEventListener('mouseout', selectElements);
   return TEXT_FOARM_CODE;
 }

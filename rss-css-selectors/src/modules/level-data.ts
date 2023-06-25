@@ -1,8 +1,74 @@
 import { Levels } from '../types/types';
 
-export const level = 2;
+export const level = 9;
 export const levelData: Levels = {
   1: [
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: null,
+    },
+  ],
+  2: [
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: null,
+    },
+  ],
+  3: [
+    {
+      value: 'caterpillar',
+      class: null,
+      id: 'ungry',
+      inside: null,
+    },
+    {
+      value: 'caterpillar',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: null,
+    },
+  ],
+  4: [
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: null,
+    },
     {
       value: 'apple',
       class: null,
@@ -17,13 +83,86 @@ export const levelData: Levels = {
       ],
     },
     {
+      value: 'caterpillar',
+      class: null,
+      id: null,
+      inside: null,
+    },
+  ],
+  5: [
+    {
       value: 'apple',
       class: null,
-      id: 'big',
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'apple',
+      class: 'small',
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
       inside: [
         {
           value: 'butterfly',
           class: null,
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: null,
+    },
+  ],
+  6: [
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'butterfly',
+          class: 'angry',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: 'small',
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'apple',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'caterpillar',
+          class: 'angry',
           id: null,
           inside: null,
         },
@@ -43,7 +182,54 @@ export const levelData: Levels = {
       ],
     },
   ],
-  2: [
+  7: [
+    {
+      value: 'apple',
+      class: null,
+      id: 'big',
+      inside: [
+        {
+          value: 'caterpillar',
+          class: 'angry',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: 'big',
+      inside: [
+        {
+          value: 'caterpillar',
+          class: 'angry',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: 'big',
+      inside: [
+        {
+          value: 'caterpillar',
+          class: 'angry',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'caterpillar',
+      class: 'angry',
+      id: null,
+      inside: null,
+    },
+  ],
+  8: [
     {
       value: 'hedgehog',
       class: 'red',
@@ -51,22 +237,15 @@ export const levelData: Levels = {
       inside: [
         {
           value: 'apple',
-          class: 'green',
+          class: 'small',
           id: null,
           inside: null,
         },
         {
           value: 'apple',
-          class: 'white',
+          class: 'small',
           id: null,
-          inside: [
-            {
-              value: 'caterpillar',
-              class: null,
-              id: null,
-              inside: null,
-            },
-          ],
+          inside: null,
         },
       ],
     },
@@ -91,6 +270,112 @@ export const levelData: Levels = {
         {
           value: 'butterfly',
           class: null,
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: 'white',
+      id: null,
+      inside: null,
+    },
+  ],
+  9: [
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'apple',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: 'small',
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'apple',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'hedgehog',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'apple',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+  ],
+  10: [
+    {
+      value: 'apple',
+      class: null,
+      id: 'green',
+      inside: [
+        {
+          value: 'butterfly',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'flower',
+          class: null,
+          id: null,
+          inside: null,
+        },
+      ],
+    },
+    {
+      value: 'apple',
+      class: 'small',
+      id: null,
+      inside: null,
+    },
+    {
+      value: 'apple',
+      class: null,
+      id: null,
+      inside: [
+        {
+          value: 'caterpillar',
+          class: 'angry',
           id: null,
           inside: null,
         },
