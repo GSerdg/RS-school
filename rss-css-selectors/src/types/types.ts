@@ -18,4 +18,17 @@ export interface Levels {
   10: Tag[];
 }
 
+export interface Unswers {
+  1: string[];
+  2: string[];
+  3: string[];
+  4: string[];
+  5: string[];
+  6: string[];
+  7: string[];
+  8: string[];
+  9: string[];
+  10: string[];
+}
+
 export type Level = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

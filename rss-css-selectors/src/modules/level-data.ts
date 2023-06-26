@@ -1,4 +1,4 @@
-import { Levels } from '../types/types';
+import { Levels, Unswers } from '../types/types';
 
 export const levelData: Levels = {
   1: [
@@ -75,7 +75,7 @@ export const levelData: Levels = {
       inside: [
         {
           value: 'caterpillar',
-          class: 'angry',
+          class: null,
           id: null,
           inside: null,
         },
@@ -381,4 +381,17 @@ export const levelData: Levels = {
       ],
     },
   ],
+};
+
+export const levelUnswer: Unswers = {
+  1: ['apple', '*'],
+  2: ['flower'],
+  3: ['#ungry'],
+  4: ['apple caterpillar', 'apple>caterpillar'],
+  5: [''],
+  6: [''],
+  7: [''],
+  8: [''],
+  9: [''],
+  10: [''],
 };
