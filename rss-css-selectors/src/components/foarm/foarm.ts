@@ -1,9 +1,8 @@
 import './foarm.scss';
-import { createViewHtml } from '../../modules/create-html';
+// import { createViewHtml } from '../../modules/create-html';
 import { findDomElement } from '../../modules/find-dom-element';
-import { level, levelData } from '../../modules/level-data';
+// import { level, levelData } from '../../modules/level-data';
 
-const VIEWER = findDomElement(document.body, '.text-foarm_viewer');
 const INPUT = findDomElement(document.body, '.input');
 const BUTTON = findDomElement(document.body, '.btn');
 
@@ -35,7 +34,6 @@ function submitInputPressEnter(event: Event) {
   }
 }
 
-VIEWER.append(createViewHtml(levelData[level]));
 INPUT.addEventListener('input', addRemoveInputStrobe);
 INPUT.addEventListener('keyup', submitInputPressEnter);
 BUTTON.addEventListener('click', submitInputClickButton);

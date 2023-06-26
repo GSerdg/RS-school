@@ -17,3 +17,5 @@ export interface Levels {
   9: Tag[];
   10: Tag[];
 }
+
+export type Level = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

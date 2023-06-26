@@ -10,11 +10,15 @@
   cursor: pointer;
 
   &_win {
-    color:#008000
+    color: #008000
   }
 
   &_help {
-    color:#ffff00;
+    color: #ffff00;
+  }
+
+  &_light {
+    color: $light-text-color;
   }
 
   @include hover {

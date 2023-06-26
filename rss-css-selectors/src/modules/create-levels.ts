@@ -7,6 +7,11 @@ export function createLevelsElement(data: Levels) {
 
   for (let i = 1; i < keys.length + 1; i += 1) {
     const LI = createElement('li', ['levels__list'], `${i}`, `level ${i}`);
+
+    if (i === 1) {
+      LI.classList.add('levels__list_light');
+    }
+
     UL.append(LI);
   }
 
