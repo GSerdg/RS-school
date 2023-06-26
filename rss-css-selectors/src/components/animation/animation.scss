@@ -27,12 +27,19 @@
   left: 15%;
 }
 
+.butterfly,
+.caterpillar {
+  width: 70%;
+
+  &_width {
+    width: 8%;
+  }
+}
+
 .apple,
 .flower {
-  display: flex;
-  justify-content: center;
+
   width: 90%;
-  position: relative;
 
   &_width {
     width: 8%;
@@ -45,43 +52,31 @@
 }
 
 .hedgehog {
-  display: flex;
-  justify-content: center;
   width: 15%;
-  position: relative;
 
   >.animation-child>.apple {
     width: 32%;
   }
 }
 
-.apple__img,
-.flower__img,
-.hedgehog__img,
-.butterfly__img,
-.caterpillar__img {
+.figure {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.image {
   width: 96%;
   position: relative;
   transition: width 0.2s;
+
+  &_light {
+    filter: drop-shadow(2px 4px 6px white);
+    width: 100%;
+  }
 
   @include hover {
     filter: drop-shadow(2px 4px 6px white);
     width: 100%;
   }
-}
-
-.butterfly,
-.caterpillar {
-  position: relative;
-  width: 70%;
-
-  &_width {
-    width: 8%;
-  }
-}
-
-.img-light {
-  filter: drop-shadow(2px 4px 6px white);
-  width: 100%;
-
 }

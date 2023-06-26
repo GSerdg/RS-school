@@ -1,4 +1,4 @@
-// import './foarm.scss';
+import './foarm.scss';
 import { createViewHtml } from '../../modules/create-html';
 import { findDomElement } from '../../modules/find-dom-element';
 import { level, levelData } from '../../modules/level-data';

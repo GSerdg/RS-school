@@ -60,11 +60,11 @@ function selectElements(event: MouseEvent) {
 
   if (event.type === 'mouseover') {
     parentElement?.classList.add('tag_light');
-    IMG.classList.add('img-light');
+    IMG.classList.add('image_light');
   }
   if (event.type === 'mouseout') {
     parentElement?.classList.remove('tag_light');
-    IMG.classList.remove('img-light');
+    IMG.classList.remove('image_light');
   }
 }
 

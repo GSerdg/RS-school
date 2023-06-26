@@ -1,0 +1,23 @@
+.right-field__title {
+  margin-bottom: 20px;
+}
+
+.levels {
+  margin-bottom: 15ps;
+}
+
+.levels__list {
+  cursor: pointer;
+
+  &_win {
+    color:#008000
+  }
+
+  &_help {
+    color:#ffff00;
+  }
+
+  @include hover {
+    color: $light-text-color;
+  }
+}

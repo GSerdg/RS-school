@@ -24,8 +24,8 @@ function createAnimationElements(data: Tag[], count?: number) {
   const ELEMENTS: HTMLElement[] = [];
 
   data.forEach((item) => {
-    const ELEMENT = createElement('div', [item.value]);
-    const IMG = createElement('img', [`${item.value}__img`]);
+    const ELEMENT = createElement('div', ['figure', item.value]);
+    const IMG = createElement('img', ['image']);
 
     id += 1;
 

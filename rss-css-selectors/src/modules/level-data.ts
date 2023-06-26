@@ -1,6 +1,6 @@
 import { Levels } from '../types/types';
 
-export const level = 9;
+export const level = 8;
 export const levelData: Levels = {
   1: [
     {
