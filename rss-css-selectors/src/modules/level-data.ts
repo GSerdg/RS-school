@@ -104,7 +104,7 @@ export const levelData: Levels = {
     {
       value: 'flower',
       class: null,
-      id: null,
+      id: 'red',
       inside: [
         {
           value: 'butterfly',
@@ -118,7 +118,14 @@ export const levelData: Levels = {
       value: 'flower',
       class: null,
       id: null,
-      inside: null,
+      inside: [
+        {
+          value: 'butterfly',
+          class: null,
+          id: null,
+          inside: null,
+        },
+      ],
     },
   ],
   6: [
@@ -129,7 +136,7 @@ export const levelData: Levels = {
       inside: [
         {
           value: 'butterfly',
-          class: 'angry',
+          class: null,
           id: null,
           inside: null,
         },
@@ -161,7 +168,7 @@ export const levelData: Levels = {
       inside: [
         {
           value: 'caterpillar',
-          class: 'angry',
+          class: null,
           id: null,
           inside: null,
         },
@@ -185,11 +192,11 @@ export const levelData: Levels = {
     {
       value: 'apple',
       class: null,
-      id: 'big',
+      id: null,
       inside: [
         {
           value: 'caterpillar',
-          class: 'angry',
+          class: 'small',
           id: null,
           inside: null,
         },
@@ -198,11 +205,11 @@ export const levelData: Levels = {
     {
       value: 'apple',
       class: null,
-      id: 'big',
+      id: null,
       inside: [
         {
-          value: 'caterpillar',
-          class: 'angry',
+          value: 'butterfly',
+          class: 'small',
           id: null,
           inside: null,
         },
@@ -211,11 +218,11 @@ export const levelData: Levels = {
     {
       value: 'apple',
       class: null,
-      id: 'big',
+      id: null,
       inside: [
         {
           value: 'caterpillar',
-          class: 'angry',
+          class: 'small',
           id: null,
           inside: null,
         },
@@ -231,7 +238,7 @@ export const levelData: Levels = {
   8: [
     {
       value: 'hedgehog',
-      class: 'red',
+      class: null,
       id: null,
       inside: [
         {
@@ -251,11 +258,11 @@ export const levelData: Levels = {
     {
       value: 'apple',
       class: null,
-      id: 'big',
+      id: null,
       inside: [
         {
           value: 'caterpillar',
-          class: null,
+          class: 'small',
           id: null,
           inside: null,
         },
@@ -275,8 +282,8 @@ export const levelData: Levels = {
       ],
     },
     {
-      value: 'apple',
-      class: 'white',
+      value: 'caterpillar',
+      class: null,
       id: null,
       inside: null,
     },
@@ -306,6 +313,12 @@ export const levelData: Levels = {
       class: null,
       id: null,
       inside: [
+        {
+          value: 'apple',
+          class: 'small',
+          id: null,
+          inside: null,
+        },
         {
           value: 'apple',
           class: 'small',
@@ -380,6 +393,12 @@ export const levelData: Levels = {
         },
       ],
     },
+    {
+      value: 'flower',
+      class: null,
+      id: null,
+      inside: null,
+    },
   ],
 };
 
@@ -388,10 +407,10 @@ export const levelUnswer: Unswers = {
   2: ['flower'],
   3: ['#ungry'],
   4: ['apple caterpillar', 'apple>caterpillar'],
-  5: [''],
-  6: [''],
-  7: [''],
-  8: [''],
-  9: [''],
-  10: [''],
+  5: ['#red butterfly', '#red>butterfly'],
+  6: ['.small'],
+  7: ['apple caterpillar.small', 'apple>caterpillar.small'],
+  8: ['hedgehog, apple, flower'],
+  9: ['hedgehog:first-child'],
+  10: ['*'],
 };

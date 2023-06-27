@@ -29,10 +29,14 @@
 
 .butterfly,
 .caterpillar {
-  width: 70%;
+  width: 95%;
 
   &_width {
     width: 8%;
+  }
+
+  &_small {
+    width: 65%;
   }
 }
 
