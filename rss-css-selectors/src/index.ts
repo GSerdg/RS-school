@@ -10,5 +10,7 @@ import '../src/components/foarm/foarm';
 import '../src/components/animation/animation';
 import '../src/components/level/level';
 import { createNewLevel } from './modules/create-new-level';
+import { curentLevel } from '../src/components/foarm/foarm';
+import { Level } from './types/types';
 
-createNewLevel(1);
+createNewLevel((curentLevel.indexOf('curent') + 1) as Level);

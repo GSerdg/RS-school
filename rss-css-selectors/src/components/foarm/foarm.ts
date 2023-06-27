@@ -7,7 +7,9 @@ import { removeLevel } from '../../modules/remove-level';
 
 const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
 const BUTTON = findDomElement(document.body, '.btn');
-const results: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];
+export const results: (null | string)[] = [null, null, null, null, null, null, null, null, null, null];
+export const curentLevel: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];
+
 const FOARMS = findDomElement(document.body, '.foarms');
 
 function deleteAnimationClass(event: Event) {
@@ -19,21 +21,24 @@ function deleteAnimationClass(event: Event) {
 function checkUnswer(selector: string, level: Level, help: boolean) {
   if (levelUnswer[level].includes(selector)) {
     const LEVEL = findDomElement(document.body, '.levels__list_light');
-    const next = results.indexOf(null) + 1;
+    const nextLevel = results.indexOf(null, level) + 1;
+    curentLevel[level - 1] = null;
     LEVEL.classList.remove('levels__list_light');
 
     if (help) {
       LEVEL.classList.add('levels__list_help');
+      results[level - 1] = 'help';
     } else {
       LEVEL.classList.add('levels__list_win');
+      results[level - 1] = 'win';
     }
 
-    if (next === 0) return;
-    const NEW_LEVEL = document.getElementById(`${next}`);
+    if (nextLevel === 0) return;
+    const NEW_LEVEL = document.getElementById(`${nextLevel}`);
 
     NEW_LEVEL?.classList.add('levels__list_light');
     removeLevel();
-    createNewLevel(next as Level);
+    createNewLevel(nextLevel as Level);
     INPUT.value = '';
     INPUT.classList.add('input_strobe');
   } else {
@@ -56,7 +61,7 @@ function submitInputClickButton(event: Event) {
   const input = target.previousElementSibling as HTMLInputElement;
   const value = input?.value;
 
-  checkUnswer(value, 1, false);
+  checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level, false);
 }
 
 function submitInputPressEnter(event: Event) {
@@ -65,7 +70,7 @@ function submitInputPressEnter(event: Event) {
 
   if ((event as KeyboardEvent).code === 'Enter') {
     value = target.value;
-    checkUnswer(value, 1, false);
+    checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level, false);
   }
 }
 

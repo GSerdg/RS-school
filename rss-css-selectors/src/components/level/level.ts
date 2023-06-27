@@ -6,6 +6,7 @@ import { findDomElement } from '../../modules/find-dom-element';
 import { createNewLevel } from '../../modules/create-new-level';
 import { Level } from '../../types/types';
 import { removeLevel } from '../../modules/remove-level';
+import { curentLevel } from '../foarm/foarm';
 
 const HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
 const RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
@@ -22,6 +23,7 @@ function loadLevel(event: MouseEvent) {
 
   LEVEL_BEFORE.classList.remove('levels__list_light');
   target.classList.add('levels__list_light');
+  curentLevel[curentLevel.indexOf('curent')] = null;
 
   removeLevel();
   createNewLevel(id);

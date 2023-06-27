@@ -1,3 +1,4 @@
+import { curentLevel } from '../components/foarm/foarm';
 import { Level } from '../types/types';
 import { createViewAnimationElements } from './create-animation-elements';
 import { createViewHtml } from './create-html';
@@ -10,4 +11,5 @@ export function createNewLevel(level: Level) {
 
   VIEWER.append(createViewHtml(levelData[level]));
   ANIMATION.prepend(createViewAnimationElements(levelData[level]));
+  curentLevel[level - 1] = 'curent';
 }
