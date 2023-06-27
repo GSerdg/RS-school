@@ -414,3 +414,6 @@ export const levelUnswer: Unswers = {
   9: ['hedgehog:first-child'],
   10: ['*'],
 };
+
+export const results: (null | string)[] = [null, null, null, null, null, null, null, null, null, null];
+export const curentLevel: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];

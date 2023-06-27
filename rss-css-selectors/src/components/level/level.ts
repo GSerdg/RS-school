@@ -1,18 +1,28 @@
 import './level.scss';
 import { createLevelsElement } from '../../modules/create-levels';
 import { createElement } from '../../modules/create-element';
-import { levelData } from '../../modules/level-data';
+import { levelData, results } from '../../modules/level-data';
 import { findDomElement } from '../../modules/find-dom-element';
 import { createNewLevel } from '../../modules/create-new-level';
 import { Level } from '../../types/types';
 import { removeLevel } from '../../modules/remove-level';
-import { curentLevel } from '../foarm/foarm';
+import { curentLevel } from '../../modules/level-data';
 
 const HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
 const RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
 const HELP_BTN = createElement('button', ['btn'], undefined, 'Help');
 const LEVELS_LIST = createLevelsElement(levelData);
 const RIGHT_FIELD = findDomElement(document.body, '.right-field');
+
+function resetLevelList(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+
+  Array.from(LEVELS_LIST.children).forEach((item) => {
+    item.classList.remove(...['levels__list_help', 'levels__list_win']);
+  });
+  results.fill(null);
+}
 
 function loadLevel(event: MouseEvent) {
   const target = event.target as HTMLElement;
@@ -32,3 +42,5 @@ function loadLevel(event: MouseEvent) {
 RIGHT_FIELD.append(HEADER, LEVELS_LIST, RESET_BTN, HELP_BTN);
 
 LEVELS_LIST.addEventListener('click', loadLevel);
+
+RESET_BTN.addEventListener('click', resetLevelList);

@@ -1,4 +1,4 @@
-import { curentLevel } from '../components/foarm/foarm';
+import { curentLevel } from './level-data';
 import { Level } from '../types/types';
 import { createViewAnimationElements } from './create-animation-elements';
 import { createViewHtml } from './create-html';

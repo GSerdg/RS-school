@@ -1,14 +1,12 @@
 import './foarm.scss';
 import { findDomElement } from '../../modules/find-dom-element';
-import { levelUnswer } from '../../modules/level-data';
+import { curentLevel, levelUnswer, results } from '../../modules/level-data';
 import { Level } from '../../types/types';
 import { createNewLevel } from '../../modules/create-new-level';
 import { removeLevel } from '../../modules/remove-level';
 
 const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
 const BUTTON = findDomElement(document.body, '.btn');
-export const results: (null | string)[] = [null, null, null, null, null, null, null, null, null, null];
-export const curentLevel: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];
 
 const FOARMS = findDomElement(document.body, '.foarms');
 
