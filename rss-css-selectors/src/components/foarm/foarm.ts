@@ -1,10 +1,45 @@
 import './foarm.scss';
-// import { createViewHtml } from '../../modules/create-html';
 import { findDomElement } from '../../modules/find-dom-element';
-// import { level, levelData } from '../../modules/level-data';
+import { levelUnswer } from '../../modules/level-data';
+import { Level } from '../../types/types';
+import { createNewLevel } from '../../modules/create-new-level';
+import { removeLevel } from '../../modules/remove-level';
 
-const INPUT = findDomElement(document.body, '.input');
+const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
 const BUTTON = findDomElement(document.body, '.btn');
+const results: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];
+const FOARMS = findDomElement(document.body, '.foarms');
+
+function deleteAnimationClass(event: Event) {
+  const target = event.target as HTMLDivElement;
+  if (target.classList[0] !== 'foarms') return;
+  target.classList.remove('foarms_animation');
+}
+
+function checkUnswer(selector: string, level: Level, help: boolean) {
+  if (levelUnswer[level].includes(selector)) {
+    const LEVEL = findDomElement(document.body, '.levels__list_light');
+    const next = results.indexOf(null) + 1;
+    LEVEL.classList.remove('levels__list_light');
+
+    if (help) {
+      LEVEL.classList.add('levels__list_help');
+    } else {
+      LEVEL.classList.add('levels__list_win');
+    }
+
+    if (next === 0) return;
+    const NEW_LEVEL = document.getElementById(`${next}`);
+
+    NEW_LEVEL?.classList.add('levels__list_light');
+    removeLevel();
+    createNewLevel(next as Level);
+    INPUT.value = '';
+    INPUT.classList.add('input_strobe');
+  } else {
+    FOARMS.classList.add('foarms_animation');
+  }
+}
 
 function addRemoveInputStrobe(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -21,7 +56,7 @@ function submitInputClickButton(event: Event) {
   const input = target.previousElementSibling as HTMLInputElement;
   const value = input?.value;
 
-  if (value === 'div') alert('Rite');
+  checkUnswer(value, 1, false);
 }
 
 function submitInputPressEnter(event: Event) {
@@ -30,10 +65,11 @@ function submitInputPressEnter(event: Event) {
 
   if ((event as KeyboardEvent).code === 'Enter') {
     value = target.value;
-    if (value === 'div') alert('Rite');
+    checkUnswer(value, 1, false);
   }
 }
 
 INPUT.addEventListener('input', addRemoveInputStrobe);
 INPUT.addEventListener('keyup', submitInputPressEnter);
 BUTTON.addEventListener('click', submitInputClickButton);
+FOARMS.addEventListener('animationend', deleteAnimationClass);

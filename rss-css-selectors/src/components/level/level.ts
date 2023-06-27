@@ -5,6 +5,7 @@ import { levelData } from '../../modules/level-data';
 import { findDomElement } from '../../modules/find-dom-element';
 import { createNewLevel } from '../../modules/create-new-level';
 import { Level } from '../../types/types';
+import { removeLevel } from '../../modules/remove-level';
 
 const HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
 const RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
@@ -17,15 +18,12 @@ function loadLevel(event: MouseEvent) {
   if (target.tagName !== 'LI') return;
 
   const id = +target.id as Level;
-  const TEXT_FOARM_CODE = findDomElement(document.body, '.text-foarm__code');
-  const ANIMATION_ELEMENTS = findDomElement(document.body, '.animation__elements');
   const LEVEL_BEFORE = findDomElement(document.body, '.levels__list_light');
 
   LEVEL_BEFORE.classList.remove('levels__list_light');
   target.classList.add('levels__list_light');
-  TEXT_FOARM_CODE.remove();
-  ANIMATION_ELEMENTS.remove();
 
+  removeLevel();
   createNewLevel(id);
 }
 
