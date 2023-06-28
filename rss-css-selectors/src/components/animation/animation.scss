@@ -67,11 +67,14 @@
   display: flex;
   justify-content: center;
   position: relative;
+  top: 0px;
+  transition: top 0.2s;
 }
 
 .image {
   width: 96%;
   position: relative;
+  // top: 0px;
   transition: width 0.2s;
 
   &_light {

@@ -1,47 +1,17 @@
 import './foarm.scss';
 import { findDomElement } from '../../modules/find-dom-element';
-import { curentLevel, levelUnswer, results } from '../../modules/level-data';
+import { curentLevel } from '../../modules/level-data';
 import { Level } from '../../types/types';
-import { createNewLevel } from '../../modules/create-new-level';
-import { removeLevel } from '../../modules/remove-level';
+import { checkUnswer } from '../../modules/check-unswer';
 
 const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
 const BUTTON = findDomElement(document.body, '.btn');
-
 const FOARMS = findDomElement(document.body, '.foarms');
 
 function deleteAnimationClass(event: Event) {
   const target = event.target as HTMLDivElement;
   if (target.classList[0] !== 'foarms') return;
   target.classList.remove('foarms_animation');
-}
-
-function checkUnswer(selector: string, level: Level, help: boolean) {
-  if (levelUnswer[level].includes(selector)) {
-    const LEVEL = findDomElement(document.body, '.levels__list_light');
-    const nextLevel = results.indexOf(null, level) + 1;
-    curentLevel[level - 1] = null;
-    LEVEL.classList.remove('levels__list_light');
-
-    if (help) {
-      LEVEL.classList.add('levels__list_help');
-      results[level - 1] = 'help';
-    } else {
-      LEVEL.classList.add('levels__list_win');
-      results[level - 1] = 'win';
-    }
-
-    if (nextLevel === 0) return;
-    const NEW_LEVEL = document.getElementById(`${nextLevel}`);
-
-    NEW_LEVEL?.classList.add('levels__list_light');
-    removeLevel();
-    createNewLevel(nextLevel as Level);
-    INPUT.value = '';
-    INPUT.classList.add('input_strobe');
-  } else {
-    FOARMS.classList.add('foarms_animation');
-  }
 }
 
 function addRemoveInputStrobe(event: Event) {

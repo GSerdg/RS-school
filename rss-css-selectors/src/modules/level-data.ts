@@ -470,7 +470,14 @@ export const levelUnswer: Unswers = {
   5: ['#red butterfly', '#red>butterfly'],
   6: ['.small'],
   7: ['apple caterpillar.small', 'apple>caterpillar.small'],
-  8: ['hedgehog, apple, flower'],
+  8: [
+    'hedgehog, apple, flower',
+    'hedgehog, flower, apple',
+    'apple, hedgehog, flower',
+    'apple, flower, hedgehog',
+    'flower, apple, hedgehog',
+    'flower, hedgehog, apple',
+  ],
   9: ['hedgehog:first-child'],
   10: ['*'],
 };
