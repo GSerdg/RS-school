@@ -2,6 +2,7 @@ export interface Tag {
   value: string;
   class: string | null;
   id: string | null;
+  animation: boolean;
   inside: Tag[] | null;
 }
 

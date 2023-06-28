@@ -33,6 +33,7 @@ function createAnimationElements(data: Tag[], count?: number) {
     IMG.setAttribute('alt', item.value);
     IMG.setAttribute('id', `img${id}`);
     IMG.setAttribute('style', `z-index: ${counter}`);
+    ELEMENT.setAttribute('style', `z-index: ${counter}`);
 
     ELEMENT.append(IMG);
 
@@ -40,6 +41,10 @@ function createAnimationElements(data: Tag[], count?: number) {
       ELEMENT.classList.add(`${item.value}_small`);
     } else if (counter === 1) {
       ELEMENT.classList.add(`${item.value}_width`);
+    }
+
+    if (item.animation) {
+      ELEMENT.classList.add('choise-animation');
     }
 
     if (item.inside) {
