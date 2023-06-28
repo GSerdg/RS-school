@@ -74,7 +74,6 @@
 .image {
   width: 96%;
   position: relative;
-  // top: 0px;
   transition: width 0.2s;
 
   &_light {
@@ -90,73 +89,35 @@
 
 .choise-animation {
   transform-origin: bottom;
-  //animation: first .5s ease-out, second 1s infinite;
   animation-delay: 0s, .5s;
   animation: myAnim 2s ease 0s infinite normal forwards;
 }
 
-/* @keyframes first {
-  0% {
-    transform: skew(0deg, 0deg) scaleY(1);
-    animation-timing-function: ease-in;
-  }
+@keyframes myAnim {
 
-  40% {
-    transform: skew(0deg, 0deg) scaleY(.9);
-    animation-timing-function: ease-out;
-  }
-
+  0%,
   100% {
-    transform: skew(4deg, 0deg) scaleX(1);
-  }
-}
-
-@keyframes second {
-  0% {
-    transform: skew(4deg, 0deg) scaleX(1);
+    transform: translateX(5%) rotate(4deg);
+    //transform-origin: 50% 50%;
   }
 
-  10% {
-    transform: skew(1deg, 0deg) scaleY(.9);
+  15% {
+    transform: translateX(-5%) rotate(-4deg);
   }
 
-  50% {
-    transform: skew(-4deg, 0deg) scaleX(1);
+  30% {
+    transform: translateX(5%) rotate(4deg);
+  }
+
+  45% {
+    transform: translateX(-5%) rotate(-4deg);
   }
 
   60% {
-    transform: skew(-1deg, 0deg) scaleY(.9);
+    transform: translateX(5%) rotate(4deg);
   }
 
-  100% {
-    transform: skew(4deg, 0deg) scaleX(1);
+  75% {
+    transform: translateX(-5%) rotate(-4deg);
   }
-} */
-
-@keyframes myAnim {
-	0%,
-	100% {
-		transform: translateX(5%) rotate(4deg);
-		//transform-origin: 50% 50%;
-	}
-
-	15% {
-		transform: translateX(-5%) rotate(-4deg);
-	}
-
-	30% {
-		transform: translateX(5%) rotate(4deg);
-	}
-
-	45% {
-		transform: translateX(-5%) rotate(-4deg);
-	}
-
-	60% {
-		transform: translateX(5%) rotate(4deg);
-	}
-
-	75% {
-		transform: translateX(-5%) rotate(-4deg);
-	}
 }
