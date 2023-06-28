@@ -1,6 +1,7 @@
 import './styles/base/_base.scss';
 import './style.scss';
 import './styles/components/button.scss';
+import './styles/components/popup.scss';
 
 import '../src/components/foarm/foarm';
 import '../src/components/animation/animation';

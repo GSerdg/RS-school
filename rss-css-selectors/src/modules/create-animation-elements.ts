@@ -1,4 +1,5 @@
 import { Tag } from '../types/types';
+import { createClue } from './create-clue';
 import { createElement } from './create-element';
 import { findDomElement } from './find-dom-element';
 
@@ -8,14 +9,24 @@ function lightningElements(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'IMG') return;
 
-  const id = target.id.match(/\d+/);
-  const ELEMENT = findDomElement(document.body, `#text${id}`);
+  const targetId = target.id.match(/\d+/);
+  const ELEMENT = findDomElement(document.body, `#text${targetId}`);
+  const ANIMATION = findDomElement(document.body, '.container');
+  const coords = target.getBoundingClientRect();
 
   if (event.type === 'mouseover') {
+    const POPUP = createClue(target);
+
     ELEMENT.classList.add('tag_light');
+    POPUP.setAttribute('style', `top:${coords.y - 30}px; left:${coords.x}px`);
+    console.log(coords);
+    ANIMATION.append(POPUP);
   }
   if (event.type === 'mouseout') {
+    const POPUP = findDomElement(document.body, '.popup');
+
     ELEMENT.classList.remove('tag_light');
+    POPUP.remove();
   }
 }
 
@@ -67,6 +78,8 @@ export function createViewAnimationElements(data: Tag[]) {
 
   CONTAINER.addEventListener('mouseover', lightningElements);
   CONTAINER.addEventListener('mouseout', lightningElements);
+
+  id = 0;
 
   return CONTAINER;
 }

@@ -79,5 +79,8 @@ export function createViewHtml(data: Tag[]) {
 
   TEXT_FOARM_CODE.addEventListener('mouseover', selectElements);
   TEXT_FOARM_CODE.addEventListener('mouseout', selectElements);
+
+  id = 0;
+
   return TEXT_FOARM_CODE;
 }
