@@ -1,6 +1,7 @@
 import { createElement } from './create-element';
 import { Tag } from '../types/types';
 import { findDomElement } from './find-dom-element';
+import { createClue } from './create-clue';
 
 let id = 0;
 
@@ -57,14 +58,23 @@ function selectElements(event: MouseEvent) {
   const parentElement = target.closest('.tag_open');
   const targetId = (parentElement?.getAttribute('id') as string).match(/\d+/);
   const IMG = findDomElement(document.body, `#img${targetId}`);
+  const ANIMATION = findDomElement(document.body, '.container');
+  const coords = IMG.getBoundingClientRect();
 
   if (event.type === 'mouseover') {
+    const POPUP = createClue(IMG);
+
     parentElement?.classList.add('tag_light');
     IMG.classList.add('image_light');
+    POPUP.setAttribute('style', `top:${coords.y - 30}px; left:${coords.x}px`);
+    ANIMATION.append(POPUP);
   }
   if (event.type === 'mouseout') {
+    const POPUP = ANIMATION.lastElementChild;
+
     parentElement?.classList.remove('tag_light');
     IMG.classList.remove('image_light');
+    POPUP?.remove();
   }
 }
 

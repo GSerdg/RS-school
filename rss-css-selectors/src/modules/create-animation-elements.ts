@@ -19,14 +19,13 @@ function lightningElements(event: MouseEvent) {
 
     ELEMENT.classList.add('tag_light');
     POPUP.setAttribute('style', `top:${coords.y - 30}px; left:${coords.x}px`);
-    console.log(coords);
     ANIMATION.append(POPUP);
   }
   if (event.type === 'mouseout') {
-    const POPUP = findDomElement(document.body, '.popup');
+    const POPUP = ANIMATION.lastElementChild;
 
     ELEMENT.classList.remove('tag_light');
-    POPUP.remove();
+    POPUP?.remove();
   }
 }
 

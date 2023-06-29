@@ -37,6 +37,7 @@ async function addText(event: MouseEvent) {
   }
   results[curLevel - 1] = 'help';
   LEVEL.classList.add('levels__list_help');
+  INPUT.focus();
 }
 
 function resetLevelList(event: MouseEvent) {
