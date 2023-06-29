@@ -4,7 +4,7 @@ import { findDomElement } from './find-dom-element';
 import { curentLevel, levelUnswer, results } from './level-data';
 import { removeLevel } from './remove-level';
 
-export async function checkUnswer(selector: string, level: Level, help: boolean) {
+export async function checkUnswer(selector: string, level: Level) {
   const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
   const FOARMS = findDomElement(document.body, '.foarms');
 
@@ -24,10 +24,7 @@ export async function checkUnswer(selector: string, level: Level, help: boolean)
     curentLevel[level - 1] = null;
     LEVEL.classList.remove('levels__list_light');
 
-    if (help) {
-      LEVEL.classList.add('levels__list_help');
-      results[level - 1] = 'help';
-    } else {
+    if (results[level - 1] !== 'help') {
       LEVEL.classList.add('levels__list_win');
       results[level - 1] = 'win';
     }

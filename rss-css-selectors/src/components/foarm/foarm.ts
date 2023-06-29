@@ -29,7 +29,7 @@ function submitInputClickButton(event: Event) {
   const input = target.previousElementSibling as HTMLInputElement;
   const value = input?.value;
 
-  checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level, false);
+  checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level);
 }
 
 function submitInputPressEnter(event: Event) {
@@ -38,7 +38,7 @@ function submitInputPressEnter(event: Event) {
 
   if ((event as KeyboardEvent).code === 'Enter') {
     value = target.value;
-    checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level, false);
+    checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level);
   }
 }
 
