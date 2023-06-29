@@ -37,7 +37,6 @@ export async function checkUnswer(selector: string, level: Level) {
       }
     }
 
-    // if (nextLevel === 0) return;
     const NEW_LEVEL = document.getElementById(`${nextLevel}`);
 
     NEW_LEVEL?.classList.add('levels__list_light');

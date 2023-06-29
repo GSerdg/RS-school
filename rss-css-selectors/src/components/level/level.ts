@@ -7,6 +7,7 @@ import { createNewLevel } from '../../modules/create-new-level';
 import { Level } from '../../types/types';
 import { removeLevel } from '../../modules/remove-level';
 import { curentLevel } from '../../modules/level-data';
+import { deleteInputText } from '../../modules/delete-input-text';
 
 const HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
 const RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
@@ -61,6 +62,7 @@ function loadLevel(event: MouseEvent) {
 
   removeLevel();
   createNewLevel(id);
+  deleteInputText();
 }
 
 RIGHT_FIELD.append(HEADER, LEVELS_LIST, RESET_BTN, HELP_BTN);
