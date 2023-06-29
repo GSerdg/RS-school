@@ -28,17 +28,22 @@ function submitInputClickButton(event: Event) {
   const target = event.target as HTMLElement;
   const input = target.previousElementSibling as HTMLInputElement;
   const value = input?.value;
-
-  checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level);
+  const level = curentLevel.indexOf('curent') + 1;
+  if (level > 0) {
+    checkUnswer(value, level as Level);
+  }
 }
 
 function submitInputPressEnter(event: Event) {
   const target = event.target as HTMLInputElement;
   let value: string;
+  const level = curentLevel.indexOf('curent') + 1;
 
-  if ((event as KeyboardEvent).code === 'Enter') {
-    value = target.value;
-    checkUnswer(value, (curentLevel.indexOf('curent') + 1) as Level);
+  if (level > 0) {
+    if ((event as KeyboardEvent).code === 'Enter') {
+      value = target.value;
+      checkUnswer(value, level as Level);
+    }
   }
 }
 

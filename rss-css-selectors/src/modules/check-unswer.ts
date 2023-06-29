@@ -1,4 +1,5 @@
 import { Level } from '../types/types';
+import { createFinalPopup } from './create-final-popup';
 import { createNewLevel } from './create-new-level';
 import { findDomElement } from './find-dom-element';
 import { curentLevel, levelUnswer, results } from './level-data';
@@ -29,10 +30,13 @@ export async function checkUnswer(selector: string, level: Level) {
       results[level - 1] = 'win';
     }
 
+    INPUT.value = '';
+
     if (nextLevel === 0) {
       nextLevel = results.indexOf(null) + 1;
       if (nextLevel === 0) {
-        alert('Win');
+        document.body.prepend(createFinalPopup());
+        removeLevel();
         return;
       }
     }
@@ -42,8 +46,9 @@ export async function checkUnswer(selector: string, level: Level) {
     NEW_LEVEL?.classList.add('levels__list_light');
     removeLevel();
     createNewLevel(nextLevel as Level);
-    INPUT.value = '';
     INPUT.classList.add('input_strobe');
+
+    // INPUT.value = '';
   } else {
     FOARMS.classList.add('foarms_animation');
   }

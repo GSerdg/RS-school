@@ -19,24 +19,28 @@ async function addText(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'BUTTON') return;
 
-  const curLevel = (curentLevel.indexOf('curent') + 1) as Level;
-  const unswer = levelUnswer[curLevel][0];
   const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
-  const LEVEL = findDomElement(document.body, '.levels__list_light');
+  const LEVEL = document.body.querySelector('.levels__list_light');
+  const curLevel = (curentLevel.indexOf('curent') + 1) as Level;
 
-  INPUT.value = '';
+  if (curLevel > 0) {
+    const unswer = levelUnswer[curLevel][0];
 
-  for (const value of unswer) {
-    const promise = new Promise(function (res) {
-      setTimeout(() => {
-        res('');
-      }, 100);
-    });
-    await promise;
-    INPUT.value += value;
+    INPUT.value = '';
+
+    for (const value of unswer) {
+      const promise = new Promise(function (res) {
+        setTimeout(() => {
+          res('');
+        }, 10);
+      });
+      await promise;
+      INPUT.value += value;
+    }
+    results[curLevel - 1] = 'help';
   }
-  results[curLevel - 1] = 'help';
-  LEVEL.classList.add('levels__list_help');
+
+  LEVEL?.classList.add('levels__list_help');
   INPUT.focus();
 }
 
@@ -44,7 +48,6 @@ function resetLevelList(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'BUTTON') return;
 
-  // const LEVEL = findDomElement(document.body, '.levels__list_light');
   const LEVEL = LEVELS_LIST.querySelector('.levels__list_light') as HTMLElement | null;
 
   Array.from(LEVELS_LIST.children).forEach((item) => {
@@ -63,9 +66,10 @@ function loadLevel(event: MouseEvent) {
   if (target.tagName !== 'LI') return;
 
   const id = +target.id as Level;
-  const LEVEL_BEFORE = findDomElement(document.body, '.levels__list_light');
+  // const LEVEL_BEFORE = findDomElement(document.body, '.levels__list_light');
+  const LEVEL_BEFORE = document.body.querySelector('.levels__list_light');
 
-  LEVEL_BEFORE.classList.remove('levels__list_light');
+  LEVEL_BEFORE?.classList.remove('levels__list_light');
   target.classList.add('levels__list_light');
   curentLevel[curentLevel.indexOf('curent')] = null;
 
