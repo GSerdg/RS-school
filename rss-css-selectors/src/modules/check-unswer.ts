@@ -10,8 +10,8 @@ export async function checkUnswer(selector: string, level: Level) {
 
   if (levelUnswer[level].includes(selector)) {
     const LEVEL = findDomElement(document.body, '.levels__list_light');
-    const nextLevel = results.indexOf(null, level) + 1;
     const IMG = Array.from(document.body.querySelectorAll('.choise-animation')) as HTMLElement[];
+    let nextLevel = results.indexOf(null, level) + 1;
 
     IMG.forEach((item) => {
       item.setAttribute('style', 'top: -300px');
@@ -29,7 +29,15 @@ export async function checkUnswer(selector: string, level: Level) {
       results[level - 1] = 'win';
     }
 
-    if (nextLevel === 0) return;
+    if (nextLevel === 0) {
+      nextLevel = results.indexOf(null) + 1;
+      if (nextLevel === 0) {
+        alert('Win');
+        return;
+      }
+    }
+
+    // if (nextLevel === 0) return;
     const NEW_LEVEL = document.getElementById(`${nextLevel}`);
 
     NEW_LEVEL?.classList.add('levels__list_light');
