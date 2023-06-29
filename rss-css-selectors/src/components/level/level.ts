@@ -44,10 +44,18 @@ function resetLevelList(event: MouseEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName !== 'BUTTON') return;
 
+  // const LEVEL = findDomElement(document.body, '.levels__list_light');
+  const LEVEL = LEVELS_LIST.querySelector('.levels__list_light') as HTMLElement | null;
+
   Array.from(LEVELS_LIST.children).forEach((item) => {
     item.classList.remove(...['levels__list_help', 'levels__list_win']);
   });
   results.fill(null);
+  curentLevel.fill(null)[0] = 'curent';
+  removeLevel();
+  createNewLevel(1);
+  LEVEL?.classList.remove('levels__list_light');
+  LEVELS_LIST.firstElementChild?.classList.add('levels__list_light');
 }
 
 function loadLevel(event: MouseEvent) {
