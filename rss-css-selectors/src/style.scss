@@ -3,6 +3,9 @@
 }
 
 .left-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 80%;
   height: 100%;
 }
@@ -42,4 +45,24 @@ header {
 
 .header-icon {
   width: 60px;
+}
+
+footer {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.footer-logo {
+  width: 150px;
+  background-color: #ffff00;
+}
+
+.footer-link {
+  color: #ffff00ab;
+
+  &:hover {
+    color: #ffff00;
+  }
 }
