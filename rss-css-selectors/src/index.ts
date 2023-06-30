@@ -7,13 +7,8 @@ import './styles/components/highlight.scss';
 
 import '../src/components/foarm/foarm';
 import '../src/components/animation/animation';
-import '../src/components/level/level';
-import { createNewLevel } from './modules/create-new-level';
-import { curentLevel } from './modules/level-data';
-import { Level } from './types/types';
+import { saveGame } from './modules/save-game';
+import { loadGame } from './modules/load-game';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const hljs = require('highlightjs');
-// hljs.initHighlightingOnLoad();
-
-createNewLevel((curentLevel.indexOf('curent') + 1) as Level);
+loadGame();
+saveGame();

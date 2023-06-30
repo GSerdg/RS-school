@@ -47,8 +47,6 @@ export async function checkUnswer(selector: string, level: Level) {
     removeLevel();
     createNewLevel(nextLevel as Level);
     INPUT.classList.add('input_strobe');
-
-    // INPUT.value = '';
   } else {
     FOARMS.classList.add('foarms_animation');
   }
