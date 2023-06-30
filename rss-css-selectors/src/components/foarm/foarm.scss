@@ -54,6 +54,15 @@
   }
 }
 
+.css {
+  width: calc(100% - 37px);;
+}
+
+.selector__input {
+  display: flex;
+  width: 100%;
+}
+
 .input {
   border: none;
   outline: none;
@@ -69,8 +78,6 @@
   cursor: default;
 
   &_light {
-    // color: $light-text-color;
-    // filter: drop-shadow(2px 4px 6px white);
     filter: brightness(1.75);
   }
 }
