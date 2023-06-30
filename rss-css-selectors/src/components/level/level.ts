@@ -66,7 +66,6 @@ function loadLevel(event: MouseEvent) {
   if (target.tagName !== 'LI') return;
 
   const id = +target.id as Level;
-  // const LEVEL_BEFORE = findDomElement(document.body, '.levels__list_light');
   const LEVEL_BEFORE = document.body.querySelector('.levels__list_light');
 
   LEVEL_BEFORE?.classList.remove('levels__list_light');

@@ -58,7 +58,7 @@
   border: none;
   outline: none;
   flex-grow: 1;
-  margin: 10px 10px 0;
+  margin: 12px 10px 0;
 
   &_strobe {
     animation: color 0.3s infinite alternate;
@@ -69,7 +69,9 @@
   cursor: default;
 
   &_light {
-    color: $light-text-color;
+    // color: $light-text-color;
+    // filter: drop-shadow(2px 4px 6px white);
+    filter: brightness(1.75);
   }
 }
 
