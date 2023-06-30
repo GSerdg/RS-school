@@ -88,9 +88,9 @@ function selectElements(event: MouseEvent) {
 
 export function createViewHtml(data: Tag[]) {
   const TEXT_FOARM_CODE = createElement('div', ['text-foarm__code']);
-  const STR_1_OPEN = createElement('p', ['tag', 'tag_open'], 'open-1' /* , '<div class="field">' */);
+  const STR_1_OPEN = createElement('p', ['tag', 'tag_open'], 'open-1');
   const SPAN_OPEN = createElement('span', undefined, undefined, '<div class="field">');
-  const STR_1_CLOSED = createElement('p', ['tag', 'tag_closed'], 'closed-1' /* , '</div>' */);
+  const STR_1_CLOSED = createElement('p', ['tag', 'tag_closed'], 'closed-1');
   const SPAN_CLOSED = createElement('span', undefined, undefined, '</div>');
 
   STR_1_OPEN.append(addHighlight(SPAN_OPEN));
