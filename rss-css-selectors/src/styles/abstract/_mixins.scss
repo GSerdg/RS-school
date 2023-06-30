@@ -3,3 +3,11 @@
         @media (hover: hover) and (pointer: fine) { @content; }
     }
 }
+
+@mixin media-form {
+    @media (max-width: $width1) { @content; }
+}
+
+@mixin media-font {
+    @media (max-width: $width2) { @content; }
+}

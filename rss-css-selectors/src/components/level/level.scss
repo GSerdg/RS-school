@@ -8,6 +8,11 @@
 
 .levels__list {
   cursor: pointer;
+  list-style-type: none;
+
+  &:before {
+    content: "✔ ";
+  }
 
   &_win {
     color: #008000

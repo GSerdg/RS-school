@@ -7,10 +7,18 @@
   &_animation {
     animation: shake 0.5s;
   }
+
+  @include media-form {
+    flex-direction: column-reverse;
+  }
 }
 
 .editor {
   width: 50%;
+
+  @include media-form {
+    width: 100%;
+  }
 }
 
 .editor__title {

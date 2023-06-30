@@ -22,7 +22,10 @@
     font-size: 1.5rem;
     line-height: 160%;
     color: $main-text-color;
-    // background-color: #fffbdc;
+
+    @include media-font {
+      font-size: 1.3rem;
+    }  
   }
   
   /* ul {
