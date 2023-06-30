@@ -18,7 +18,7 @@ function lightningElements(event: MouseEvent) {
     const POPUP = createClue(target);
 
     ELEMENT.classList.add('tag_light');
-    POPUP.setAttribute('style', `top:${coords.y - 30}px; left:${coords.x}px`);
+    POPUP.setAttribute('style', `top:${coords.y - 10}px; left:${coords.x}px`);
     ANIMATION.append(POPUP);
   }
   if (event.type === 'mouseout') {
