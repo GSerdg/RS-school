@@ -46,7 +46,9 @@ function createAnimationElements(data: Tag[], count?: number) {
     ELEMENT.setAttribute('style', `z-index: ${counter}`);
 
     ELEMENT.append(IMG);
-
+    if (item.class === 'small' && counter === 1) {
+      ELEMENT.classList.add(`${item.value}_small-field`);
+    }
     if (item.class === 'small') {
       ELEMENT.classList.add(`${item.value}_small`);
     } else if (counter === 1) {

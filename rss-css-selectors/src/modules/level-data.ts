@@ -264,7 +264,7 @@ export const levelData: Data<Tag> = {
     },
     {
       value: 'caterpillar',
-      class: 'angry',
+      class: 'small',
       id: null,
       animation: false,
       inside: null,
@@ -403,7 +403,7 @@ export const levelData: Data<Tag> = {
     {
       value: 'apple',
       class: null,
-      id: 'green',
+      id: 'red',
       animation: true,
       inside: [
         {
@@ -418,7 +418,7 @@ export const levelData: Data<Tag> = {
     {
       value: 'apple',
       class: null,
-      id: null,
+      id: 'red',
       animation: true,
       inside: [
         {
@@ -440,7 +440,7 @@ export const levelData: Data<Tag> = {
     {
       value: 'apple',
       class: null,
-      id: null,
+      id: 'red',
       animation: true,
       inside: [
         {
@@ -468,7 +468,7 @@ export const levelUnswer: Data<string> = {
   3: ['#ungry'],
   4: ['apple caterpillar', 'apple>caterpillar'],
   5: ['#red butterfly', '#red>butterfly'],
-  6: ['.small'],
+  6: ['.small', 'apple.small'],
   7: ['apple caterpillar.small', 'apple>caterpillar.small'],
   8: [
     'hedgehog, apple, flower',
@@ -479,7 +479,7 @@ export const levelUnswer: Data<string> = {
     'flower, hedgehog, apple',
   ],
   9: ['hedgehog:first-child'],
-  10: ['*'],
+  10: ['*', 'apple, flower', 'flower, apple', '#red, flower', 'flower, #red'],
 };
 
 export const results: (null | string)[] = [null, null, null, null, null, null, null, null, null, null];

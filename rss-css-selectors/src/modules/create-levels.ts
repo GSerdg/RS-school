@@ -1,8 +1,8 @@
-import { Levels } from '../types/types';
+import { Data, Tag } from '../types/types';
 import { createElement } from './create-element';
 import { curentLevel, results } from './level-data';
 
-export function createLevelsElement(data: Levels) {
+export function createLevelsElement(data: Data<Tag>) {
   const UL = createElement('ul', ['levels']);
   const keys = Object.keys(data);
 
@@ -12,10 +12,11 @@ export function createLevelsElement(data: Levels) {
     if (i === curentLevel.indexOf('curent') + 1) {
       LI.classList.add('levels__list_light');
     }
-    if (i === results.indexOf('win') + 1) {
+    if (results[i - 1] === 'win') {
+      console.log(results);
       LI.classList.add('levels__list_win');
     }
-    if (i === results.indexOf('help') + 1) {
+    if (results[i - 1] === 'help') {
       LI.classList.add('levels__list_help');
     }
 
