@@ -9,14 +9,24 @@ import { removeLevel } from '../../modules/remove-level';
 import { curentLevel } from '../../modules/level-data';
 import { deleteInputText } from '../../modules/delete-input-text';
 
-export function viewLevels() {
-  const HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
-  const RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
-  const HELP_BTN = createElement('button', ['btn'], undefined, 'Help');
-  const LEVELS_LIST = createLevelsElement(levelData);
-  const RIGHT_FIELD = findDomElement(document.body, '.right-field');
+export class ViewLevels {
+  HEADER: HTMLElement;
+  RESET_BTN: HTMLElement;
+  HELP_BTN: HTMLElement;
+  LEVELS_LIST: HTMLElement;
+  RIGHT_FIELD: HTMLElement;
 
-  async function addText(event: MouseEvent) {
+  constructor() {
+    this.HEADER = createElement('h2', ['right-field__title'], undefined, 'Level');
+    this.RESET_BTN = createElement('button', ['btn'], undefined, 'Reset progress');
+    this.HELP_BTN = createElement('button', ['btn'], undefined, 'Help');
+    this.LEVELS_LIST = createLevelsElement(levelData);
+    this.RIGHT_FIELD = findDomElement(document.body, '.right-field');
+
+    this.constructElement();
+  }
+
+  private async addText(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'BUTTON') return;
 
@@ -45,13 +55,13 @@ export function viewLevels() {
     INPUT.focus();
   }
 
-  function resetLevelList(event: MouseEvent) {
+  private resetLevelList(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'BUTTON') return;
 
-    const LEVEL = LEVELS_LIST.querySelector('.levels__list_light') as HTMLElement | null;
+    const LEVEL = this.LEVELS_LIST.querySelector('.levels__list_light') as HTMLElement | null;
 
-    Array.from(LEVELS_LIST.children).forEach((item) => {
+    Array.from(this.LEVELS_LIST.children).forEach((item) => {
       item.classList.remove(...['levels__list_help', 'levels__list_win']);
     });
     results.fill(null);
@@ -59,10 +69,10 @@ export function viewLevels() {
     removeLevel();
     createNewLevel(1);
     LEVEL?.classList.remove('levels__list_light');
-    LEVELS_LIST.firstElementChild?.classList.add('levels__list_light');
+    this.LEVELS_LIST.firstElementChild?.classList.add('levels__list_light');
   }
 
-  function loadLevel(event: MouseEvent) {
+  private loadLevel(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'LI') return;
 
@@ -78,9 +88,11 @@ export function viewLevels() {
     deleteInputText();
   }
 
-  RIGHT_FIELD.append(HEADER, LEVELS_LIST, RESET_BTN, HELP_BTN);
+  private constructElement() {
+    this.RIGHT_FIELD.append(this.HEADER, this.LEVELS_LIST, this.RESET_BTN, this.HELP_BTN);
 
-  LEVELS_LIST.addEventListener('click', loadLevel);
-  RESET_BTN.addEventListener('click', resetLevelList);
-  HELP_BTN.addEventListener('click', addText);
+    this.LEVELS_LIST.addEventListener('click', this.loadLevel);
+    this.RESET_BTN.addEventListener('click', this.resetLevelList.bind(this));
+    this.HELP_BTN.addEventListener('click', this.addText);
+  }
 }

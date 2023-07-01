@@ -1,4 +1,4 @@
-import { viewLevels } from '../components/level/level';
+import { ViewLevels } from '../components/level/level';
 import { Level } from '../types/types';
 import { createNewLevel } from './create-new-level';
 import { results, curentLevel } from './level-data';
@@ -15,6 +15,6 @@ export function loadGame() {
     });
   }
 
-  viewLevels();
+  new ViewLevels();
   createNewLevel((curentLevel.indexOf('curent') + 1) as Level);
 }
