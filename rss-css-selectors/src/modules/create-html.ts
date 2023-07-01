@@ -62,8 +62,10 @@ function createPsevdoHtml(data: Tag[]) {
 function selectElements(event: MouseEvent) {
   const target = event.target as HTMLElement;
   const parentElement = target.closest('.tag_open');
+
   if (target.tagName !== 'SPAN') return;
   if (parentElement?.id === 'open-1') return;
+
   const targetId = (parentElement?.getAttribute('id') as string).match(/\d+/);
   const IMG = findDomElement(document.body, `#img${targetId}`);
   const ANIMATION = findDomElement(document.body, '.container');

@@ -1,6 +1,6 @@
-import { Levels, Unswers } from '../types/types';
+import { Data, Tag } from '../types/types';
 
-export const levelData: Levels = {
+export const levelData: Data<Tag> = {
   1: [
     {
       value: 'apple',
@@ -462,7 +462,7 @@ export const levelData: Levels = {
   ],
 };
 
-export const levelUnswer: Unswers = {
+export const levelUnswer: Data<string> = {
   1: ['apple', '*'],
   2: ['flower'],
   3: ['#ungry'],

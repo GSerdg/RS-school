@@ -17,13 +17,14 @@ export function createFinalPopup() {
   // Для компенсации скролла
   const width = window.innerWidth;
   const scroll = width - document.body.clientWidth;
+
   document.body.style.paddingRight = `${scroll}px`;
   document.body.style.overflow = `hidden`;
 
-  BUTTON.addEventListener('click', closeFinalPopup);
-
   POPUP_WINDOW.append(TITLE, BUTTON);
   POPUP.append(POPUP_WINDOW);
+
+  BUTTON.addEventListener('click', closeFinalPopup);
 
   return POPUP;
 }
