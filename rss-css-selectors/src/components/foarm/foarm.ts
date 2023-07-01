@@ -4,50 +4,62 @@ import { curentLevel } from '../../modules/level-data';
 import { Level } from '../../types/types';
 import { checkUnswer } from '../../modules/check-unswer';
 
-const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
-const BUTTON = findDomElement(document.body, '.btn');
-const FOARMS = findDomElement(document.body, '.foarms');
+export class ViewForm {
+  INPUT: HTMLInputElement;
+  BUTTON: HTMLElement;
+  FOARMS: HTMLElement;
 
-function deleteAnimationClass(event: Event) {
-  const target = event.target as HTMLDivElement;
-  if (target.classList[0] !== 'foarms') return;
-  target.classList.remove('foarms_animation');
-}
+  constructor() {
+    this.INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
+    this.BUTTON = findDomElement(document.body, '.btn');
+    this.FOARMS = findDomElement(document.body, '.foarms');
 
-function addRemoveInputStrobe(event: Event) {
-  const target = event.target as HTMLInputElement;
-  if (target.tagName !== 'INPUT') return;
-  if (target.value.length > 0) {
-    target.classList.remove('input_strobe');
-  } else {
-    target.classList.add('input_strobe');
+    this.addEvents();
   }
-}
 
-function submitInputClickButton(event: Event) {
-  const target = event.target as HTMLElement;
-  const input = target.previousElementSibling as HTMLInputElement;
-  const value = input?.value;
-  const level = curentLevel.indexOf('curent') + 1;
-  if (level > 0) {
-    checkUnswer(value, level as Level);
+  private deleteAnimationClass(event: Event) {
+    const target = event.target as HTMLDivElement;
+    if (target.classList[0] !== 'foarms') return;
+    target.classList.remove('foarms_animation');
   }
-}
 
-function submitInputPressEnter(event: Event) {
-  const target = event.target as HTMLInputElement;
-  let value: string;
-  const level = curentLevel.indexOf('curent') + 1;
+  private addRemoveInputStrobe(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.tagName !== 'INPUT') return;
+    if (target.value.length > 0) {
+      target.classList.remove('input_strobe');
+    } else {
+      target.classList.add('input_strobe');
+    }
+  }
 
-  if (level > 0) {
-    if ((event as KeyboardEvent).code === 'Enter') {
-      value = target.value;
+  private submitInputClickButton(event: Event) {
+    const target = event.target as HTMLElement;
+    const input = target.previousElementSibling as HTMLInputElement;
+    const value = input?.value;
+    const level = curentLevel.indexOf('curent') + 1;
+    if (level > 0) {
       checkUnswer(value, level as Level);
     }
   }
-}
 
-INPUT.addEventListener('input', addRemoveInputStrobe);
-INPUT.addEventListener('keyup', submitInputPressEnter);
-BUTTON.addEventListener('click', submitInputClickButton);
-FOARMS.addEventListener('animationend', deleteAnimationClass);
+  private submitInputPressEnter(event: Event) {
+    const target = event.target as HTMLInputElement;
+    let value: string;
+    const level = curentLevel.indexOf('curent') + 1;
+
+    if (level > 0) {
+      if ((event as KeyboardEvent).code === 'Enter') {
+        value = target.value;
+        checkUnswer(value, level as Level);
+      }
+    }
+  }
+
+  private addEvents() {
+    this.INPUT.addEventListener('input', this.addRemoveInputStrobe);
+    this.INPUT.addEventListener('keyup', this.submitInputPressEnter);
+    this.BUTTON.addEventListener('click', this.submitInputClickButton);
+    this.FOARMS.addEventListener('animationend', this.deleteAnimationClass);
+  }
+}
