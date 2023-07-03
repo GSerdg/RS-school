@@ -2,10 +2,17 @@
   background-color: $main-background;
 }
 
+.content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+
 .left-field {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-self: center;
   width: 80%;
   height: 100%;
 }
@@ -14,9 +21,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 20%;
   padding: 60px 25px 25px;
   background-color: $dark-border;
+
+  @include media-form {
+    justify-content: flex-start;
+  }
 
   @include media-font {
     padding: 60px 10px 10px;
@@ -41,6 +53,7 @@ header {
   align-items: center;
   justify-content: flex-start;
   column-gap: 20px;
+  margin-bottom: 2%
 }
 
 .header-icon {
