@@ -484,3 +484,5 @@ export const levelUnswer: Data<string> = {
 
 export const results: (null | string)[] = [null, null, null, null, null, null, null, null, null, null];
 export const curentLevel: (null | string)[] = ['curent', null, null, null, null, null, null, null, null, null];
+export const winGame = 'win';
+export const useHelp = 'help';

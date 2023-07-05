@@ -1,17 +1,18 @@
 import { Level, Tag } from '../types/types';
 import { createElement } from './create-element';
-import { curentLevel, levelData } from './level-data';
+import { getCurrentLevel } from './get-current-level';
+import { levelData } from './level-data';
 
 let counter = 0;
 
 function getElementFromData(data: Tag[], id: number) {
   let dataElement: Tag | undefined;
 
-  for (let i = 0; i < data.length; i += 1) {
+  for (const item of data) {
     counter += 1;
-    if (counter === id) return data[i];
-    if (data[i].inside) {
-      dataElement = getElementFromData(data[i].inside as Tag[], id);
+    if (counter === id) return item;
+    if (item.inside) {
+      dataElement = getElementFromData(item.inside as Tag[], id);
       if (dataElement) {
         break;
       }
@@ -22,7 +23,7 @@ function getElementFromData(data: Tag[], id: number) {
 
 export function createClue(element: HTMLElement) {
   const id = element.id.match(/\d+/);
-  const level = (curentLevel.indexOf('curent') + 1) as Level;
+  const level = getCurrentLevel<Level>();
   let data: Tag | undefined;
   let htmlTag = '<';
 

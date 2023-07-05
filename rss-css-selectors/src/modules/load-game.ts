@@ -2,6 +2,7 @@ import { ViewForm } from '../components/foarm/foarm';
 import { ViewLevels } from '../components/level/level';
 import { Level } from '../types/types';
 import { createNewLevel } from './create-new-level';
+import { getCurrentLevel } from './get-current-level';
 import { results, curentLevel } from './level-data';
 
 export function loadGame() {
@@ -16,8 +17,7 @@ export function loadGame() {
       curentLevel[index] = loadCurentLevel[index];
     });
   }
-  console.log(results);
   new ViewForm();
   new ViewLevels();
-  createNewLevel((curentLevel.indexOf('curent') + 1) as Level);
+  createNewLevel(getCurrentLevel<number>() === 0 ? 1 : getCurrentLevel<Level>());
 }

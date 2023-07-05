@@ -5,8 +5,8 @@ import { findDomElement } from './find-dom-element';
 import { curentLevel, levelUnswer, results } from './level-data';
 import { removeLevel } from './remove-level';
 
-export async function checkUnswer(selector: string, level: Level) {
-  const INPUT = findDomElement(document.body, '.input') as HTMLInputElement;
+export async function processUnswer(selector: string, level: Level) {
+  const INPUT = findDomElement<HTMLInputElement>(document.body, '.input');
   const FOARMS = findDomElement(document.body, '.foarms');
 
   if (levelUnswer[level].includes(selector)) {

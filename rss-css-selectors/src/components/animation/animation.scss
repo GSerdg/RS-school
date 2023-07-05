@@ -46,7 +46,6 @@
 
 .apple,
 .flower {
-
   width: 90%;
 
   &_width {
@@ -56,13 +55,12 @@
   &_small {
     width: 5%;
   }
-
 }
 
 .hedgehog {
   width: 15%;
 
-  >.animation-child>.apple {
+  > .animation-child > .apple {
     width: 32%;
   }
 }
@@ -93,12 +91,11 @@
 
 .choise-animation {
   transform-origin: bottom;
-  animation-delay: 0s, .5s;
+  animation-delay: 0s, 0.5s;
   animation: myAnim 2s ease 0s infinite normal forwards;
 }
 
 @keyframes myAnim {
-
   0%,
   100% {
     transform: translateX(5%) rotate(4deg);
