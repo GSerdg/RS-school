@@ -1,17 +1,62 @@
 .page-buttons {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .input-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
 }
 
 .input-text {
-    height: 20px;
+  height: 20px;
 }
 
 .input-color {
-    height: 20px;
+  height: 20px;
+}
+
+.page-container {
+  padding: 20px 0;
+}
+
+.page__head,
+.page__number {
+  padding-bottom: 10px;
+  color: #f0f8ff;
+}
+
+.car-module {
+  margin-bottom: 20px;
+}
+
+.car__btn {
+  margin-bottom: 10px;
+}
+
+.car__start,
+.car__stop {
+  border: 2px solid;
+  border-radius: 3px;
+  padding: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+
+  &_active {
+    border: 2px solid $engine-btn-active;
+    color: $engine-btn-active;
+  }
+
+  @include hover {
+    background-color: #333333;
+  }
+}
+
+.car-engine {
+  margin-bottom: 20px;
+}
+
+.car-road {
+  border-bottom: 3px dashed #ffffff;
+
 }

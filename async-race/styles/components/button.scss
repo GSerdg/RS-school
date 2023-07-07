@@ -1,19 +1,19 @@
 .btn {
   border-radius: 3px;
-  border-bottom: 5px solid #41a3a7;
+  border-bottom: 5px solid $button-car-border;
   margin: 0 5px 0;
   padding: 2px 7px;
   cursor: pointer;
-  background-color: #aedeeb;
+  background-color: $button-car;
   transition: background-color 0.3s;
 
   &_color {
-    background-color: #a2eaa4;
-    border-bottom: 5px solid #69a741;
+    background-color: $button-race;
+    border-bottom: 5px solid $button-race-border;
 
   }
 
   @include hover {
-    background-color: #48acac;
+    background-color: $button-hover;
   }
 }
