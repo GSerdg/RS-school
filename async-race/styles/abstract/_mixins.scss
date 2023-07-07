@@ -1,0 +1,19 @@
+@mixin hover {
+  &:hover {
+    @media (hover: hover) and (pointer: fine) {
+      @content;
+    }
+  }
+}
+
+@mixin media-form {
+  @media (max-width: $width_lg) {
+    @content;
+  }
+}
+
+@mixin media-font {
+  @media (max-width: $width_md) {
+    @content;
+  }
+}
