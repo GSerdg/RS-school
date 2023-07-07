@@ -1,4 +1,4 @@
-export function createElement(tag: string, classNameArrow?: string[], id?: string, text?: string) {
+export default function createElement(tag: string, classNameArrow?: string[], id?: string, text?: string) {
   const ELEM = document.createElement(tag);
   if (classNameArrow) {
     ELEM.classList.add(...classNameArrow);
