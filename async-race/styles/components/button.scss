@@ -7,13 +7,22 @@
   background-color: $button-car;
   transition: background-color 0.3s;
 
+  @include hover {
+    background-color: $button-hover;
+  }
+
   &_color {
     background-color: $button-race;
     border-bottom: 5px solid $button-race-border;
-
   }
 
-  @include hover {
-    background-color: $button-hover;
+  &_inactive {
+    background-color: $btn-inactive;
+    border-bottom: 5px solid $btn-inactive-border;
+    cursor: default;
+
+    @include hover {
+      background-color: $btn-inactive;;
+    }
   }
 }

@@ -1,4 +1,4 @@
-export function findDomElement<T extends HTMLElement | HTMLTemplateElement | HTMLInputElement>(
+export default function findDomElement<T extends HTMLElement | HTMLTemplateElement | HTMLInputElement>(
   parentElement: HTMLElement,
   selector: string
 ) {
