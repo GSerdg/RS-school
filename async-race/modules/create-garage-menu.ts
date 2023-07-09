@@ -1,4 +1,35 @@
+import Car from '../types/types';
+import createCar from './create-car';
+import createCarModule from './create-car-module';
 import createElement from './create-element';
+import { BUTTON_TAG, dataObj } from './data';
+import findDomElement from './find-dom-element';
+
+async function createCarEvents(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  const INPUT_COLOR = target.previousElementSibling as HTMLInputElement;
+  const INPUT_MODEL = INPUT_COLOR.previousElementSibling as HTMLInputElement;
+
+  if (!INPUT_MODEL.value) return;
+
+  const data: Car = await createCar(INPUT_MODEL.value, INPUT_COLOR.value);
+  const CARS = document.body.querySelectorAll('.car-module');
+  const HEADER = findDomElement(document.body, '.page__head');
+  const BASE_COLOR = '#000000';
+
+  // TODO Проверить необходимость сохранять количество машин в гараже
+  dataObj.countGarageCars += 1;
+
+  HEADER.innerText = `Garage(${data.id})`;
+  if (CARS.length < 7) {
+    const PAGINATION = findDomElement(document.body, '.page__pagination');
+    PAGINATION.before(createCarModule(data));
+  }
+  INPUT_MODEL.value = '';
+  INPUT_COLOR.value = BASE_COLOR;
+}
 
 export function createPageBtns() {
   const GARAGE_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO GARAGE');
@@ -18,6 +49,8 @@ export function createGarageMenu() {
 
   for (let i = 0; i < 2; i += 1) {
     let title: string;
+    // let func: (event: MouseEvent) => void;
+    const func = createCarEvents;
 
     if (i === 0) {
       title = 'CREATE';
@@ -35,6 +68,8 @@ export function createGarageMenu() {
 
     INPUT_CONTAINER.append(INPUT_TEXT, INPUT_COLOR, BUTTON);
     ELEMENT.append(INPUT_CONTAINER);
+
+    BUTTON.addEventListener('click', func);
   }
 
   BUTTONS_CONTAINER.append(BUTTON_RACE, BUTTON_RESET, BUTTON_GENERATE);
