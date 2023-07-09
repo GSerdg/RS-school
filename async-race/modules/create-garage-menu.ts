@@ -4,6 +4,7 @@ import createCarModule from './create-car-module';
 import createElement from './create-element';
 import { BUTTON_TAG, dataObj } from './data';
 import findDomElement from './find-dom-element';
+import generateCars from './generate-cars';
 
 async function createCarEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -31,6 +32,13 @@ async function createCarEvents(event: MouseEvent) {
   INPUT_COLOR.value = BASE_COLOR;
 }
 
+async function generateCarsEvent(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  await generateCars(100);
+}
+
 export function createPageBtns() {
   const GARAGE_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO GARAGE');
   const WINNERS_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO WINNERS');
@@ -45,7 +53,7 @@ export function createGarageMenu() {
   const BUTTONS_CONTAINER = createElement('div', ['btns-contaienr']);
   const BUTTON_RACE = createElement('button', ['btn', 'btn_color'], undefined, 'RACE');
   const BUTTON_RESET = createElement('button', ['btn', 'btn_color'], undefined, 'RESET');
-  const BUTTON_GENERATE = createElement('button', ['btn'], undefined, 'GANERATE_CARS');
+  const BUTTON_GENERATE = createElement('button', ['btn'], undefined, 'GENERATE_CARS');
 
   for (let i = 0; i < 2; i += 1) {
     let title: string;
@@ -74,6 +82,8 @@ export function createGarageMenu() {
 
   BUTTONS_CONTAINER.append(BUTTON_RACE, BUTTON_RESET, BUTTON_GENERATE);
   ELEMENT.append(BUTTONS_CONTAINER);
+
+  BUTTON_GENERATE.addEventListener('click', generateCarsEvent);
 
   return ELEMENT;
 }

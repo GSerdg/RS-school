@@ -1,7 +1,7 @@
 const BUTTON_TAG = 'BUTTON';
 
 const dataObj = {
-  page: 3,
+  page: 1,
   countGarageCars: 0,
 };
 
