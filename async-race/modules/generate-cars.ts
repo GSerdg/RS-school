@@ -1,9 +1,8 @@
 import Car from '../types/types';
 import createCar from './create-car';
-import createGarage from './create-garage';
 import { dataObj } from './data';
 import findDomElement from './find-dom-element';
-import getCars from './get-cars';
+import replasePage from './utilites';
 
 export default async function generateCars(number: number) {
   async function applyPromise(rez: Car[]) {
@@ -14,9 +13,7 @@ export default async function generateCars(number: number) {
     const lastCar = rez.at(-1);
 
     if (CARS.length < 7) {
-      const getCarsData = await getCars();
-      const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
-      PAGE_CONTAINER.replaceWith(createGarage(getCarsData, dataObj.page));
+      replasePage(dataObj.page);
     }
 
     if (lastCar) {
