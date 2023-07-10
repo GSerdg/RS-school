@@ -1,7 +1,6 @@
 import Car from '../types/types';
 import carSvg from './car-icon';
-import createElement from './create-element';
-import findDomElement from './find-dom-element';
+import { createElement, findDomElement } from './dom-utilites';
 
 function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');

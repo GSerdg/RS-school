@@ -1,6 +1,6 @@
 import createGarage from './create-garage';
 import { CARS_ON_PAGE, dataObj } from './data';
-import findDomElement from './find-dom-element';
+import { findDomElement } from './dom-utilites';
 import { getCars } from './server-requests';
 
 export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {

@@ -6,7 +6,7 @@ import './style.scss';
 import './styles/base/_base.scss';
 import './styles/components/button.scss';
 import createPagination from './modules/create-pagination';
-import createElement from './modules/create-element';
+import { createElement } from './modules/dom-utilites';
 
 (async () => {
   const WRAPPER = createElement('div', ['wrapper']);
