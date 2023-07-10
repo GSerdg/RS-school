@@ -5,6 +5,7 @@ import createElement from './create-element';
 import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
 import findDomElement from './find-dom-element';
 import generateCars from './generate-cars';
+import { changePaginationStatus } from './utilites';
 
 async function createCarEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -20,13 +21,14 @@ async function createCarEvents(event: MouseEvent) {
   const HEADER = findDomElement(document.body, '.page__head');
   const BASE_COLOR = '#000000';
 
-  // TODO Проверить необходимость сохранять количество машин в гараже
   dataObj.countGarageCars += 1;
 
   HEADER.innerText = `Garage(${data.id})`;
   if (CARS.length < CARS_ON_PAGE) {
-    const PAGINATION = findDomElement(document.body, '.page__pagination');
-    PAGINATION.before(createCarModule(data));
+    const GARAGE = findDomElement(document.body, '.page-container');
+    GARAGE.append(createCarModule(data));
+  } else {
+    changePaginationStatus();
   }
   INPUT_MODEL.value = '';
   INPUT_COLOR.value = BASE_COLOR;
