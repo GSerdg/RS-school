@@ -17,7 +17,8 @@
 }
 
 .page-container {
-  padding: 20px 0;
+  padding-top: 20px;
+  height: 700px;
 }
 
 .page__head,
@@ -27,7 +28,7 @@
 }
 
 .car-module {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .car__btn {
@@ -53,7 +54,7 @@
 }
 
 .car-engine {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .car-road {
@@ -61,7 +62,11 @@
 }
 
 .flag-img {
-  width: 30px;
+  width: 17px;
   position: relative;
-  left: calc(100% - 245px);
+  left: calc(100% - 100px);
+}
+
+.page__pagination {
+  margin-top: 20px;
 }
