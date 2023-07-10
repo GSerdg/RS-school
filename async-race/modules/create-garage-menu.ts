@@ -2,7 +2,7 @@ import Car from '../types/types';
 import createCar from './create-car';
 import createCarModule from './create-car-module';
 import createElement from './create-element';
-import { BUTTON_TAG, dataObj } from './data';
+import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
 import findDomElement from './find-dom-element';
 import generateCars from './generate-cars';
 
@@ -24,7 +24,7 @@ async function createCarEvents(event: MouseEvent) {
   dataObj.countGarageCars += 1;
 
   HEADER.innerText = `Garage(${data.id})`;
-  if (CARS.length < 7) {
+  if (CARS.length < CARS_ON_PAGE) {
     const PAGINATION = findDomElement(document.body, '.page__pagination');
     PAGINATION.before(createCarModule(data));
   }

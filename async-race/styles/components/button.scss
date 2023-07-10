@@ -14,6 +14,11 @@
   &_color {
     background-color: $button-race;
     border-bottom: 5px solid $button-race-border;
+
+    @include hover {
+      background-color: $button-hover-active;
+    }
+
   }
 
   &_inactive {
@@ -22,7 +27,7 @@
     cursor: default;
 
     @include hover {
-      background-color: $btn-inactive;;
+      background-color: $btn-inactive;
     }
   }
 }

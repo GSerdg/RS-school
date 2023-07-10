@@ -1,8 +1,8 @@
 import Car from '../types/types';
 import createCar from './create-car';
-import { dataObj } from './data';
+import { CARS_ON_PAGE, dataObj } from './data';
 import findDomElement from './find-dom-element';
-import replasePage from './utilites';
+import { replasePage } from './utilites';
 
 export default async function generateCars(number: number) {
   async function applyPromise(rez: Car[]) {
@@ -12,7 +12,7 @@ export default async function generateCars(number: number) {
     rez.sort((a: Car, b: Car) => a.id - b.id);
     const lastCar = rez.at(-1);
 
-    if (CARS.length < 7) {
+    if (CARS.length < CARS_ON_PAGE) {
       replasePage(dataObj.page);
     }
 

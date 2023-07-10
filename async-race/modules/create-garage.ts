@@ -1,7 +1,7 @@
 import createElement from './create-element';
 import Car from '../types/types';
 import createCarModule from './create-car-module';
-import { dataObj } from './data';
+import { CARS_ON_PAGE, dataObj } from './data';
 
 export default function createGarage(data: Car[], page: number) {
   const PAGE_CONTAINER = createElement('div', ['page-container']);
@@ -10,16 +10,15 @@ export default function createGarage(data: Car[], page: number) {
 
   dataObj.countGarageCars = data.length;
   PAGE_CONTAINER.append(PAGE_HEADER, PAGE_NUMBER);
-  const carsOnPage = 7;
   let carNum: number;
 
-  if (page * carsOnPage <= data.length) {
-    carNum = page * carsOnPage;
+  if (page * CARS_ON_PAGE <= data.length) {
+    carNum = page * CARS_ON_PAGE;
   } else {
-    carNum = page * carsOnPage - (page * carsOnPage - data.length);
+    carNum = page * CARS_ON_PAGE - (page * CARS_ON_PAGE - data.length);
   }
 
-  for (let i = carsOnPage * page - carsOnPage; i < carNum; i += 1) {
+  for (let i = CARS_ON_PAGE * page - CARS_ON_PAGE; i < carNum; i += 1) {
     const CAR = createCarModule(data[i]);
     PAGE_CONTAINER.append(CAR);
   }
