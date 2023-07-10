@@ -1,8 +1,8 @@
 import Car from '../types/types';
-import createCar from './create-car';
+import { createCar } from './server-requests';
 import { CARS_ON_PAGE, dataObj } from './data';
-import findDomElement from './find-dom-element';
 import { replasePage } from './utilites';
+import findDomElement from './find-dom-element';
 
 export default async function generateCars(number: number) {
   async function applyPromise(rez: Car[]) {

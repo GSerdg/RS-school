@@ -1,7 +1,7 @@
 import createGarage from './create-garage';
 import { CARS_ON_PAGE, dataObj } from './data';
 import findDomElement from './find-dom-element';
-import getCars from './get-cars';
+import { getCars } from './server-requests';
 
 export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
   const PREV_BUTTON = prev || findDomElement(document.body, '#prev-btn');

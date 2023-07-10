@@ -1,6 +1,6 @@
-import createElement from './create-element';
 import Car from '../types/types';
 import createCarModule from './create-car-module';
+import createElement from './create-element';
 import { CARS_ON_PAGE, dataObj } from './data';
 
 export default function createGarage(data: Car[], page: number) {

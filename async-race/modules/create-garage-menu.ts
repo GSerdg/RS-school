@@ -1,11 +1,11 @@
 import Car from '../types/types';
-import createCar from './create-car';
+import { createCar } from './server-requests';
 import createCarModule from './create-car-module';
-import createElement from './create-element';
 import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
-import findDomElement from './find-dom-element';
 import generateCars from './generate-cars';
 import { changePaginationStatus } from './utilites';
+import findDomElement from './find-dom-element';
+import createElement from './create-element';
 
 async function createCarEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
