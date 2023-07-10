@@ -10,6 +10,10 @@
 
 .input-text {
   height: 20px;
+
+  &_inactive {
+    background-color: $btn-inactive;
+  }
 }
 
 .input-color {

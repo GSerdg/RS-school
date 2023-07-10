@@ -58,19 +58,29 @@ export function createGarageMenu() {
 
   for (let i = 0; i < 2; i += 1) {
     let title: string;
-    // let func: (event: MouseEvent) => void;
-    const func = createCarEvents;
+    let btnClassList: string[];
+    let inputClassList: string[];
+    let idInputContainer: string;
+    let flag: boolean;
 
     if (i === 0) {
       title = 'CREATE';
+      btnClassList = ['btn'];
+      inputClassList = ['input-text'];
+      idInputContainer = 'input-create';
+      flag = true;
     } else {
       title = 'UPDATE';
+      btnClassList = ['btn', 'btn_inactive'];
+      inputClassList = ['input-text', 'input-text_inactive'];
+      idInputContainer = 'input-update';
+      flag = false;
     }
 
-    const INPUT_CONTAINER = createElement('div', ['input-container']);
-    const INPUT_TEXT = createElement('input', ['input-text']);
+    const INPUT_CONTAINER = createElement('div', ['input-container'], idInputContainer);
+    const INPUT_TEXT = createElement('input', inputClassList);
     const INPUT_COLOR = createElement('input', ['input-color']);
-    const BUTTON = createElement('button', ['btn'], undefined, title);
+    const BUTTON = createElement('button', btnClassList, undefined, title);
 
     INPUT_TEXT.setAttribute('type', 'text');
     INPUT_COLOR.setAttribute('type', 'color');
@@ -78,7 +88,9 @@ export function createGarageMenu() {
     INPUT_CONTAINER.append(INPUT_TEXT, INPUT_COLOR, BUTTON);
     ELEMENT.append(INPUT_CONTAINER);
 
-    BUTTON.addEventListener('click', func);
+    if (flag) {
+      BUTTON.addEventListener('click', createCarEvents);
+    }
   }
 
   BUTTONS_CONTAINER.append(BUTTON_RACE, BUTTON_RESET, BUTTON_GENERATE);
