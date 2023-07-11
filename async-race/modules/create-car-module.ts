@@ -8,7 +8,7 @@ async function selectCar(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
 
-  const CAR_MODULE = target.previousElementSibling?.previousElementSibling as HTMLElement;
+  const CAR_MODULE = target.parentElement?.parentElement as HTMLElement;
   const carId = +CAR_MODULE.id.split('-')[1];
   const INPUT_UPDATE_CONTAINER = findDomElement(document.body, '#input-update');
   const INPUT_UPDATE_TEXT = INPUT_UPDATE_CONTAINER.firstElementChild as HTMLInputElement;
@@ -16,12 +16,13 @@ async function selectCar(event: MouseEvent) {
   const INPUT_UPDATE_BUTTON = INPUT_UPDATE_CONTAINER.lastElementChild as HTMLButtonElement;
   const data = await getCar(carId);
 
-  // INPUT_UPDATE_TEXT.value = '';
   INPUT_UPDATE_TEXT.value = data.name;
   INPUT_UPDATE_TEXT.focus();
+  INPUT_UPDATE_TEXT.classList.remove('input-text_inactive');
   INPUT_UPDATE_COLOR.value = data.color;
   INPUT_UPDATE_BUTTON.classList.remove('btn_inactive');
 
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   INPUT_UPDATE_BUTTON.addEventListener('click', updateCarEvents(carId, CAR_MODULE));
 }
 
@@ -59,10 +60,11 @@ export default function createCarModule(carObj: Car) {
 }
 
 function updateCarEvents(id: number, carModule: HTMLElement) {
-  return async (event: MouseEvent) => {
+  async function eventFunc(event: MouseEvent) {
     const target = event.target as HTMLButtonElement;
     if (target.tagName !== BUTTON_TAG) return;
 
+    const BASE_COLOR = '#000000';
     const INPUT_COLOR = target.previousElementSibling as HTMLInputElement;
     const INPUT_MODEL = INPUT_COLOR.previousElementSibling as HTMLInputElement;
 
@@ -70,20 +72,13 @@ function updateCarEvents(id: number, carModule: HTMLElement) {
 
     const data = await updateCar(INPUT_MODEL.value, INPUT_COLOR.value, id);
     carModule.replaceWith(createCarModule(data));
-  };
+
+    INPUT_MODEL.value = '';
+    INPUT_MODEL.classList.add('input-text_inactive');
+    INPUT_COLOR.value = BASE_COLOR;
+    target.classList.add('btn_inactive');
+
+    target.removeEventListener('click', eventFunc);
+  }
+  return eventFunc;
 }
-/* async function updateCarEvents(event: MouseEvent) {
-  const target = event.target as HTMLButtonElement;
-  if (target.tagName !== BUTTON_TAG) return;
-
-  const INPUT_COLOR = target.previousElementSibling as HTMLInputElement;
-  const INPUT_MODEL = INPUT_COLOR.previousElementSibling as HTMLInputElement;
-
-  if (!INPUT_MODEL.value) return;
-
-  const data = await updateCar(INPUT_MODEL.value, INPUT_COLOR.value, carId);
-  
-}
- */
-
-
