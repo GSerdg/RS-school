@@ -1,4 +1,4 @@
-import { CARS_ON_PAGE, dataObj } from './data';
+import { dataObj } from './data';
 import { findDomElement } from './dom-utilites';
 
 export default function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
@@ -11,7 +11,7 @@ export default function changePaginationStatus(prev?: HTMLElement, next?: HTMLEl
   } else {
     PREV_BUTTON.classList.remove('btn_inactive');
   }
-  if (CARS_ON_PAGE * dataObj.page >= dataObj.countGarageCars) {
+  if (dataObj.limit * dataObj.page >= dataObj.countGarageCars) {
     NEXT_BUTTON.classList.add('btn_inactive');
   } else {
     NEXT_BUTTON.classList.remove('btn_inactive');

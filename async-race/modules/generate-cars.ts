@@ -1,26 +1,9 @@
 import Car from '../types/types';
 import { createCar } from './server-requests';
-import { CARS_ON_PAGE, dataObj } from './data';
-import { findDomElement } from './dom-utilites';
+import { dataObj } from './data';
 import { replasePage } from './create-garage';
 
 export default async function generateCars(number: number) {
-  async function applyPromise(rez: Car[]) {
-    const CARS = document.body.querySelectorAll('.car-module');
-    const HEADER = findDomElement(document.body, '.page__head');
-
-    rez.sort((a: Car, b: Car) => a.id - b.id);
-    const lastCar = rez.at(-1);
-
-    if (CARS.length < CARS_ON_PAGE) {
-      replasePage(dataObj.page);
-    }
-
-    if (lastCar) {
-      HEADER.innerText = `Garage(${lastCar.id})`;
-    }
-  }
-
   const carBrand = ['Toyota', 'Nissan', 'Daihatsu', 'Subaru', 'BMV', 'Mersedes', 'Ford', 'Honda', 'Kia', 'Renault'];
   const carModel = ['Opa', 'Corolla', 'Murano', 'Note', 'Avensis', 'Voxy', 'Fit', 'Legend', 'Shuttle', 'Odyssey'];
   const promiseArray: Promise<Car>[] = [];
@@ -41,5 +24,7 @@ export default async function generateCars(number: number) {
     promiseArray.push(promise);
   }
 
-  await Promise.all(promiseArray).then(applyPromise).catch(console.error);
+  await Promise.all(promiseArray)
+    .then(() => replasePage(dataObj.page))
+    .catch(console.error);
 }

@@ -1,6 +1,6 @@
 import Car from '../types/types';
 import { createCar } from './server-requests';
-import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
+import { BUTTON_TAG, dataObj } from './data';
 import generateCars from './generate-cars';
 import { createElement, findDomElement } from './dom-utilites';
 import { createCarModule } from './create-garage';
@@ -22,8 +22,8 @@ async function createCarEvents(event: MouseEvent) {
 
   dataObj.countGarageCars += 1;
 
-  HEADER.innerText = `Garage(${data.id})`;
-  if (CARS.length < CARS_ON_PAGE) {
+  HEADER.innerText = `Garage(${dataObj.countGarageCars})`;
+  if (CARS.length < dataObj.limit) {
     const GARAGE = findDomElement(document.body, '.page-container');
     GARAGE.append(createCarModule(data));
   } else {

@@ -1,13 +1,41 @@
 import Car from '../types/types';
 import changePaginationStatus from './app-utilites';
 import carSvg from './car-icon';
-import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
+import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { deleteCar, getCar, getCars, updateCar } from './server-requests';
 
 function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');
   SVG.setAttribute('style', `fill: ${color}`);
+}
+
+function updateCarEvents(id: number, carModule: HTMLElement) {
+  async function eventFunc(event: MouseEvent) {
+    const target = event.target as HTMLButtonElement;
+    if (target.tagName !== BUTTON_TAG) return;
+
+    const BASE_COLOR = '#000000';
+    const INPUT_COLOR = target.previousElementSibling as HTMLInputElement;
+    const INPUT_MODEL = INPUT_COLOR.previousElementSibling as HTMLInputElement;
+
+    if (!INPUT_MODEL.value) return;
+
+    const data = await updateCar(INPUT_MODEL.value, INPUT_COLOR.value, id);
+
+    if (data) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      carModule.replaceWith(createCarModule(data));
+    }
+
+    INPUT_MODEL.value = '';
+    INPUT_MODEL.classList.add('input-text_inactive');
+    INPUT_COLOR.value = BASE_COLOR;
+    target.classList.add('btn_inactive');
+
+    target.removeEventListener('click', eventFunc);
+  }
+  return eventFunc;
 }
 
 async function deleteCarEvents(event: MouseEvent) {
@@ -43,32 +71,7 @@ async function selectCarEvents(event: MouseEvent) {
   INPUT_UPDATE_TEXT.classList.remove('input-text_inactive');
   INPUT_UPDATE_BUTTON.classList.remove('btn_inactive');
 
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   INPUT_UPDATE_BUTTON.addEventListener('click', updateCarEvents(carId, CAR_MODULE));
-}
-
-export function createGarage(data: Car[], page: number) {
-  const PAGE_CONTAINER = createElement('div', ['page-container']);
-  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Garage(${data.length})`);
-  const PAGE_NUMBER = createElement('h3', ['page__number'], undefined, `Page #${page}`);
-
-  dataObj.countGarageCars = data.length;
-  PAGE_CONTAINER.append(PAGE_HEADER, PAGE_NUMBER);
-  let carNum: number;
-
-  if (page * CARS_ON_PAGE <= data.length) {
-    carNum = page * CARS_ON_PAGE;
-  } else {
-    carNum = page * CARS_ON_PAGE - (page * CARS_ON_PAGE - data.length);
-  }
-
-  for (let i = CARS_ON_PAGE * page - CARS_ON_PAGE; i < carNum; i += 1) {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    const CAR = createCarModule(data[i]);
-    PAGE_CONTAINER.append(CAR);
-  }
-
-  return PAGE_CONTAINER;
 }
 
 export function createCarModule(carObj: Car) {
@@ -100,35 +103,22 @@ export function createCarModule(carObj: Car) {
   return ELEMENT;
 }
 
-function updateCarEvents(id: number, carModule: HTMLElement) {
-  async function eventFunc(event: MouseEvent) {
-    const target = event.target as HTMLButtonElement;
-    if (target.tagName !== BUTTON_TAG) return;
+export function createGarage(data: Car[], page: number) {
+  const PAGE_CONTAINER = createElement('div', ['page-container']);
+  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Garage(${dataObj.countGarageCars})`);
+  const PAGE_NUMBER = createElement('h3', ['page__number'], undefined, `Page #${page}`);
 
-    const BASE_COLOR = '#000000';
-    const INPUT_COLOR = target.previousElementSibling as HTMLInputElement;
-    const INPUT_MODEL = INPUT_COLOR.previousElementSibling as HTMLInputElement;
-
-    if (!INPUT_MODEL.value) return;
-
-    const data = await updateCar(INPUT_MODEL.value, INPUT_COLOR.value, id);
-
-    if (data) {
-      carModule.replaceWith(createCarModule(data));
-    }
-
-    INPUT_MODEL.value = '';
-    INPUT_MODEL.classList.add('input-text_inactive');
-    INPUT_COLOR.value = BASE_COLOR;
-    target.classList.add('btn_inactive');
-
-    target.removeEventListener('click', eventFunc);
+  PAGE_CONTAINER.append(PAGE_HEADER, PAGE_NUMBER);
+  for (let i = 0; i < data.length; i += 1) {
+    const CAR = createCarModule(data[i]);
+    PAGE_CONTAINER.append(CAR);
   }
-  return eventFunc;
+
+  return PAGE_CONTAINER;
 }
 
 export async function replasePage(page: number) {
-  const getCarsData = await getCars();
+  const getCarsData = await getCars(page, dataObj.limit);
   const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
 
   if (getCarsData) {

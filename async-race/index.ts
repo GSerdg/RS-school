@@ -12,7 +12,7 @@ import './styles/components/button.scss';
   const WRAPPER = createElement('div', ['wrapper']);
 
   WRAPPER.append(createPageBtns(), createGarageMenu());
-  const getCarsData = await getCars();
+  const getCarsData = await getCars(dataObj.page, dataObj.limit);
   if (getCarsData) {
     WRAPPER.append(createGarage(getCarsData, dataObj.page), createPagination());
   }
