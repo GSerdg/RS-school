@@ -1,9 +1,7 @@
-import createGarage from './create-garage';
 import { CARS_ON_PAGE, dataObj } from './data';
 import { findDomElement } from './dom-utilites';
-import { getCars } from './server-requests';
 
-export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
+export default function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
   const PREV_BUTTON = prev || findDomElement(document.body, '#prev-btn');
   const NEXT_BUTTON = next || findDomElement(document.body, '#next-btn');
   const FIRST_PAGE = 1;
@@ -18,15 +16,4 @@ export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
   } else {
     NEXT_BUTTON.classList.remove('btn_inactive');
   }
-}
-
-export async function replasePage(page: number) {
-  const getCarsData = await getCars();
-  const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
-
-  if (getCarsData) {
-    PAGE_CONTAINER.replaceWith(createGarage(getCarsData, page));
-  }
-
-  changePaginationStatus();
 }

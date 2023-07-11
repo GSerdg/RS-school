@@ -1,5 +1,6 @@
+import changePaginationStatus from './app-utilites';
+import { replasePage } from './create-garage';
 import { BUTTON_TAG, CARS_ON_PAGE, dataObj } from './data';
-import { changePaginationStatus, replasePage } from './app-utilites';
 import { createElement } from './dom-utilites';
 
 function turnPage(event: MouseEvent) {
