@@ -1,10 +1,23 @@
 import Car from '../types/types';
+// eslint-disable-next-line import/no-cycle
+import { replasePage } from './app-utilites';
 import carSvg from './car-icon';
-import { BUTTON_TAG } from './data';
+import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import { getCar, updateCar } from './server-requests';
+import { deleteCar, getCar, updateCar } from './server-requests';
 
-async function selectCar(event: MouseEvent) {
+async function deleteCarEvents(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  const CAR_MODULE = target.parentElement?.parentElement as HTMLElement;
+  const carId = +CAR_MODULE.id.split('-')[1];
+
+  await deleteCar(carId);
+  await replasePage(dataObj.page);
+}
+
+async function selectCarEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
 
@@ -16,10 +29,13 @@ async function selectCar(event: MouseEvent) {
   const INPUT_UPDATE_BUTTON = INPUT_UPDATE_CONTAINER.lastElementChild as HTMLButtonElement;
   const data = await getCar(carId);
 
-  INPUT_UPDATE_TEXT.value = data.name;
+  if (data) {
+    INPUT_UPDATE_TEXT.value = data.name;
+    INPUT_UPDATE_COLOR.value = data.color;
+  }
+
   INPUT_UPDATE_TEXT.focus();
   INPUT_UPDATE_TEXT.classList.remove('input-text_inactive');
-  INPUT_UPDATE_COLOR.value = data.color;
   INPUT_UPDATE_BUTTON.classList.remove('btn_inactive');
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -54,7 +70,8 @@ export default function createCarModule(carObj: Car) {
   ENGINE_CONTAINER.append(START_BUTTON, STOP_BUTTON);
   ELEMENT.append(BUTTONS_CONTAINER, ENGINE_CONTAINER, CAR_ROAD);
 
-  SELECT_BUTTON.addEventListener('click', selectCar);
+  SELECT_BUTTON.addEventListener('click', selectCarEvents);
+  REMOOVE_BUTTON.addEventListener('click', deleteCarEvents);
 
   return ELEMENT;
 }
@@ -71,7 +88,10 @@ function updateCarEvents(id: number, carModule: HTMLElement) {
     if (!INPUT_MODEL.value) return;
 
     const data = await updateCar(INPUT_MODEL.value, INPUT_COLOR.value, id);
-    carModule.replaceWith(createCarModule(data));
+
+    if (data) {
+      carModule.replaceWith(createCarModule(data));
+    }
 
     INPUT_MODEL.value = '';
     INPUT_MODEL.classList.add('input-text_inactive');

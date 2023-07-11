@@ -23,6 +23,10 @@ export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
 export async function replasePage(page: number) {
   const getCarsData = await getCars();
   const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
-  PAGE_CONTAINER.replaceWith(createGarage(getCarsData, page));
+
+  if (getCarsData) {
+    PAGE_CONTAINER.replaceWith(createGarage(getCarsData, page));
+  }
+
   changePaginationStatus();
 }

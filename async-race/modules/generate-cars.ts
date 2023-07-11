@@ -41,5 +41,5 @@ export default async function generateCars(number: number) {
     promiseArray.push(promise);
   }
 
-  await Promise.all(promiseArray).then(applyPromise);
+  await Promise.all(promiseArray).then(applyPromise).catch(console.error);
 }

@@ -13,6 +13,8 @@ import { createElement } from './modules/dom-utilites';
 
   WRAPPER.append(createPageBtns(), createGarageMenu());
   const getCarsData = await getCars();
-  WRAPPER.append(createGarage(getCarsData, dataObj.page), createPagination());
+  if (getCarsData) {
+    WRAPPER.append(createGarage(getCarsData, dataObj.page), createPagination());
+  }
   document.body.append(WRAPPER);
 })();
