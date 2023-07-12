@@ -9,6 +9,10 @@ html {
   scroll-behavior: smooth;
 }
 
+svg {
+  transition: transform linear;
+}
+
 *,
 *::before,
 *::after {

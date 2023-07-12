@@ -1,4 +1,4 @@
-import Car from '../types/types';
+import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { dataObj } from './data';
 import { replasePage } from './create-garage';

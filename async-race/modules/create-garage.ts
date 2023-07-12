@@ -1,9 +1,9 @@
-import Car from '../types/types';
-import changePaginationStatus from './app-utilites';
+import { Car } from '../types/types';
+import changePaginationStatus, { startCar, stopCar } from './app-utilites';
 import carSvg from './car-icon';
-import { BUTTON_TAG, dataObj } from './data';
+import { BUTTON_TAG, dataObj, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import { deleteCar, getCar, getCars, updateCar } from './server-requests';
+import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
 
 function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');
@@ -74,6 +74,35 @@ async function selectCarEvents(event: MouseEvent) {
   INPUT_UPDATE_BUTTON.addEventListener('click', updateCarEvents(carId, CAR_MODULE));
 }
 
+async function startCarEngineEvents(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== SPAN_TAG) return;
+
+  const stopCarError = "Car has been stopped suddenly. It's engine was broken down.";
+  const CAR_MODULE = target.parentElement?.parentElement as HTMLElement;
+  const CAR = CAR_MODULE.lastElementChild?.firstElementChild as HTMLElement;
+  const carId = +CAR_MODULE.id.split('-')[1];
+
+  const content = await startStopCarEngine('started', carId);
+  if (content) {
+    const animationTime = content.distance / content.velocity;
+
+    window.requestAnimationFrame(startCar(CAR, CAR_MODULE, animationTime));
+    const rezult = driveCarEngine(carId);
+    rezult
+      .then((res) => {
+        if (res?.success) {
+          console.log('car win');
+        }
+      })
+      .catch((err) => {
+        if (err.message === stopCarError) {
+          window.requestAnimationFrame(stopCar(CAR));
+        }
+      });
+  }
+}
+
 export function createCarModule(carObj: Car) {
   const ELEMENT = createElement('div', ['car-module'], `car-${carObj.id}`);
   const BUTTONS_CONTAINER = createElement('div', ['car__btn']);
@@ -99,6 +128,8 @@ export function createCarModule(carObj: Car) {
 
   SELECT_BUTTON.addEventListener('click', selectCarEvents);
   REMOOVE_BUTTON.addEventListener('click', deleteCarEvents);
+  START_BUTTON.addEventListener('click', startCarEngineEvents);
+  // STOP_BUTTON.addEventListener('click', stopCarEngineEvents);
 
   return ELEMENT;
 }

@@ -17,3 +17,23 @@ export default function changePaginationStatus(prev?: HTMLElement, next?: HTMLEl
     NEXT_BUTTON.classList.remove('btn_inactive');
   }
 }
+
+export function startCar(carElement: HTMLElement, carModule: HTMLElement, time: number) {
+  return () => {
+    const carWidth = 40;
+    const width = carModule.clientWidth - carWidth;
+    // eslint-disable-next-line no-param-reassign
+    carElement.style.transitionDuration = `${time}ms`;
+    // eslint-disable-next-line no-param-reassign
+    carElement.style.transform = `translateX(${width}px)`;
+  };
+}
+
+export function stopCar(carElement: HTMLElement) {
+  return () => {
+    const padding = 10;
+    const position = carElement.getBoundingClientRect().left - padding;
+    // eslint-disable-next-line no-param-reassign
+    carElement.style.transform = `translateX(${position}px)`;
+  };
+}

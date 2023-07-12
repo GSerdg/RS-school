@@ -1,4 +1,4 @@
-import Car from '../types/types';
+import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { BUTTON_TAG, dataObj } from './data';
 import generateCars from './generate-cars';
