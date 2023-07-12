@@ -83,7 +83,11 @@ async function startCarEngineEvents(event: MouseEvent) {
   const CAR = CAR_MODULE.lastElementChild?.firstElementChild as HTMLElement;
   const carId = +CAR_MODULE.id.split('-')[1];
 
+  target.removeEventListener('click', startCarEngineEvents);
+  target.classList.remove('car__start_active');
+
   const content = await startStopCarEngine('started', carId);
+
   if (content) {
     const animationTime = content.distance / content.velocity;
 

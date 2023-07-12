@@ -46,15 +46,15 @@
   border-radius: 3px;
   padding: 3px;
   margin-right: 10px;
-  cursor: pointer;
-
+  
   &_active {
+    cursor: pointer;
     border: 2px solid $engine-btn-active;
     color: $engine-btn-active;
-  }
 
-  @include hover {
-    background-color: #333333;
+    @include hover {
+      background-color: #333333;
+    }
   }
 }
 
