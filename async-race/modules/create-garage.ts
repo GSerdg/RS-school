@@ -1,6 +1,8 @@
 import { Car } from '../types/types';
-import changePaginationStatus, { returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
+import { changePaginationStatus, returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
 import carSvg from './car-icon';
+// eslint-disable-next-line import/no-cycle
+import { carsRaceEvent } from './create-garage-menu';
 import { BUTTON_TAG, carReturn, dataObj, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
@@ -99,9 +101,12 @@ export async function startCar(carModule: HTMLElement) {
   const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
   const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
   const START_BUTTON = carModule.firstElementChild?.nextElementSibling?.firstElementChild as HTMLButtonElement;
+  const RACE_BUTTON = findDomElement<HTMLButtonElement>(document.body, '#race');
 
   START_BUTTON.removeEventListener('click', startCarEngineEvents);
   START_BUTTON.classList.remove('car__start_active');
+  RACE_BUTTON.removeEventListener('click', carsRaceEvent);
+  RACE_BUTTON.classList.add('btn_inactive');
 
   const content = await startStopCarEngine('started', carId);
   STOP_BUTTON.addEventListener('click', stopCarEngineEvents);
@@ -131,6 +136,7 @@ export async function stopCar(carModule: HTMLElement) {
   const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
   const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
   const START_BUTTON = carModule.firstElementChild?.nextElementSibling?.firstElementChild as HTMLButtonElement;
+  const RACE_BUTTON = findDomElement<HTMLButtonElement>(document.body, '#race');
 
   STOP_BUTTON.removeEventListener('click', stopCarEngineEvents);
   STOP_BUTTON.classList.remove('car__start_active');
@@ -145,6 +151,11 @@ export async function stopCar(carModule: HTMLElement) {
     const animationTime = 0;
     window.requestAnimationFrame(returnCar(CAR, animationTime));
     carReturn.set(carId, false);
+
+    if (Array.from(carReturn.values()).every((val) => val === false)) {
+      RACE_BUTTON.addEventListener('click', carsRaceEvent);
+      RACE_BUTTON.classList.remove('btn_inactive');
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import changePaginationStatus from './app-utilites';
+import { changePaginationStatus } from './app-utilites';
 import { replasePage } from './create-garage';
 import { BUTTON_TAG, carReturn, dataObj } from './data';
 import { createElement } from './dom-utilites';

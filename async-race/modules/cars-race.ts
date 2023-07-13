@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { startCar, stopCar } from './create-garage';
-// eslint-disable-next-line import/no-cycle
-import { carsRaceEvent } from './create-garage-menu';
 import { BUTTON_TAG } from './data';
 import { findDomElement } from './dom-utilites';
 
@@ -34,7 +32,6 @@ export async function carsRace(carModules: NodeListOf<HTMLElement>) {
 export async function carsReset(carModules: NodeListOf<HTMLElement>) {
   const promiseArray: Promise<void>[] = [];
   const BUTTON_RESET = findDomElement<HTMLButtonElement>(document.body, '#reset');
-  const BUTTON_RACE = BUTTON_RESET.previousElementSibling as HTMLButtonElement;
 
   BUTTON_RESET.removeEventListener('click', carsResetEvent);
   BUTTON_RESET.classList.add('btn_inactive');
@@ -47,7 +44,4 @@ export async function carsReset(carModules: NodeListOf<HTMLElement>) {
     promiseArray.push(promise);
   }
   await Promise.all(promiseArray).then().catch(console.error);
-
-  BUTTON_RACE.addEventListener('click', carsRaceEvent);
-  BUTTON_RACE.classList.remove('btn_inactive');
 }

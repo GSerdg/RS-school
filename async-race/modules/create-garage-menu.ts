@@ -2,7 +2,7 @@ import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import changePaginationStatus from './app-utilites';
+import { changePaginationStatus } from './app-utilites';
 // eslint-disable-next-line import/no-cycle
 import generateCars from './generate-cars';
 // eslint-disable-next-line import/no-cycle
@@ -13,9 +13,6 @@ import { carsRace } from './cars-race';
 export function carsRaceEvent(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
-
-  target.removeEventListener('click', carsRaceEvent);
-  target.classList.add('btn_inactive');
 
   const carsCollection = document.body.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
   carsRace(carsCollection);
