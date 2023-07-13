@@ -1,6 +1,7 @@
 import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { dataObj } from './data';
+// eslint-disable-next-line import/no-cycle
 import { replasePage } from './create-garage';
 
 export default async function generateCars(number: number) {

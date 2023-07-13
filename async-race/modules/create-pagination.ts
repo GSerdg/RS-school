@@ -1,6 +1,6 @@
 import changePaginationStatus from './app-utilites';
 import { replasePage } from './create-garage';
-import { BUTTON_TAG, dataObj } from './data';
+import { BUTTON_TAG, carReturn, dataObj } from './data';
 import { createElement } from './dom-utilites';
 
 function turnPage(event: MouseEvent) {
@@ -17,6 +17,7 @@ function turnPage(event: MouseEvent) {
   if (target.id === ID_PREV && dataObj.page !== FIRST_PAGE) {
     dataObj.page -= 1;
   }
+  carReturn.clear();
   replasePage(dataObj.page);
 }
 

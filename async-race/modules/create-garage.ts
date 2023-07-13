@@ -1,7 +1,7 @@
 import { Car } from '../types/types';
-import changePaginationStatus, { startCar, stopCar } from './app-utilites';
+import changePaginationStatus, { returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
 import carSvg from './car-icon';
-import { BUTTON_TAG, dataObj, SPAN_TAG } from './data';
+import { BUTTON_TAG, carReturn, dataObj, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
 
@@ -74,36 +74,77 @@ async function selectCarEvents(event: MouseEvent) {
   INPUT_UPDATE_BUTTON.addEventListener('click', updateCarEvents(carId, CAR_MODULE));
 }
 
-async function startCarEngineEvents(event: MouseEvent) {
+function stopCarEngineEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== SPAN_TAG) return;
 
-  const stopCarError = "Car has been stopped suddenly. It's engine was broken down.";
   const CAR_MODULE = target.parentElement?.parentElement as HTMLElement;
-  const CAR = CAR_MODULE.lastElementChild?.firstElementChild as HTMLElement;
-  const carId = +CAR_MODULE.id.split('-')[1];
 
-  target.removeEventListener('click', startCarEngineEvents);
-  target.classList.remove('car__start_active');
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  stopCar(CAR_MODULE);
+}
+
+function startCarEngineEvents(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== SPAN_TAG) return;
+  const CAR_MODULE = target.parentElement?.parentElement as HTMLElement;
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  startCar(CAR_MODULE);
+}
+
+export async function startCar(carModule: HTMLElement) {
+  const stopCarError = "Car has been stopped suddenly. It's engine was broken down.";
+  const carId = +carModule.id.split('-')[1];
+  const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
+  const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
+  const START_BUTTON = carModule.firstElementChild?.nextElementSibling?.firstElementChild as HTMLButtonElement;
+
+  START_BUTTON.removeEventListener('click', startCarEngineEvents);
+  START_BUTTON.classList.remove('car__start_active');
 
   const content = await startStopCarEngine('started', carId);
-
+  STOP_BUTTON.addEventListener('click', stopCarEngineEvents);
+  STOP_BUTTON.classList.add('car__start_active');
+  carReturn.set(carId, true);
   if (content) {
     const animationTime = content.distance / content.velocity;
 
-    window.requestAnimationFrame(startCar(CAR, CAR_MODULE, animationTime));
+    window.requestAnimationFrame(animateMoveCar(CAR, carModule, animationTime));
     const rezult = driveCarEngine(carId);
     rezult
       .then((res) => {
-        if (res?.success) {
+        if (res?.success && carReturn.get(carId)) {
           console.log('car win');
         }
       })
       .catch((err) => {
-        if (err.message === stopCarError) {
-          window.requestAnimationFrame(stopCar(CAR));
+        if (err.message === stopCarError && carReturn.get(carId)) {
+          window.requestAnimationFrame(stopAnimateCar(CAR));
         }
       });
+  }
+}
+
+export async function stopCar(carModule: HTMLElement) {
+  const carId = +carModule.id.split('-')[1];
+  const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
+  const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
+  const START_BUTTON = carModule.firstElementChild?.nextElementSibling?.firstElementChild as HTMLButtonElement;
+
+  STOP_BUTTON.removeEventListener('click', stopCarEngineEvents);
+  STOP_BUTTON.classList.remove('car__start_active');
+
+  const content = await startStopCarEngine('stopped', carId);
+
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  START_BUTTON.addEventListener('click', startCarEngineEvents);
+  START_BUTTON.classList.add('car__start_active');
+
+  if (content) {
+    const animationTime = 0;
+    window.requestAnimationFrame(returnCar(CAR, animationTime));
+    carReturn.set(carId, false);
   }
 }
 
@@ -133,7 +174,6 @@ export function createCarModule(carObj: Car) {
   SELECT_BUTTON.addEventListener('click', selectCarEvents);
   REMOOVE_BUTTON.addEventListener('click', deleteCarEvents);
   START_BUTTON.addEventListener('click', startCarEngineEvents);
-  // STOP_BUTTON.addEventListener('click', stopCarEngineEvents);
 
   return ELEMENT;
 }

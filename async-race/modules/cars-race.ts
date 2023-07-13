@@ -1,0 +1,53 @@
+// eslint-disable-next-line import/no-cycle
+import { startCar, stopCar } from './create-garage';
+// eslint-disable-next-line import/no-cycle
+import { carsRaceEvent } from './create-garage-menu';
+import { BUTTON_TAG } from './data';
+import { findDomElement } from './dom-utilites';
+
+export function carsResetEvent(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  const carsCollection = document.body.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  carsReset(carsCollection);
+}
+
+export async function carsRace(carModules: NodeListOf<HTMLElement>) {
+  const promiseArray: Promise<void>[] = [];
+  const BUTTON_RESET = findDomElement<HTMLButtonElement>(document.body, '#reset');
+
+  for (let i = 0; i < carModules.length; i += 1) {
+    const promise = new Promise<void>((resolve) => {
+      resolve(startCar(carModules[i]));
+    });
+
+    promiseArray.push(promise);
+  }
+  await Promise.all(promiseArray).then().catch(console.error);
+
+  BUTTON_RESET.addEventListener('click', carsResetEvent);
+  BUTTON_RESET.classList.remove('btn_inactive');
+}
+// TODO Посмотреть возможность объединить в одну функцию
+export async function carsReset(carModules: NodeListOf<HTMLElement>) {
+  const promiseArray: Promise<void>[] = [];
+  const BUTTON_RESET = findDomElement<HTMLButtonElement>(document.body, '#reset');
+  const BUTTON_RACE = BUTTON_RESET.previousElementSibling as HTMLButtonElement;
+
+  BUTTON_RESET.removeEventListener('click', carsResetEvent);
+  BUTTON_RESET.classList.add('btn_inactive');
+
+  for (let i = 0; i < carModules.length; i += 1) {
+    const promise = new Promise<void>((resolve) => {
+      resolve(stopCar(carModules[i]));
+    });
+
+    promiseArray.push(promise);
+  }
+  await Promise.all(promiseArray).then().catch(console.error);
+
+  BUTTON_RACE.addEventListener('click', carsRaceEvent);
+  BUTTON_RACE.classList.remove('btn_inactive');
+}

@@ -121,8 +121,6 @@ export async function startStopCarEngine(status: Status, id: number) {
 }
 
 export async function driveCarEngine(id: number) {
-  // try {
-  // const stopCarError = "Car has been stopped suddenly. It's engine was broken down";
   const response = await fetch(`${path.domen}${path.urlEngine}?id=${id}&status=drive`, {
     method: 'PATCH',
   });
@@ -131,13 +129,8 @@ export async function driveCarEngine(id: number) {
     const error = await response.text();
     throw new Error(error);
   }
-  // startCar(id); // TODO Функция, которая запускает машину
 
   const data: Success = await response.json();
 
   return data;
-  // } catch (err) {
-  // console.error(err);
-  // return undefined;
-  // }
 }

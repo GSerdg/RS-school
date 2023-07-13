@@ -1,10 +1,25 @@
 import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { BUTTON_TAG, dataObj } from './data';
-import generateCars from './generate-cars';
 import { createElement, findDomElement } from './dom-utilites';
-import { createCarModule } from './create-garage';
 import changePaginationStatus from './app-utilites';
+// eslint-disable-next-line import/no-cycle
+import generateCars from './generate-cars';
+// eslint-disable-next-line import/no-cycle
+import { createCarModule } from './create-garage';
+// eslint-disable-next-line import/no-cycle
+import { carsRace } from './cars-race';
+
+export function carsRaceEvent(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  target.removeEventListener('click', carsRaceEvent);
+  target.classList.add('btn_inactive');
+
+  const carsCollection = document.body.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
+  carsRace(carsCollection);
+}
 
 async function createCarEvents(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -52,8 +67,8 @@ export function createPageBtns() {
 export function createGarageMenu() {
   const ELEMENT = createElement('div', ['garage-menu']);
   const BUTTONS_CONTAINER = createElement('div', ['btns-contaienr']);
-  const BUTTON_RACE = createElement('button', ['btn', 'btn_color'], undefined, 'RACE');
-  const BUTTON_RESET = createElement('button', ['btn', 'btn_color'], undefined, 'RESET');
+  const BUTTON_RACE = createElement('button', ['btn', 'btn_color'], 'race', 'RACE');
+  const BUTTON_RESET = createElement('button', ['btn', 'btn_color', 'btn_inactive'], 'reset', 'RESET');
   const BUTTON_GENERATE = createElement('button', ['btn'], undefined, 'GENERATE_CARS');
 
   for (let i = 0; i < 2; i += 1) {
@@ -97,6 +112,7 @@ export function createGarageMenu() {
   ELEMENT.append(BUTTONS_CONTAINER);
 
   BUTTON_GENERATE.addEventListener('click', generateCarsEvent);
+  BUTTON_RACE.addEventListener('click', carsRaceEvent);
 
   return ELEMENT;
 }

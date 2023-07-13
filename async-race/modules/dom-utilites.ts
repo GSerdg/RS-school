@@ -12,7 +12,7 @@ export function createElement(tag: string, classNameArrow?: string[], id?: strin
   return ELEM;
 }
 
-export function findDomElement<T extends HTMLElement | HTMLTemplateElement | HTMLInputElement>(
+export function findDomElement<T extends HTMLElement | HTMLTemplateElement | HTMLInputElement | HTMLButtonElement>(
   parentElement: HTMLElement,
   selector: string
 ) {
