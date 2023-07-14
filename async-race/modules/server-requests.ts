@@ -1,5 +1,5 @@
 import { Car, Engine, Status, Success } from '../types/types';
-import { dataObj } from './data';
+import { controller, dataObj } from './data';
 
 const path = {
   domen: 'http://127.0.0.1:3000',
@@ -121,8 +121,10 @@ export async function startStopCarEngine(status: Status, id: number) {
 }
 
 export async function driveCarEngine(id: number) {
+  controller.set(id, new AbortController());
   const response = await fetch(`${path.domen}${path.urlEngine}?id=${id}&status=drive`, {
     method: 'PATCH',
+    signal: controller.get(id)?.signal,
   });
 
   if (!response.ok) {

@@ -2,8 +2,10 @@ import { Car } from '../types/types';
 import { changePaginationStatus, returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
 import carSvg from './car-icon';
 // eslint-disable-next-line import/no-cycle
+import { carsResetEvent } from './cars-race';
+// eslint-disable-next-line import/no-cycle
 import { carsRaceEvent } from './create-garage-menu';
-import { BUTTON_TAG, carReturn, dataObj, SPAN_TAG } from './data';
+import { BUTTON_TAG, carReturn, controller, dataObj, itFirstCar, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
 
@@ -95,7 +97,7 @@ function startCarEngineEvents(event: MouseEvent) {
   startCar(CAR_MODULE);
 }
 
-export async function startCar(carModule: HTMLElement) {
+export async function startCar(carModule: HTMLElement, race?: true) {
   const stopCarError = "Car has been stopped suddenly. It's engine was broken down.";
   const carId = +carModule.id.split('-')[1];
   const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
@@ -112,6 +114,7 @@ export async function startCar(carModule: HTMLElement) {
   STOP_BUTTON.addEventListener('click', stopCarEngineEvents);
   STOP_BUTTON.classList.add('car__start_active');
   carReturn.set(carId, true);
+
   if (content) {
     const animationTime = content.distance / content.velocity;
 
@@ -120,7 +123,10 @@ export async function startCar(carModule: HTMLElement) {
     rezult
       .then((res) => {
         if (res?.success && carReturn.get(carId)) {
-          console.log('car win');
+          if (itFirstCar.value && race) {
+            console.log('car win', carId, (animationTime / 1000).toFixed(2));
+            itFirstCar.value = false;
+          }
         }
       })
       .catch((err) => {
@@ -141,6 +147,8 @@ export async function stopCar(carModule: HTMLElement) {
   STOP_BUTTON.removeEventListener('click', stopCarEngineEvents);
   STOP_BUTTON.classList.remove('car__start_active');
 
+  controller.get(carId)?.abort(); // Отменяем запрос на сервер
+
   const content = await startStopCarEngine('stopped', carId);
 
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -155,6 +163,7 @@ export async function stopCar(carModule: HTMLElement) {
     if (Array.from(carReturn.values()).every((val) => val === false)) {
       RACE_BUTTON.addEventListener('click', carsRaceEvent);
       RACE_BUTTON.classList.remove('btn_inactive');
+      itFirstCar.value = true;
     }
   }
 }
@@ -206,10 +215,28 @@ export function createGarage(data: Car[], page: number) {
 export async function replasePage(page: number) {
   const getCarsData = await getCars(page, dataObj.limit);
   const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
+  const RACE_BUTTON = PAGE_CONTAINER.previousElementSibling?.lastElementChild?.firstElementChild as HTMLButtonElement;
+  const RESET_BUTTON = RACE_BUTTON?.nextElementSibling as HTMLButtonElement;
+  const carsCollection = PAGE_CONTAINER.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
 
   if (getCarsData) {
     PAGE_CONTAINER.replaceWith(createGarage(getCarsData, page));
+    itFirstCar.value = true;
   }
+
+  if (RACE_BUTTON?.classList.contains('btn_inactive')) {
+    RACE_BUTTON.addEventListener('click', carsRaceEvent);
+    RACE_BUTTON.classList.remove('btn_inactive');
+  }
+  if (!RESET_BUTTON?.classList.contains('btn_inactive')) {
+    RESET_BUTTON.removeEventListener('click', carsResetEvent);
+    RESET_BUTTON.classList.add('btn_inactive');
+  }
+
+  carsCollection.forEach((element) => {
+    const carId = +element.id.split('-')[1];
+    controller.get(carId)?.abort(); // Отменяем запрос на сервер
+  });
 
   changePaginationStatus();
 }

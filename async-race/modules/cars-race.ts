@@ -18,7 +18,7 @@ export async function carsRace(carModules: NodeListOf<HTMLElement>) {
 
   for (let i = 0; i < carModules.length; i += 1) {
     const promise = new Promise<void>((resolve) => {
-      resolve(startCar(carModules[i]));
+      resolve(startCar(carModules[i], true));
     });
 
     promiseArray.push(promise);
