@@ -153,3 +153,17 @@ export async function getResults(page: number, limit: number, sort?: 'id' | 'win
     return undefined;
   }
 }
+
+export async function deleteWinner(id: number) {
+  try {
+    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Car width id: ${id} not found in server`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

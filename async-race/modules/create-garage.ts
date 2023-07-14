@@ -7,7 +7,15 @@ import { carsResetEvent } from './cars-race';
 import { carsRaceEvent } from './create-garage-menu';
 import { BUTTON_TAG, carReturn, controller, dataObj, itFirstCar, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
+import {
+  deleteCar,
+  deleteWinner,
+  driveCarEngine,
+  getCar,
+  getCars,
+  startStopCarEngine,
+  updateCar,
+} from './server-requests';
 
 export function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');
@@ -50,6 +58,7 @@ async function deleteCarEvents(event: MouseEvent) {
   const carId = +CAR_MODULE.id.split('-')[1];
 
   await deleteCar(carId);
+  await deleteWinner(carId);
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   await replasePage(dataObj.page);
 }
