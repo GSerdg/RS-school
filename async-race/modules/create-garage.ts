@@ -8,13 +8,16 @@ import { carsRaceEvent } from './create-garage-menu';
 import { BUTTON_TAG, carReturn, controller, dataObj, itFirstCar, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import {
+  createWinner,
   deleteCar,
   deleteWinner,
   driveCarEngine,
   getCar,
   getCars,
+  getResult,
   startStopCarEngine,
   updateCar,
+  updateWinner,
 } from './server-requests';
 
 export function addAttribute(elem: HTMLElement, color: string) {
@@ -135,13 +138,36 @@ export async function startCar(carModule: HTMLElement, race?: true) {
           if (itFirstCar.value && race) {
             console.log('car win', carId, (animationTime / 1000).toFixed(2));
             itFirstCar.value = false;
+            return getResult(carId);
           }
         }
+        return undefined;
       })
+      .then((res) => {
+        let countWins = 1;
+        let time = +(animationTime / 1000).toFixed(2);
+        console.log(res);
+
+        if (res) {
+          if (Object.keys(res).length !== 0) {
+            countWins = res.wins + 1;
+
+            if (res.time < +(animationTime / 1000).toFixed(2)) {
+              time = res.time;
+            }
+            return updateWinner(carId, countWins, time);
+          }
+          return createWinner(carId, countWins, time);
+        }
+        return undefined;
+      })
+      .then()
       .catch((err) => {
         if (err.message === stopCarError && carReturn.get(carId)) {
           window.requestAnimationFrame(stopAnimateCar(CAR));
-        }
+        } /* else {
+          console.error(err);
+        } */
       });
   }
 }

@@ -1,4 +1,3 @@
-import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
@@ -27,7 +26,7 @@ async function createCarEvents(event: MouseEvent) {
 
   if (!INPUT_MODEL.value) return;
 
-  const data: Car = await createCar(INPUT_MODEL.value, INPUT_COLOR.value);
+  const data = await createCar(INPUT_MODEL.value, INPUT_COLOR.value).catch((err) => console.error(err));
   const CARS = document.body.querySelectorAll('.car-module');
   const HEADER = findDomElement(document.body, '.page__head');
   const BASE_COLOR = '#000000';
@@ -37,7 +36,9 @@ async function createCarEvents(event: MouseEvent) {
   HEADER.innerText = `Garage(${dataObj.countGarageCars})`;
   if (CARS.length < dataObj.limit) {
     const GARAGE = findDomElement(document.body, '#page-garage');
-    GARAGE.append(createCarModule(data));
+    if (data) {
+      GARAGE.append(createCarModule(data));
+    }
   } else {
     changePaginationGarageStatus();
   }

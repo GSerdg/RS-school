@@ -154,6 +154,18 @@ export async function getResults(page: number, limit: number, sort?: 'id' | 'win
   }
 }
 
+export async function getResult(id: number) {
+  try {
+    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`);
+    const data: Winner = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+}
+
 export async function deleteWinner(id: number) {
   try {
     const response = await fetch(`${path.domen}${path.urlWinners}/${id}`, {
@@ -164,6 +176,45 @@ export async function deleteWinner(id: number) {
       throw new Error(`Car width id: ${id} not found in server`);
     }
   } catch (error) {
+    // console.log(error.message);
+  }
+}
+
+export async function createWinner(id: number, wins: number, time: number) {
+  const response = await fetch(`${path.domen}${path.urlWinners}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      wins,
+      time,
+    }),
+  });
+  const data: Winner = await response.json();
+
+  return data;
+}
+
+export async function updateWinner(id: number, wins: number, time: number) {
+  try {
+    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        wins,
+        time,
+      }),
+    });
+
+    const data: Winner = await response.json();
+
+    return data;
+  } catch (error) {
     console.error(error);
+    return undefined;
   }
 }

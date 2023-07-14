@@ -16,6 +16,8 @@ export function createResultsTable(data: Winner[]) {
     TR_HEADER.append(TH);
   }
 
+  TABLE.append(TR_HEADER);
+
   for (let i = 0; i < data.length; i += 1) {
     const TR = createElement('tr');
     const dataCar = getCar(data[i].id);
@@ -48,7 +50,7 @@ export function createResultsTable(data: Winner[]) {
       });
     }
 
-    TABLE.append(TR_HEADER, TR);
+    TABLE.append(TR);
   }
 
   return TABLE;
