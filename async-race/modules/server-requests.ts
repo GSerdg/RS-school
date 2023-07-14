@@ -1,14 +1,14 @@
-import { Car, Engine, Status, Success } from '../types/types';
+import { Car, Engine, Status, Success, Winner } from '../types/types';
 import { controller, dataObj } from './data';
 
 const path = {
   domen: 'http://127.0.0.1:3000',
   urlGarage: '/garage',
   urlEngine: '/engine',
+  urlWinners: '/winners',
 };
 
 export async function createCar(carModel: string, carColor: string) {
-  // const url = 'http://127.0.0.1:3000/garage';
   const response = await fetch(`${path.domen}${path.urlGarage}`, {
     method: 'POST',
     headers: {
@@ -26,7 +26,6 @@ export async function createCar(carModel: string, carColor: string) {
 
 export async function getCar(id: number) {
   try {
-    // const url = `http://127.0.0.1:3000/garage/${id}`;
     const response = await fetch(`${path.domen}${path.urlGarage}/${id}`);
 
     if (!response.ok) {
@@ -44,7 +43,6 @@ export async function getCar(id: number) {
 
 export async function getCars(page: number, limit: number) {
   try {
-    // const url = 'http://127.0.0.1:3000/garage';
     const response = await fetch(`${path.domen}${path.urlGarage}?_page=${page}&_limit=${limit}`);
     const data: Car[] = await response.json();
     const header = response.headers.get('X-Total-Count');
@@ -62,7 +60,6 @@ export async function getCars(page: number, limit: number) {
 
 export async function updateCar(carModel: string, carColor: string, id: number) {
   try {
-    // const url = `http://127.0.0.1:3000/garage/${id}`;
     const response = await fetch(`${path.domen}${path.urlGarage}/${id}`, {
       method: 'PUT',
       headers: {
@@ -89,7 +86,6 @@ export async function updateCar(carModel: string, carColor: string, id: number) 
 
 export async function deleteCar(id: number) {
   try {
-    // const url = `http://127.0.0.1:3000/garage/${id}`;
     const response = await fetch(`${path.domen}${path.urlGarage}/${id}`, {
       method: 'DELETE',
     });
@@ -135,4 +131,21 @@ export async function driveCarEngine(id: number) {
   const data: Success = await response.json();
 
   return data;
+}
+
+export async function getResults(page: number, limit: number, sort?: 'id' | 'wins' | 'time', order?: 'ASC' | 'DESC') {
+  try {
+    const sortParams = sort || 'id';
+    const orderParams = order || 'ASC';
+    const response = await fetch(
+      `${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}&_sort=${sortParams}&_order=${orderParams}`
+    );
+    const data: Winner[] = await response.json();
+    // const header = response.headers.get('X-Total-Count');
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
 }

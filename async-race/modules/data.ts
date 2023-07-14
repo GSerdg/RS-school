@@ -13,4 +13,9 @@ const dataObj = {
   countGarageCars: 0,
 };
 
-export { BUTTON_TAG, SPAN_TAG, dataObj, carReturn, controller, itFirstCar };
+const resultObj = {
+  page: 1,
+  limit: 10,
+};
+
+export { BUTTON_TAG, SPAN_TAG, dataObj, carReturn, controller, itFirstCar, resultObj };

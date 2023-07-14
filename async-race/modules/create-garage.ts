@@ -1,5 +1,5 @@
 import { Car } from '../types/types';
-import { changePaginationStatus, returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
+import { changePaginationGarageStatus, returnCar, animateMoveCar, stopAnimateCar } from './app-utilites';
 import carSvg from './car-icon';
 // eslint-disable-next-line import/no-cycle
 import { carsResetEvent } from './cars-race';
@@ -238,5 +238,5 @@ export async function replasePage(page: number) {
     controller.get(carId)?.abort(); // Отменяем запрос на сервер
   });
 
-  changePaginationStatus();
+  changePaginationGarageStatus();
 }

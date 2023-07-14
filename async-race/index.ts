@@ -9,12 +9,19 @@ import './styles/base/_base.scss';
 import './styles/components/button.scss';
 
 (async () => {
-  const WRAPPER = createElement('div', ['wrapper']);
+  const WRAPPER_GARAGE = createElement('div', ['wrapper']);
+  const WRAPPER_RESULTS = createElement('div', ['wrapper', 'wrapper_absolute', 'wrapper_hidden']);
 
-  WRAPPER.append(createPageBtns(), createGarageMenu());
+  WRAPPER_GARAGE.append(createPageBtns(), createGarageMenu());
   const getCarsData = await getCars(dataObj.page, dataObj.limit);
+
   if (getCarsData) {
-    WRAPPER.append(createGarage(getCarsData, dataObj.page), createPagination());
+    WRAPPER_GARAGE.append(createGarage(getCarsData, dataObj.page), createPagination('garage'));
   }
-  document.body.append(WRAPPER);
+
+  WRAPPER_RESULTS.append(createPageBtns());
+  WRAPPER_RESULTS.append(createPagination('results'));
+
+  document.body.append(WRAPPER_GARAGE);
+  document.body.append(WRAPPER_RESULTS);
 })();

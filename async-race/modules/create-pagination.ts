@@ -1,9 +1,9 @@
-import { changePaginationStatus } from './app-utilites';
+import { changePaginationGarageStatus } from './app-utilites';
 import { replasePage } from './create-garage';
 import { BUTTON_TAG, carReturn, dataObj } from './data';
 import { createElement } from './dom-utilites';
 
-function turnPage(event: MouseEvent) {
+function turnPageGarage(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
 
@@ -21,14 +21,21 @@ function turnPage(event: MouseEvent) {
   replasePage(dataObj.page);
 }
 
-export default function createPagination() {
+export default function createPagination(page: 'garage' | 'results') {
   const PAGINATION = createElement('div', ['page__pagination']);
   const PREV_BUTTON = createElement('button', ['btn', 'btn_color'], 'prev-btn', 'PREV');
   const NEXT_BUTTON = createElement('button', ['btn', 'btn_color'], 'next-btn', 'NEXT');
 
   PAGINATION.append(PREV_BUTTON, NEXT_BUTTON);
-  changePaginationStatus(PREV_BUTTON, NEXT_BUTTON);
-  PAGINATION.addEventListener('click', turnPage);
+
+  if (page === 'garage') {
+    changePaginationGarageStatus(PREV_BUTTON, NEXT_BUTTON);
+    PAGINATION.addEventListener('click', turnPageGarage);
+  }
+  if (page === 'results') {
+    // changePaginationResultStatus(PREV_BUTTON, NEXT_BUTTON);
+    // PAGINATION.addEventListener('click', turnPageResults);
+  }
 
   return PAGINATION;
 }

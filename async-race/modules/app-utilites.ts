@@ -1,7 +1,7 @@
 import { dataObj } from './data';
 import { findDomElement } from './dom-utilites';
 
-export function changePaginationStatus(prev?: HTMLElement, next?: HTMLElement) {
+export function changePaginationGarageStatus(prev?: HTMLElement, next?: HTMLElement) {
   const PREV_BUTTON = prev || findDomElement(document.body, '#prev-btn');
   const NEXT_BUTTON = next || findDomElement(document.body, '#next-btn');
   const FIRST_PAGE = 1;

@@ -1,14 +1,15 @@
 import { Car } from '../types/types';
-import { createCar } from './server-requests';
-import { BUTTON_TAG, dataObj } from './data';
+import { createCar, getResults } from './server-requests';
+import { BUTTON_TAG, dataObj, resultObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import { changePaginationStatus } from './app-utilites';
+import { changePaginationGarageStatus } from './app-utilites';
 // eslint-disable-next-line import/no-cycle
 import generateCars from './generate-cars';
 // eslint-disable-next-line import/no-cycle
 import { createCarModule } from './create-garage';
 // eslint-disable-next-line import/no-cycle
 import { carsRace } from './cars-race';
+import { createResultsPage } from './create_results';
 
 export function carsRaceEvent(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -39,7 +40,7 @@ async function createCarEvents(event: MouseEvent) {
     const GARAGE = findDomElement(document.body, '.page-container');
     GARAGE.append(createCarModule(data));
   } else {
-    changePaginationStatus();
+    changePaginationGarageStatus();
   }
   INPUT_MODEL.value = '';
   INPUT_COLOR.value = BASE_COLOR;
@@ -58,6 +59,23 @@ export function createPageBtns() {
   const ELEMENT = createElement('div', ['page-buttons']);
 
   ELEMENT.append(GARAGE_BUTTON, WINNERS_BUTTON);
+
+  GARAGE_BUTTON.addEventListener('click', () => {
+    (document.body.firstElementChild as HTMLElement).classList.remove('wrapper_hidden');
+    (document.body.lastElementChild as HTMLElement).classList.add('wrapper_hidden');
+  });
+  WINNERS_BUTTON.addEventListener('click', async () => {
+    (document.body.firstElementChild as HTMLElement).classList.add('wrapper_hidden');
+    (document.body.lastElementChild as HTMLElement).classList.remove('wrapper_hidden');
+
+    const WRAPPER_RESULTS = findDomElement(document.body, '.wrapper_absolute');
+    const dataWinner = await getResults(resultObj.page, resultObj.limit);
+
+    if (dataWinner) {
+      WRAPPER_RESULTS.firstElementChild?.after(createResultsPage(dataWinner, resultObj.page));
+    }
+  });
+
   return ELEMENT;
 }
 

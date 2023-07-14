@@ -75,3 +75,12 @@
 .page__pagination {
   margin-top: 20px;
 }
+
+.results-table {
+  color: $table-color;
+  font-size: 1.5rem;
+}
+
+.table__head {
+  background-color: $table-head;
+}
