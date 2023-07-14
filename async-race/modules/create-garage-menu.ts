@@ -1,6 +1,6 @@
 import { Car } from '../types/types';
-import { createCar, getResults } from './server-requests';
-import { BUTTON_TAG, dataObj, resultObj } from './data';
+import { createCar } from './server-requests';
+import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { changePaginationGarageStatus } from './app-utilites';
 // eslint-disable-next-line import/no-cycle
@@ -9,7 +9,6 @@ import generateCars from './generate-cars';
 import { createCarModule } from './create-garage';
 // eslint-disable-next-line import/no-cycle
 import { carsRace } from './cars-race';
-import { createResultsPage } from './create_results';
 
 export function carsRaceEvent(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -37,7 +36,7 @@ async function createCarEvents(event: MouseEvent) {
 
   HEADER.innerText = `Garage(${dataObj.countGarageCars})`;
   if (CARS.length < dataObj.limit) {
-    const GARAGE = findDomElement(document.body, '.page-container');
+    const GARAGE = findDomElement(document.body, '#page-garage');
     GARAGE.append(createCarModule(data));
   } else {
     changePaginationGarageStatus();
@@ -51,32 +50,6 @@ async function generateCarsEvent(event: MouseEvent) {
   if (target.tagName !== BUTTON_TAG) return;
 
   await generateCars(100);
-}
-
-export function createPageBtns() {
-  const GARAGE_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO GARAGE');
-  const WINNERS_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO WINNERS');
-  const ELEMENT = createElement('div', ['page-buttons']);
-
-  ELEMENT.append(GARAGE_BUTTON, WINNERS_BUTTON);
-
-  GARAGE_BUTTON.addEventListener('click', () => {
-    (document.body.firstElementChild as HTMLElement).classList.remove('wrapper_hidden');
-    (document.body.lastElementChild as HTMLElement).classList.add('wrapper_hidden');
-  });
-  WINNERS_BUTTON.addEventListener('click', async () => {
-    (document.body.firstElementChild as HTMLElement).classList.add('wrapper_hidden');
-    (document.body.lastElementChild as HTMLElement).classList.remove('wrapper_hidden');
-
-    const WRAPPER_RESULTS = findDomElement(document.body, '.wrapper_absolute');
-    const dataWinner = await getResults(resultObj.page, resultObj.limit);
-
-    if (dataWinner) {
-      WRAPPER_RESULTS.firstElementChild?.after(createResultsPage(dataWinner, resultObj.page));
-    }
-  });
-
-  return ELEMENT;
 }
 
 export function createGarageMenu() {

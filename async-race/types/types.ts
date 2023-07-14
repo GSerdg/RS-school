@@ -16,7 +16,7 @@ export interface Success {
 export type Status = 'started' | 'stopped';
 
 export interface Winner {
-  name: string;
-  color: string;
   id: number;
+  wins: number;
+  time: number;
 }

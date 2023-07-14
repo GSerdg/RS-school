@@ -9,7 +9,7 @@ import { BUTTON_TAG, carReturn, controller, dataObj, itFirstCar, SPAN_TAG } from
 import { createElement, findDomElement } from './dom-utilites';
 import { deleteCar, driveCarEngine, getCar, getCars, startStopCarEngine, updateCar } from './server-requests';
 
-function addAttribute(elem: HTMLElement, color: string) {
+export function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');
   SVG.setAttribute('style', `fill: ${color}`);
 }
@@ -199,7 +199,7 @@ export function createCarModule(carObj: Car) {
 }
 
 export function createGarage(data: Car[], page: number) {
-  const PAGE_CONTAINER = createElement('div', ['page-container']);
+  const PAGE_CONTAINER = createElement('div', ['page-container'], 'page-garage');
   const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Garage(${dataObj.countGarageCars})`);
   const PAGE_NUMBER = createElement('h3', ['page__number'], undefined, `Page #${page}`);
 
@@ -214,7 +214,7 @@ export function createGarage(data: Car[], page: number) {
 
 export async function replasePage(page: number) {
   const getCarsData = await getCars(page, dataObj.limit);
-  const PAGE_CONTAINER = findDomElement(document.body, '.page-container');
+  const PAGE_CONTAINER = findDomElement(document.body, '#page-garage');
   const RACE_BUTTON = PAGE_CONTAINER.previousElementSibling?.lastElementChild?.firstElementChild as HTMLButtonElement;
   const RESET_BUTTON = RACE_BUTTON?.nextElementSibling as HTMLButtonElement;
   const carsCollection = PAGE_CONTAINER.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;

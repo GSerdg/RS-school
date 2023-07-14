@@ -24,6 +24,10 @@
 .page-container {
   padding-top: 20px;
   height: 700px;
+
+  &_height {
+    height: fit-content;
+  }
 }
 
 .page__head,
@@ -79,6 +83,8 @@
 .results-table {
   color: $table-color;
   font-size: 1.5rem;
+  border-collapse: collapse;
+  border:#ffffff 1px solid;
 }
 
 .table__head {

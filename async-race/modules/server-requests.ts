@@ -141,7 +141,11 @@ export async function getResults(page: number, limit: number, sort?: 'id' | 'win
       `${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}&_sort=${sortParams}&_order=${orderParams}`
     );
     const data: Winner[] = await response.json();
-    // const header = response.headers.get('X-Total-Count');
+    const header = response.headers.get('X-Total-Count');
+
+    if (header) {
+      dataObj.countWinnerCars = +header;
+    }
 
     return data;
   } catch (error) {

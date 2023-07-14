@@ -11,6 +11,7 @@ const dataObj = {
   page: 1,
   limit: 7,
   countGarageCars: 0,
+  countWinnerCars: 0,
 };
 
 const resultObj = {
