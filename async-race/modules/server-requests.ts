@@ -135,11 +135,16 @@ export async function driveCarEngine(id: number) {
 
 export async function getResults(page: number, limit: number, sort?: 'id' | 'wins' | 'time', order?: 'ASC' | 'DESC') {
   try {
-    const sortParams = sort || 'id';
-    const orderParams = order || 'ASC';
-    const response = await fetch(
-      `${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}&_sort=${sortParams}&_order=${orderParams}`
-    );
+    let response: Response;
+
+    if (sort && order) {
+      response = await fetch(
+        `${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
+      );
+    } else {
+      response = await fetch(`${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}`);
+    }
+
     const data: Winner[] = await response.json();
     const header = response.headers.get('X-Total-Count');
 
