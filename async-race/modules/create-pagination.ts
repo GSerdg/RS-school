@@ -1,6 +1,7 @@
-import { changePaginationGarageStatus } from './app-utilites';
-import { replasePage } from './create-garage';
-import { BUTTON_TAG, carReturn, dataObj } from './data';
+import { changePaginationGarageStatus, changePaginationResultStatus } from './app-utilites';
+import { replasePageGarage } from './create-garage';
+import { replasePageResults } from './create_results';
+import { BUTTON_TAG, carReturn, dataObj, resultObj } from './data';
 import { createElement } from './dom-utilites';
 
 function turnPageGarage(event: MouseEvent) {
@@ -13,12 +14,31 @@ function turnPageGarage(event: MouseEvent) {
 
   if (target.id === ID_NEXT && dataObj.limit * dataObj.page < dataObj.countGarageCars) {
     dataObj.page += 1;
+    replasePageGarage(dataObj.page);
   }
   if (target.id === ID_PREV && dataObj.page !== FIRST_PAGE) {
     dataObj.page -= 1;
+    replasePageGarage(dataObj.page);
   }
   carReturn.clear();
-  replasePage(dataObj.page);
+}
+
+function turnPageResults(event: MouseEvent) {
+  const target = event.target as HTMLButtonElement;
+  if (target.tagName !== BUTTON_TAG) return;
+
+  const ID_PREV = 'prev-btn';
+  const ID_NEXT = 'next-btn';
+  const FIRST_PAGE = 1;
+
+  if (target.id === ID_NEXT && resultObj.limit * resultObj.page < resultObj.countWinnerCars) {
+    resultObj.page += 1;
+    replasePageResults(resultObj.page);
+  }
+  if (target.id === ID_PREV && resultObj.page !== FIRST_PAGE) {
+    resultObj.page -= 1;
+    replasePageResults(resultObj.page);
+  }
 }
 
 export default function createPagination(page: 'garage' | 'results') {
@@ -33,8 +53,8 @@ export default function createPagination(page: 'garage' | 'results') {
     PAGINATION.addEventListener('click', turnPageGarage);
   }
   if (page === 'results') {
-    // changePaginationResultStatus(PREV_BUTTON, NEXT_BUTTON);
-    // PAGINATION.addEventListener('click', turnPageResults);
+    changePaginationResultStatus(PREV_BUTTON, NEXT_BUTTON);
+    PAGINATION.addEventListener('click', turnPageResults);
   }
 
   return PAGINATION;

@@ -1,5 +1,5 @@
 import { Car, Engine, Status, Success, Winner } from '../types/types';
-import { controller, dataObj } from './data';
+import { controller, dataObj, resultObj } from './data';
 
 const path = {
   domen: 'http://127.0.0.1:3000',
@@ -149,7 +149,7 @@ export async function getResults(page: number, limit: number, sort?: 'id' | 'win
     const header = response.headers.get('X-Total-Count');
 
     if (header) {
-      dataObj.countWinnerCars = +header;
+      resultObj.countWinnerCars = +header;
     }
 
     return data;

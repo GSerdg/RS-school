@@ -63,7 +63,7 @@ async function deleteCarEvents(event: MouseEvent) {
   await deleteCar(carId);
   await deleteWinner(carId);
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  await replasePage(dataObj.page);
+  await replasePageGarage(dataObj.page);
 }
 
 async function selectCarEvents(event: MouseEvent) {
@@ -247,7 +247,7 @@ export function createGarage(data: Car[], page: number) {
   return PAGE_CONTAINER;
 }
 
-export async function replasePage(page: number) {
+export async function replasePageGarage(page: number) {
   const getCarsData = await getCars(page, dataObj.limit);
   const PAGE_CONTAINER = findDomElement(document.body, '#page-garage');
   const RACE_BUTTON = PAGE_CONTAINER.previousElementSibling?.lastElementChild?.firstElementChild as HTMLButtonElement;

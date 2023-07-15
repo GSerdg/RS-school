@@ -2,7 +2,7 @@ import { Car } from '../types/types';
 import { createCar } from './server-requests';
 import { dataObj } from './data';
 // eslint-disable-next-line import/no-cycle
-import { replasePage } from './create-garage';
+import { replasePageGarage } from './create-garage';
 
 export default async function generateCars(number: number) {
   const carBrand = ['Toyota', 'Nissan', 'Daihatsu', 'Subaru', 'BMV', 'Mersedes', 'Ford', 'Honda', 'Kia', 'Renault'];
@@ -26,6 +26,6 @@ export default async function generateCars(number: number) {
   }
 
   await Promise.all(promiseArray)
-    .then(() => replasePage(dataObj.page))
+    .then(() => replasePageGarage(dataObj.page))
     .catch(console.error);
 }

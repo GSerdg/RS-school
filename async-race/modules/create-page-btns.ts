@@ -1,7 +1,6 @@
-import { createResultsPage } from './create_results';
+import { replasePageResults } from './create_results';
 import { resultObj } from './data';
-import { createElement, findDomElement } from './dom-utilites';
-import { getResults } from './server-requests';
+import { createElement } from './dom-utilites';
 
 export default function createPageBtns() {
   const GARAGE_BUTTON = createElement('button', ['btn', 'btn_color'], undefined, 'TO GARAGE');
@@ -19,12 +18,7 @@ export default function createPageBtns() {
     (document.body.firstElementChild as HTMLElement).classList.add('wrapper_hidden');
     (document.body.lastElementChild as HTMLElement).classList.remove('wrapper_hidden');
 
-    const WRAPPER_RESULTS = findDomElement(document.body, '.wrapper_absolute');
-    const dataWinner = await getResults(resultObj.page, resultObj.limit);
-
-    if (dataWinner) {
-      WRAPPER_RESULTS.firstElementChild?.after(createResultsPage(dataWinner, resultObj.page));
-    }
+    replasePageResults(resultObj.page);
   });
 
   return ELEMENT;
