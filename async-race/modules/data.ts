@@ -1,3 +1,5 @@
+import { SortObject } from '../types/types';
+
 const BUTTON_TAG = 'BUTTON';
 const SPAN_TAG = 'SPAN';
 const carReturn = new Map<number, boolean>();
@@ -19,4 +21,9 @@ const resultObj = {
   countWinnerCars: 0,
 };
 
-export { BUTTON_TAG, SPAN_TAG, dataObj, carReturn, controller, itFirstCar, resultObj };
+const sortObj: SortObject = {
+  sort: undefined,
+  order: undefined,
+};
+
+export { BUTTON_TAG, SPAN_TAG, dataObj, carReturn, controller, itFirstCar, resultObj, sortObj };

@@ -28,7 +28,7 @@ export async function carsRace(carModules: NodeListOf<HTMLElement>) {
   BUTTON_RESET.addEventListener('click', carsResetEvent);
   BUTTON_RESET.classList.remove('btn_inactive');
 }
-// TODO Посмотреть возможность объединить в одну функцию
+
 export async function carsReset(carModules: NodeListOf<HTMLElement>) {
   const promiseArray: Promise<void>[] = [];
   const BUTTON_RESET = findDomElement<HTMLButtonElement>(document.body, '#reset');

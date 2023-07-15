@@ -1,8 +1,8 @@
 import { changePaginationGarageStatus, changePaginationResultStatus } from './app-utilites';
 import { replasePageGarage } from './create-garage';
 import { replasePageResults } from './create_results';
-import { BUTTON_TAG, carReturn, dataObj, resultObj } from './data';
-import { createElement } from './dom-utilites';
+import { BUTTON_TAG, carReturn, dataObj, resultObj, sortObj } from './data';
+import { createElement, findDomElement } from './dom-utilites';
 
 function turnPageGarage(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
@@ -23,7 +23,40 @@ function turnPageGarage(event: MouseEvent) {
   carReturn.clear();
 }
 
-function turnPageResults(event: MouseEvent) {
+function writeSortArrow() {
+  let TH: HTMLElement;
+  switch (sortObj.sort) {
+    case 'id':
+      TH = findDomElement(document.body, '#head-0');
+      if (sortObj.order === 'ASC') {
+        TH.classList.add('sort-up');
+      } else {
+        TH.classList.add('sort-down');
+      }
+      break;
+    case 'wins':
+      TH = findDomElement(document.body, '#head-3');
+      if (sortObj.order === 'ASC') {
+        TH.classList.add('sort-up');
+      } else {
+        TH.classList.add('sort-down');
+      }
+      break;
+    case 'time':
+      TH = findDomElement(document.body, '#head-4');
+      if (sortObj.order === 'ASC') {
+        TH.classList.add('sort-up');
+      } else {
+        TH.classList.add('sort-down');
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
+async function turnPageResults(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
 
@@ -33,11 +66,14 @@ function turnPageResults(event: MouseEvent) {
 
   if (target.id === ID_NEXT && resultObj.limit * resultObj.page < resultObj.countWinnerCars) {
     resultObj.page += 1;
-    replasePageResults(resultObj.page);
+    await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+    writeSortArrow();
   }
+
   if (target.id === ID_PREV && resultObj.page !== FIRST_PAGE) {
     resultObj.page -= 1;
-    replasePageResults(resultObj.page);
+    await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+    writeSortArrow();
   }
 }
 

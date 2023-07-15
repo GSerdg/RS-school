@@ -90,3 +90,15 @@
 .table__head {
   background-color: $table-head;
 }
+
+.head__td {
+  cursor: pointer;
+}
+
+.sort-up::after {
+  content: " ↓";
+}
+
+.sort-down::after {
+  content: " ↑";
+}

@@ -20,3 +20,11 @@ export interface Winner {
   wins: number;
   time: number;
 }
+
+export interface SortObject {
+  sort: undefined | Sort;
+  order: undefined | Order;
+}
+
+export type Sort = 'id' | 'wins' | 'time';
+export type Order = 'ASC' | 'DESC';

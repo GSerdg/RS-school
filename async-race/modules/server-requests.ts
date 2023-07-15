@@ -1,4 +1,4 @@
-import { Car, Engine, Status, Success, Winner } from '../types/types';
+import { Car, Engine, Order, Sort, Status, Success, Winner } from '../types/types';
 import { controller, dataObj, resultObj } from './data';
 
 const path = {
@@ -133,7 +133,7 @@ export async function driveCarEngine(id: number) {
   return data;
 }
 
-export async function getResults(page: number, limit: number, sort?: 'id' | 'wins' | 'time', order?: 'ASC' | 'DESC') {
+export async function getResults(page: number, limit: number, sort?: Sort, order?: Order) {
   try {
     let response: Response;
 
@@ -181,7 +181,7 @@ export async function deleteWinner(id: number) {
       throw new Error(`Car width id: ${id} not found in server`);
     }
   } catch (error) {
-    // console.log(error.message);
+    /* empty */
   }
 }
 

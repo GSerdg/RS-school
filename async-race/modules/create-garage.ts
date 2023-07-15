@@ -136,7 +136,6 @@ export async function startCar(carModule: HTMLElement, race?: true) {
       .then((res) => {
         if (res?.success && carReturn.get(carId)) {
           if (itFirstCar.value && race) {
-            console.log('car win', carId, (animationTime / 1000).toFixed(2));
             itFirstCar.value = false;
             return getResult(carId);
           }
@@ -146,7 +145,6 @@ export async function startCar(carModule: HTMLElement, race?: true) {
       .then((res) => {
         let countWins = 1;
         let time = +(animationTime / 1000).toFixed(2);
-        console.log(res);
 
         if (res) {
           if (Object.keys(res).length !== 0) {

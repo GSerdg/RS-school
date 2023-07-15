@@ -1,19 +1,66 @@
-import { Winner } from '../types/types';
+import { Order, Sort, Winner } from '../types/types';
 import { changePaginationResultStatus } from './app-utilites';
 import carSvg from './car-icon';
 import { addAttribute } from './create-garage';
-import { resultObj } from './data';
+import { resultObj, sortObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { getCar, getResults } from './server-requests';
 
+async function addTableClass(sort: Sort, order: Order, className: string) {
+  const TH_ID = {
+    id: '#head-0',
+    wins: '#head-3',
+    time: '#head-4',
+  };
+  [sortObj.sort, sortObj.order] = [sort, order];
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+  const TH = findDomElement(document.body, TH_ID[sort]);
+  TH.classList.add(className);
+}
+
+function sortResultsEvent(event: MouseEvent) {
+  const [NUMBER_ID, WINS_ID, TIME_ID] = ['head-0', 'head-3', 'head-4'];
+  const target = event.target as HTMLElement;
+  if (target.id !== NUMBER_ID && target.id !== WINS_ID && target.id !== TIME_ID) return;
+
+  switch (target.id) {
+    case NUMBER_ID:
+      if (target.classList.contains('sort-up')) {
+        addTableClass('id', 'DESC', 'sort-down');
+      } else {
+        addTableClass('id', 'ASC', 'sort-up');
+      }
+      break;
+    case WINS_ID:
+      if (target.classList.contains('sort-up')) {
+        addTableClass('wins', 'DESC', 'sort-down');
+      } else {
+        addTableClass('wins', 'ASC', 'sort-up');
+      }
+      break;
+    case TIME_ID:
+      if (target.classList.contains('sort-up')) {
+        addTableClass('time', 'DESC', 'sort-down');
+      } else {
+        addTableClass('time', 'ASC', 'sort-up');
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
 export function createResultsTable(data: Winner[]) {
   const headers = ['Number', 'Car', 'Name', 'Wins', 'Best time(s)'];
+  const headThClass = [['head__td'], undefined, undefined, ['head__td'], ['head__td']];
   const numberColumns = 5;
   const TABLE = createElement('table', ['results-table']);
   const TR_HEADER = createElement('tr', ['table__head']);
 
   for (let k = 0; k < numberColumns; k += 1) {
-    const TH = createElement('th', undefined, undefined, headers[k]);
+    const TH = createElement('th', headThClass[k], `head-${k}`, headers[k]);
     TR_HEADER.append(TH);
   }
 
@@ -52,6 +99,8 @@ export function createResultsTable(data: Winner[]) {
     }
 
     TABLE.append(TR);
+
+    TR_HEADER.addEventListener('click', sortResultsEvent);
   }
 
   return TABLE;
@@ -66,12 +115,12 @@ export function createResultsPage(data: Winner[], page: number) {
   return PAGE_CONTAINER;
 }
 
-export async function replasePageResults(page: number) {
+export async function replasePageResults(page: number, sort?: Sort, order?: Order) {
   const WRAPPER_RESULTS = findDomElement(document.body, '.wrapper_absolute');
   const PREV_BUTTON = WRAPPER_RESULTS.lastElementChild?.firstElementChild as HTMLButtonElement;
   const NEXT_BUTTON = WRAPPER_RESULTS.lastElementChild?.lastElementChild as HTMLButtonElement;
   const OLD_PAGE = document.body.querySelector('#page-results');
-  const dataWinner = await getResults(page, resultObj.limit);
+  const dataWinner = await getResults(page, resultObj.limit, sort, order);
 
   if (dataWinner) {
     OLD_PAGE?.remove();
