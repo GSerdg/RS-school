@@ -50,7 +50,7 @@
   border-radius: 3px;
   padding: 3px;
   margin-right: 10px;
-  
+
   &_active {
     cursor: pointer;
     border: 2px solid $engine-btn-active;
@@ -84,7 +84,7 @@
   color: $table-color;
   font-size: 1.5rem;
   border-collapse: collapse;
-  border:#ffffff 1px solid;
+  border: #ffffff 1px solid;
 }
 
 .table__head {
@@ -101,4 +101,14 @@
 
 .sort-down::after {
   content: " ↑";
+}
+
+.winner-popup {
+  position: absolute;
+  top: 71px;
+  left: 315px;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: white;
+  filter: drop-shadow(2px 4px 3px white);
 }

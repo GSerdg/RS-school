@@ -15,6 +15,7 @@ async function addTableClass(sort: Sort, order: Order, className: string) {
   [sortObj.sort, sortObj.order] = [sort, order];
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+
   const TH = findDomElement(document.body, TH_ID[sort]);
   TH.classList.add(className);
 }
@@ -88,7 +89,6 @@ export function createResultsTable(data: Winner[]) {
               TD.insertAdjacentHTML('beforeend', carSvg);
               resolve(addAttribute(TD, tableData[j]));
             }).then();
-
             TR.append(TD);
           } else {
             const TD = createElement('td', undefined, undefined, tableData[j]);
@@ -99,10 +99,8 @@ export function createResultsTable(data: Winner[]) {
     }
 
     TABLE.append(TR);
-
     TR_HEADER.addEventListener('click', sortResultsEvent);
   }
-
   return TABLE;
 }
 

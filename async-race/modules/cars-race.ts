@@ -7,7 +7,10 @@ export function carsResetEvent(event: MouseEvent) {
   const target = event.target as HTMLButtonElement;
   if (target.tagName !== BUTTON_TAG) return;
 
+  const WINNER_POPUP = document.body.querySelector('.winner-popup');
   const carsCollection = document.body.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
+
+  WINNER_POPUP?.remove();
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   carsReset(carsCollection);
 }

@@ -88,7 +88,6 @@ export function createGarageMenu() {
 
     INPUT_TEXT.setAttribute('type', 'text');
     INPUT_COLOR.setAttribute('type', 'color');
-
     INPUT_CONTAINER.append(INPUT_TEXT, INPUT_COLOR, BUTTON);
     ELEMENT.append(INPUT_CONTAINER);
 
@@ -99,7 +98,6 @@ export function createGarageMenu() {
 
   BUTTONS_CONTAINER.append(BUTTON_RACE, BUTTON_RESET, BUTTON_GENERATE);
   ELEMENT.append(BUTTONS_CONTAINER);
-
   BUTTON_GENERATE.addEventListener('click', generateCarsEvent);
   BUTTON_RACE.addEventListener('click', carsRaceEvent);
 

@@ -5,6 +5,7 @@ import carSvg from './car-icon';
 import { carsResetEvent } from './cars-race';
 // eslint-disable-next-line import/no-cycle
 import { carsRaceEvent } from './create-garage-menu';
+import createWinnerPopup from './create-winner-popup';
 import { BUTTON_TAG, carReturn, controller, dataObj, itFirstCar, SPAN_TAG } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import {
@@ -109,8 +110,46 @@ function startCarEngineEvents(event: MouseEvent) {
   startCar(CAR_MODULE);
 }
 
-export async function startCar(carModule: HTMLElement, race?: true) {
+function driveCarLogic(id: number, animationTime: number, car: HTMLElement, race?: true) {
   const stopCarError = "Car has been stopped suddenly. It's engine was broken down.";
+
+  driveCarEngine(id)
+    .then((res) => {
+      if (res?.success && carReturn.get(id)) {
+        if (itFirstCar.value && race) {
+          itFirstCar.value = false;
+          return getResult(id);
+        }
+      }
+      return undefined;
+    })
+    .then(async (res) => {
+      let countWins = 1;
+      let time = +(animationTime / 1000).toFixed(2);
+
+      if (res) {
+        (document.body.firstElementChild as HTMLElement).append(await createWinnerPopup(id, time));
+
+        if (Object.keys(res).length !== 0) {
+          countWins = res.wins + 1;
+          if (res.time < +(animationTime / 1000).toFixed(2)) {
+            time = res.time;
+          }
+          return updateWinner(id, countWins, time);
+        }
+        return createWinner(id, countWins, time);
+      }
+      return undefined;
+    })
+    .then()
+    .catch((err) => {
+      if (err.message === stopCarError && carReturn.get(id)) {
+        window.requestAnimationFrame(stopAnimateCar(car));
+      }
+    });
+}
+
+export async function startCar(carModule: HTMLElement, race?: true) {
   const carId = +carModule.id.split('-')[1];
   const CAR = carModule.lastElementChild?.firstElementChild as HTMLElement;
   const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
@@ -131,42 +170,7 @@ export async function startCar(carModule: HTMLElement, race?: true) {
     const animationTime = content.distance / content.velocity;
 
     window.requestAnimationFrame(animateMoveCar(CAR, carModule, animationTime));
-    const rezult = driveCarEngine(carId);
-    rezult
-      .then((res) => {
-        if (res?.success && carReturn.get(carId)) {
-          if (itFirstCar.value && race) {
-            itFirstCar.value = false;
-            return getResult(carId);
-          }
-        }
-        return undefined;
-      })
-      .then((res) => {
-        let countWins = 1;
-        let time = +(animationTime / 1000).toFixed(2);
-
-        if (res) {
-          if (Object.keys(res).length !== 0) {
-            countWins = res.wins + 1;
-
-            if (res.time < +(animationTime / 1000).toFixed(2)) {
-              time = res.time;
-            }
-            return updateWinner(carId, countWins, time);
-          }
-          return createWinner(carId, countWins, time);
-        }
-        return undefined;
-      })
-      .then()
-      .catch((err) => {
-        if (err.message === stopCarError && carReturn.get(carId)) {
-          window.requestAnimationFrame(stopAnimateCar(CAR));
-        } /* else {
-          console.error(err);
-        } */
-      });
+    driveCarLogic(carId, animationTime, CAR, race);
   }
 }
 
@@ -176,6 +180,7 @@ export async function stopCar(carModule: HTMLElement) {
   const STOP_BUTTON = carModule.firstElementChild?.nextElementSibling?.lastElementChild as HTMLButtonElement;
   const START_BUTTON = carModule.firstElementChild?.nextElementSibling?.firstElementChild as HTMLButtonElement;
   const RACE_BUTTON = findDomElement<HTMLButtonElement>(document.body, '#race');
+  const RESET_BUTTON = findDomElement<HTMLButtonElement>(document.body, '#reset');
 
   STOP_BUTTON.removeEventListener('click', stopCarEngineEvents);
   STOP_BUTTON.classList.remove('car__start_active');
@@ -194,8 +199,14 @@ export async function stopCar(carModule: HTMLElement) {
     carReturn.set(carId, false);
 
     if (Array.from(carReturn.values()).every((val) => val === false)) {
+      const WINNER_POPUP = document.body.querySelector('.winner-popup');
+
       RACE_BUTTON.addEventListener('click', carsRaceEvent);
       RACE_BUTTON.classList.remove('btn_inactive');
+      RESET_BUTTON.addEventListener('click', carsResetEvent);
+      RESET_BUTTON.classList.add('btn_inactive');
+      WINNER_POPUP?.remove();
+
       itFirstCar.value = true;
     }
   }
@@ -251,6 +262,7 @@ export async function replasePageGarage(page: number) {
   const RACE_BUTTON = PAGE_CONTAINER.previousElementSibling?.lastElementChild?.firstElementChild as HTMLButtonElement;
   const RESET_BUTTON = RACE_BUTTON?.nextElementSibling as HTMLButtonElement;
   const carsCollection = PAGE_CONTAINER.querySelectorAll('.car-module') as NodeListOf<HTMLElement>;
+  const WINNER_POPUP = document.body.querySelector('.winner-popup');
 
   if (getCarsData) {
     PAGE_CONTAINER.replaceWith(createGarage(getCarsData, page));
@@ -271,5 +283,6 @@ export async function replasePageGarage(page: number) {
     controller.get(carId)?.abort(); // Отменяем запрос на сервер
   });
 
+  WINNER_POPUP?.remove();
   changePaginationGarageStatus();
 }

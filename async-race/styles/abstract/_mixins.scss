@@ -6,14 +6,3 @@
   }
 }
 
-@mixin media-form {
-  @media (max-width: $width_lg) {
-    @content;
-  }
-}
-
-@mixin media-font {
-  @media (max-width: $width_md) {
-    @content;
-  }
-}
