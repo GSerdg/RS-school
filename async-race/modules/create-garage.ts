@@ -19,7 +19,7 @@ import {
   startStopCarEngine,
   updateCar,
   updateWinner,
-} from './server-requests';
+} from './api';
 
 export function addAttribute(elem: HTMLElement, color: string) {
   const SVG = findDomElement(elem, 'g');
@@ -244,7 +244,7 @@ export function createCarModule(carObj: Car) {
 
 export function createGarage(data: Car[], page: number) {
   const PAGE_CONTAINER = createElement('div', ['page-container'], 'page-garage');
-  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Garage(${dataObj.countGarageCars})`);
+  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Garage(${dataObj.count})`);
   const PAGE_NUMBER = createElement('h3', ['page__number'], undefined, `Page #${page}`);
 
   PAGE_CONTAINER.append(PAGE_HEADER, PAGE_NUMBER);

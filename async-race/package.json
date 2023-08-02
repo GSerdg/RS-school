@@ -17,7 +17,6 @@
   "author": "Sergey Grebel",
   "license": "ISC",
   "devDependencies": {
-    "@types/highlightjs": "^9.12.2",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "clean-webpack-plugin": "^4.0.0",
@@ -44,8 +43,5 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0"
-  },
-  "dependencies": {
-    "highlightjs": "^9.16.2"
   }
 }

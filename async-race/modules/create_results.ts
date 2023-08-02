@@ -1,20 +1,20 @@
-import { Order, Sort, Winner } from '../types/types';
+import { OrderBy, SortBy, Winner } from '../types/types';
 import { changePaginationResultStatus } from './app-utilites';
 import carSvg from './car-icon';
 import { addAttribute } from './create-garage';
 import { resultObj, sortObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
-import { getCar, getResults } from './server-requests';
+import { getCar, getResults } from './api';
 
-async function addTableClass(sort: Sort, order: Order, className: string) {
+async function addTableClass(sort: SortBy, order: OrderBy, className: string) {
   const TH_ID = {
     id: '#head-0',
     wins: '#head-3',
     time: '#head-4',
   };
-  [sortObj.sort, sortObj.order] = [sort, order];
+  [sortObj.sortBy, sortObj.orderBy] = [sort, order];
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+  await replasePageResults(resultObj.page, sortObj.sortBy, sortObj.orderBy);
 
   const TH = findDomElement(document.body, TH_ID[sort]);
   TH.classList.add(className);
@@ -106,14 +106,14 @@ export function createResultsTable(data: Winner[]) {
 
 export function createResultsPage(data: Winner[], page: number) {
   const PAGE_CONTAINER = createElement('div', ['page-container', 'page-container_height'], 'page-results');
-  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Winners (${resultObj.countWinnerCars})`);
+  const PAGE_HEADER = createElement('h1', ['page__head'], undefined, `Winners (${resultObj.count})`);
   const PAGE_NUMBER = createElement('h3', ['page__number'], undefined, `Page #${page}`);
   PAGE_CONTAINER.append(PAGE_HEADER, PAGE_NUMBER, createResultsTable(data));
 
   return PAGE_CONTAINER;
 }
 
-export async function replasePageResults(page: number, sort?: Sort, order?: Order) {
+export async function replasePageResults(page: number, sort?: SortBy, order?: OrderBy) {
   const WRAPPER_RESULTS = findDomElement(document.body, '.wrapper_absolute');
   const PREV_BUTTON = WRAPPER_RESULTS.lastElementChild?.firstElementChild as HTMLButtonElement;
   const NEXT_BUTTON = WRAPPER_RESULTS.lastElementChild?.lastElementChild as HTMLButtonElement;

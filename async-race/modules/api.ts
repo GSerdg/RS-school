@@ -1,15 +1,15 @@
-import { Car, Engine, Order, Sort, Status, Success, Winner } from '../types/types';
+import { Car, Engine, OrderBy, SortBy, EngineStatus, Success, Winner } from '../types/types';
 import { controller, dataObj, resultObj } from './data';
 
-const path = {
-  domen: 'http://127.0.0.1:3000',
-  urlGarage: '/garage',
-  urlEngine: '/engine',
-  urlWinners: '/winners',
+const PATHS = {
+  BASE_URL: 'http://127.0.0.1:3000',
+  GARAGE: '/garage',
+  ENGINE: '/engine',
+  WINNERS: '/winners',
 };
 
-export async function createCar(carModel: string, carColor: string) {
-  const response = await fetch(`${path.domen}${path.urlGarage}`, {
+export async function createCar(carModel: string, carColor: string): Promise<Car> {
+  const response = await fetch(`${PATHS.BASE_URL}${PATHS.GARAGE}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,9 +24,9 @@ export async function createCar(carModel: string, carColor: string) {
   return data;
 }
 
-export async function getCar(id: number) {
+export async function getCar(id: number): Promise<Car | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlGarage}/${id}`);
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.GARAGE}/${id}`);
 
     if (!response.ok) {
       throw new Error(`Car width id: ${id} not found in server`);
@@ -41,14 +41,14 @@ export async function getCar(id: number) {
   }
 }
 
-export async function getCars(page: number, limit: number) {
+export async function getCars(page: number, limit: number): Promise<Car[] | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlGarage}?_page=${page}&_limit=${limit}`);
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.GARAGE}?_page=${page}&_limit=${limit}`);
     const data: Car[] = await response.json();
     const header = response.headers.get('X-Total-Count');
 
     if (header) {
-      dataObj.countGarageCars = +header;
+      dataObj.count = +header;
     }
 
     return data;
@@ -58,9 +58,9 @@ export async function getCars(page: number, limit: number) {
   }
 }
 
-export async function updateCar(carModel: string, carColor: string, id: number) {
+export async function updateCar(carModel: string, carColor: string, id: number): Promise<Car | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlGarage}/${id}`, {
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.GARAGE}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -84,9 +84,9 @@ export async function updateCar(carModel: string, carColor: string, id: number) 
   }
 }
 
-export async function deleteCar(id: number) {
+export async function deleteCar(id: number): Promise<void> {
   try {
-    const response = await fetch(`${path.domen}${path.urlGarage}/${id}`, {
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.GARAGE}/${id}`, {
       method: 'DELETE',
     });
 
@@ -98,9 +98,9 @@ export async function deleteCar(id: number) {
   }
 }
 
-export async function startStopCarEngine(status: Status, id: number) {
+export async function startStopCarEngine(status: EngineStatus, id: number): Promise<Engine | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlEngine}?id=${id}&status=${status}`, {
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.ENGINE}?id=${id}&status=${status}`, {
       method: 'PATCH',
     });
 
@@ -116,9 +116,9 @@ export async function startStopCarEngine(status: Status, id: number) {
   }
 }
 
-export async function driveCarEngine(id: number) {
+export async function driveCarEngine(id: number): Promise<Success> {
   controller.set(id, new AbortController());
-  const response = await fetch(`${path.domen}${path.urlEngine}?id=${id}&status=drive`, {
+  const response = await fetch(`${PATHS.BASE_URL}${PATHS.ENGINE}?id=${id}&status=drive`, {
     method: 'PATCH',
     signal: controller.get(id)?.signal,
   });
@@ -133,23 +133,28 @@ export async function driveCarEngine(id: number) {
   return data;
 }
 
-export async function getResults(page: number, limit: number, sort?: Sort, order?: Order) {
+export async function getResults(
+  page: number,
+  limit: number,
+  sort?: SortBy,
+  order?: OrderBy
+): Promise<Winner[] | undefined> {
   try {
     let response: Response;
 
     if (sort && order) {
       response = await fetch(
-        `${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
+        `${PATHS.BASE_URL}${PATHS.WINNERS}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
       );
     } else {
-      response = await fetch(`${path.domen}${path.urlWinners}?_page=${page}&_limit=${limit}`);
+      response = await fetch(`${PATHS.BASE_URL}${PATHS.WINNERS}?_page=${page}&_limit=${limit}`);
     }
 
     const data: Winner[] = await response.json();
     const header = response.headers.get('X-Total-Count');
 
     if (header) {
-      resultObj.countWinnerCars = +header;
+      resultObj.count = +header;
     }
 
     return data;
@@ -159,9 +164,9 @@ export async function getResults(page: number, limit: number, sort?: Sort, order
   }
 }
 
-export async function getResult(id: number) {
+export async function getResult(id: number): Promise<Winner | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`);
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.WINNERS}/${id}`);
     const data: Winner = await response.json();
 
     return data;
@@ -171,9 +176,9 @@ export async function getResult(id: number) {
   }
 }
 
-export async function deleteWinner(id: number) {
+export async function deleteWinner(id: number): Promise<void> {
   try {
-    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`, {
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.WINNERS}/${id}`, {
       method: 'DELETE',
     });
 
@@ -185,8 +190,8 @@ export async function deleteWinner(id: number) {
   }
 }
 
-export async function createWinner(id: number, wins: number, time: number) {
-  const response = await fetch(`${path.domen}${path.urlWinners}`, {
+export async function createWinner(id: number, wins: number, time: number): Promise<Winner> {
+  const response = await fetch(`${PATHS.BASE_URL}${PATHS.WINNERS}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -202,9 +207,9 @@ export async function createWinner(id: number, wins: number, time: number) {
   return data;
 }
 
-export async function updateWinner(id: number, wins: number, time: number) {
+export async function updateWinner(id: number, wins: number, time: number): Promise<Winner | undefined> {
   try {
-    const response = await fetch(`${path.domen}${path.urlWinners}/${id}`, {
+    const response = await fetch(`${PATHS.BASE_URL}${PATHS.WINNERS}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

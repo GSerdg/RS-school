@@ -14,7 +14,7 @@ function gotoGarage(event: MouseEvent) {
   (document.body.firstElementChild as HTMLElement).classList.remove('wrapper_hidden');
   WRAPPER_RESULTS.remove();
   resultObj.page = 1;
-  [sortObj.sort, sortObj.order] = [undefined, undefined];
+  [sortObj.sortBy, sortObj.orderBy] = [undefined, undefined];
 }
 
 function gotoResults(event: MouseEvent) {

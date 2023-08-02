@@ -11,7 +11,7 @@ export function changePaginationGarageStatus(prev?: HTMLElement, next?: HTMLElem
   } else {
     PREV_BUTTON.classList.remove('btn_inactive');
   }
-  if (dataObj.limit * dataObj.page >= dataObj.countGarageCars) {
+  if (dataObj.limit * dataObj.page >= dataObj.count) {
     NEXT_BUTTON.classList.add('btn_inactive');
   } else {
     NEXT_BUTTON.classList.remove('btn_inactive');
@@ -28,7 +28,7 @@ export function changePaginationResultStatus(prev?: HTMLElement, next?: HTMLElem
   } else {
     PREV_BUTTON.classList.remove('btn_inactive');
   }
-  if (resultObj.limit * resultObj.page >= resultObj.countWinnerCars) {
+  if (resultObj.limit * resultObj.page >= resultObj.count) {
     NEXT_BUTTON.classList.add('btn_inactive');
   } else {
     NEXT_BUTTON.classList.remove('btn_inactive');

@@ -12,7 +12,7 @@ function turnPageGarage(event: MouseEvent) {
   const ID_NEXT = 'next-btn';
   const FIRST_PAGE = 1;
 
-  if (target.id === ID_NEXT && dataObj.limit * dataObj.page < dataObj.countGarageCars) {
+  if (target.id === ID_NEXT && dataObj.limit * dataObj.page < dataObj.count) {
     dataObj.page += 1;
     replasePageGarage(dataObj.page);
   }
@@ -25,10 +25,10 @@ function turnPageGarage(event: MouseEvent) {
 
 function writeSortArrow() {
   let TH: HTMLElement;
-  switch (sortObj.sort) {
+  switch (sortObj.sortBy) {
     case 'id':
       TH = findDomElement(document.body, '#head-0');
-      if (sortObj.order === 'ASC') {
+      if (sortObj.orderBy === 'ASC') {
         TH.classList.add('sort-up');
       } else {
         TH.classList.add('sort-down');
@@ -36,7 +36,7 @@ function writeSortArrow() {
       break;
     case 'wins':
       TH = findDomElement(document.body, '#head-3');
-      if (sortObj.order === 'ASC') {
+      if (sortObj.orderBy === 'ASC') {
         TH.classList.add('sort-up');
       } else {
         TH.classList.add('sort-down');
@@ -44,7 +44,7 @@ function writeSortArrow() {
       break;
     case 'time':
       TH = findDomElement(document.body, '#head-4');
-      if (sortObj.order === 'ASC') {
+      if (sortObj.orderBy === 'ASC') {
         TH.classList.add('sort-up');
       } else {
         TH.classList.add('sort-down');
@@ -64,15 +64,15 @@ async function turnPageResults(event: MouseEvent) {
   const ID_NEXT = 'next-btn';
   const FIRST_PAGE = 1;
 
-  if (target.id === ID_NEXT && resultObj.limit * resultObj.page < resultObj.countWinnerCars) {
+  if (target.id === ID_NEXT && resultObj.limit * resultObj.page < resultObj.count) {
     resultObj.page += 1;
-    await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+    await replasePageResults(resultObj.page, sortObj.sortBy, sortObj.orderBy);
     writeSortArrow();
   }
 
   if (target.id === ID_PREV && resultObj.page !== FIRST_PAGE) {
     resultObj.page -= 1;
-    await replasePageResults(resultObj.page, sortObj.sort, sortObj.order);
+    await replasePageResults(resultObj.page, sortObj.sortBy, sortObj.orderBy);
     writeSortArrow();
   }
 }

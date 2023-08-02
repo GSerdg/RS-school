@@ -1,5 +1,5 @@
 import { Car } from '../types/types';
-import { createCar } from './server-requests';
+import { createCar } from './api';
 import { dataObj } from './data';
 // eslint-disable-next-line import/no-cycle
 import { replasePageGarage } from './create-garage';

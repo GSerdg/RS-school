@@ -30,7 +30,6 @@ const baseConfig = {
                 'styles/abstract/_variables.scss',
                 'styles/abstract/_constants.scss',
                 'styles/abstract/_mixins.scss',
-                'styles/abstract/_placeholders.scss',
               ],
             },
           },

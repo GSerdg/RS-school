@@ -1,5 +1,5 @@
 import { createElement } from './dom-utilites';
-import { getCar } from './server-requests';
+import { getCar } from './api';
 
 export default async function createWinnerPopup(id: number, time: number) {
   let title: string;

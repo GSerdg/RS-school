@@ -13,7 +13,7 @@ export interface Success {
   success: true;
 }
 
-export type Status = 'started' | 'stopped';
+export type EngineStatus = 'started' | 'stopped';
 
 export interface Winner {
   id: number;
@@ -22,9 +22,15 @@ export interface Winner {
 }
 
 export interface SortObject {
-  sort: undefined | Sort;
-  order: undefined | Order;
+  sortBy?: SortBy;
+  orderBy?: OrderBy;
 }
 
-export type Sort = 'id' | 'wins' | 'time';
-export type Order = 'ASC' | 'DESC';
+export interface PageData {
+  page: number;
+  limit: 7 | 10;
+  count: number;
+}
+
+export type SortBy = 'id' | 'wins' | 'time';
+export type OrderBy = 'ASC' | 'DESC';

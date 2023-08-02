@@ -1,4 +1,4 @@
-import { createCar } from './server-requests';
+import { createCar } from './api';
 import { BUTTON_TAG, dataObj } from './data';
 import { createElement, findDomElement } from './dom-utilites';
 import { changePaginationGarageStatus } from './app-utilites';
@@ -31,9 +31,9 @@ async function createCarEvents(event: MouseEvent) {
   const HEADER = findDomElement(document.body, '.page__head');
   const BASE_COLOR = '#000000';
 
-  dataObj.countGarageCars += 1;
+  dataObj.count += 1;
 
-  HEADER.innerText = `Garage(${dataObj.countGarageCars})`;
+  HEADER.innerText = `Garage(${dataObj.count})`;
   if (CARS.length < dataObj.limit) {
     const GARAGE = findDomElement(document.body, '#page-garage');
     if (data) {
